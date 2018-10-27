@@ -5,15 +5,12 @@ using UnityEngine;
 public class LaunchController : MonoBehaviour {
 
 	//Represent the three stages of aiming with and integer
-	public int stage = 1;
+	int stage = 1;
 	float laneWidth = 2.0f;
 
 	[Header("Aim and Difficulty Settings")]
-	[Tooltip ("Movement speed when aligning shot")]
 	public float axisMovementSpeed = 1.0f;
-	[Tooltip ("Maximum shot angle")]
 	public float maxRotationAngle = 90.0f;
-	[Tooltip ("Rotation speed when aiming shot")]
 	public float rotationSpeed = 1.0f;
 
 	public float launchForce;
