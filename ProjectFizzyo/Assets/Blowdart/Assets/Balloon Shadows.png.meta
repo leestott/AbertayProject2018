@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: 653838ef518a135409319a17a2308fb6
+guid: c954a46014093ea4bbb32524182996b5
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Balloon Shadows_0
+    21300002: Balloon Shadows_1
+    21300004: Balloon Shadows_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -82,11 +85,71 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Balloon Shadows_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 546
+        width: 207
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe16e819339ec944a91c57b87b950d22
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Balloon Shadows_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 235
+        width: 207
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 223f9903ba3762c4ca906bbc3b5058d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Balloon Shadows_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 207
+        height: 228
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90989781c9431174795c5eccc262b5c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: eee36804851331348a5b75bc160fc5bc
+    spriteID: fee0e8bf425e32d48bd612a9b48ce9ee
     vertices: []
     indices: 
     edges: []
