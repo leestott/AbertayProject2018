@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Reset
   - Balloon
   - Dart
+=======
+  - BowlingPins
+>>>>>>> origin/CoconutMG_Code_Sam
   layers:
   - Default
   - TransparentFX
