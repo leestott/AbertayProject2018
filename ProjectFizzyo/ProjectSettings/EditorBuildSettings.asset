@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/BowlingMG/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Fizzyo/FizzyoFramework/Scenes/Calibration.unity
+    guid: 19019ff99c632e74d84ac7c3ad4a7183
   - enabled: 1
     path: Assets/HubWorld/Scenes/MainMenu.unity
     guid: fccb464864be8ab4687af6076196d2e6

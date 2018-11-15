@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Fizzyo;
 
 public class UISelector : MonoBehaviour {
 
@@ -32,17 +33,28 @@ public class UISelector : MonoBehaviour {
     private float minimum = 0.0F;
     private float maximum = 0.1F;
 
-    
+    //use Fizzyo namespace
+    int score = 0;
+    int breaths = 5;
+    int breathCount = 0;
+    private string PerfectBreathUID = "";
 
-    void Start()
+void Start()
     {
         cameraPos = mainCamera.transform.position;
         newCamPos = minigames[selected - 1].transform.position;
         minigameName.text = minigameNames[selected - 1];
+
+        FizzyoFramework.Instance.Recogniser.BreathStarted += OnBreathStarted;
+        FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
     }
 
 	void Update ()
     {
+        //get exhale pressure between -1 and 1
+        float pressure = FizzyoFramework.Instance.Device.Pressure();
+        Debug.Log("Exhale pressure: " + pressure);
+
         whichGame();
         moveCamera(mainCamera.transform.position, newCamPos);
     }
@@ -97,6 +109,17 @@ public class UISelector : MonoBehaviour {
     public int getSelected()
     {
         return selected;
+    }
+
+    void OnBreathStarted(object sender)
+    {
+        Debug.Log("Breath started");
+    }
+
+
+    void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
+    {
+        Debug.Log("Breath ended");
     }
 
 }
