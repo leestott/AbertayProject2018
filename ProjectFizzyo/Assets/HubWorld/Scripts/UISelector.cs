@@ -33,28 +33,19 @@ public class UISelector : MonoBehaviour {
     private float minimum = 0.0F;
     private float maximum = 0.1F;
 
-    //use Fizzyo namespace
-    int score = 0;
-    int breaths = 5;
-    int breathCount = 0;
-    private string PerfectBreathUID = "";
+    private bool buttonHeld = false;
 
 void Start()
     {
         cameraPos = mainCamera.transform.position;
         newCamPos = minigames[selected - 1].transform.position;
         minigameName.text = minigameNames[selected - 1];
-
-        FizzyoFramework.Instance.Recogniser.BreathStarted += OnBreathStarted;
-        FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
     }
 
 	void Update ()
     {
-        //get exhale pressure between -1 and 1
-        float pressure = FizzyoFramework.Instance.Device.Pressure();
-        Debug.Log("Exhale pressure: " + pressure);
-
+        if (FizzyoFramework.Instance.Device.ButtonDown())
+            Debug.Log("Button is down");
         whichGame();
         moveCamera(mainCamera.transform.position, newCamPos);
     }
@@ -63,7 +54,7 @@ void Start()
     private void whichGame()
     {
         // On button press change minigame selected.
-		if (Input.GetKeyUp("joystick 1 button 0")||Input.GetKeyUp(KeyCode.Space))
+		if (Input.GetKeyUp(KeyCode.Space)|| Input.GetButtonUp("Fire1") ||FizzyoFramework.Instance.Device.ButtonDown())
         {
             selected++;
 
@@ -110,16 +101,4 @@ void Start()
     {
         return selected;
     }
-
-    void OnBreathStarted(object sender)
-    {
-        Debug.Log("Breath started");
-    }
-
-
-    void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
-    {
-        Debug.Log("Breath ended");
-    }
-
 }

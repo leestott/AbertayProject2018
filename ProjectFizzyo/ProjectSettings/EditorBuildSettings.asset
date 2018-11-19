@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BowlingMG/Scenes/BowlingGame.unity
     guid: 0392804ad97b9574ca568ef5f001d6d0
+  - enabled: 1
+    path: Assets/BlowdartMG/Scenes/BlowDart.unity
+    guid: 5c76fa854c0e51c4fb7b6b001bfcc567
   m_configObjects: {}

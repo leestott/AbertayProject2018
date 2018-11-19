@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fizzyo;
 
 public class Blowdart : MonoBehaviour {
 
@@ -10,8 +11,8 @@ public class Blowdart : MonoBehaviour {
     public float height = 5f;
 
     // Input breath currently always at max for testing.
-    [Header("Power of the breath (for testing):")]
-    public float breath = 100f;
+    [Header("Power of the dart (for testing):")]
+    public float dartPower = 100.0f;
 
     // Has the dart been shot.
     private bool fired = false;
@@ -20,15 +21,27 @@ public class Blowdart : MonoBehaviour {
     private Rigidbody2D rb;
     private Vector3 startingPos;
 
+    BreathRecogniser br = new BreathRecogniser();
+    private float breathPressure;
+
     // Initialises the variables
-	void Start ()
+    void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
         startingPos = transform.position;
-	}
+
+        br.BreathStarted += Br_BreathStarted;
+        br.BreathComplete += Br_BreathComplete;
+    }
 	
 	void Update ()
     {
+        breathPressure = FizzyoFramework.Instance.Device.Pressure();
+        if (dartPower < 100f)
+        {
+            dartPower += breathPressure;
+        }
+
         handleInput();
 
         if (!fired)
@@ -41,7 +54,7 @@ public class Blowdart : MonoBehaviour {
     // Works off of button press and space bar for debugging.
     void handleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
             fired = true;
             fireDart();
@@ -58,7 +71,9 @@ public class Blowdart : MonoBehaviour {
     // Fire the dart based on input breath.
     void fireDart()
     {
-        rb.velocity = new Vector2(breath, 0);
+        rb.velocity = new Vector2(dartPower, 0);
+        //rb.AddForce(new Vector2(dartPower, 0), ForceMode2D.Impulse);
+        dartPower = 0;
     }
 
     // When the dart hits a trigger collider.
@@ -78,5 +93,16 @@ public class Blowdart : MonoBehaviour {
         {
             Debug.Log("Pop");
         }
+    }
+
+    private void Br_BreathStarted(object sender)
+    {
+        br.MaxBreathLength = FizzyoFramework.Instance.Device.maxBreathCalibrated;
+        br.MaxPressure = FizzyoFramework.Instance.Device.maxPressureCalibrated;
+    }
+
+    private void Br_BreathComplete(object sender, ExhalationCompleteEventArgs e)
+    {
+        Debug.LogFormat("Breath Complete.\n Results: Quality [{0}] : Percentage [{1}] : Breath Full [{2}] : Breath Count [{3}] ", e.BreathQuality, e.BreathPercentage, e.IsBreathFull, e.BreathCount);
     }
 }

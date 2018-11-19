@@ -18,8 +18,10 @@ public class SceneChanger : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(Input.GetJoystickNames());
+
         // Whilst holding the key increase UI elements fill.
-		if (Input.GetKey("joystick 1 button 0")|| Input.GetKey(KeyCode.Space))
+		if (Input.GetKey(KeyCode.Space) || Input.GetButtonDown("Fire1"))
         {
             fillAmount += 0.01f;
         }
@@ -41,8 +43,10 @@ public class SceneChanger : MonoBehaviour
         // If UI bar fills up select that minigame.
         if(fillAmount >= 1)
         {
+            // TO DO: Remove debug code of automatically going to blowdart game
             // Using a getter to retrieve current minigame selected.
-            sceneChanger(GetComponent<UISelector>().getSelected());
+            //sceneChanger(GetComponent<UISelector>().getSelected());
+            sceneChanger(3);
         }
     }
 
