@@ -21,7 +21,7 @@ public class BreathMetre : MonoBehaviour {
             fillAmount += breathPressure;
         }
 
-        breathMetre.size = fillAmount / 100;
+        breathMetre.size = fillAmount;
 
         if(reset)
         {

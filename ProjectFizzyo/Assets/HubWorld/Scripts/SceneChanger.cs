@@ -46,7 +46,7 @@ public class SceneChanger : MonoBehaviour
             // TO DO: Remove debug code of automatically going to blowdart game
             // Using a getter to retrieve current minigame selected.
             //sceneChanger(GetComponent<UISelector>().getSelected());
-            sceneChanger(3);
+            sceneChanger(2);
         }
     }
 
