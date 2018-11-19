@@ -72,8 +72,8 @@ public class Blowdart : MonoBehaviour {
     void fireDart()
     {
         rb.velocity = new Vector2(dartPower, 0);
-        //rb.AddForce(new Vector2(dartPower, 0), ForceMode2D.Impulse);
         dartPower = 0;
+        GameObject.Find("UIManager").GetComponent<BreathMetre>().reset = true;
     }
 
     // When the dart hits a trigger collider.
