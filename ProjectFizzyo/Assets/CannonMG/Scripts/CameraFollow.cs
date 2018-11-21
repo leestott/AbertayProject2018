@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour {
 
 	void Update () 
 	{
+		//Find launched character
 		characterProjectile = GameObject.Find ("CharacterProjectile(Clone)");
 		if (characterProjectile != null) 
 		{
@@ -18,12 +19,14 @@ public class CameraFollow : MonoBehaviour {
 		} 
 		else 
 		{
+			//If the character cannot be found stay at or reset to start position
 			foundCharacter = false;
 			transform.position = startPosition;
 		}
 
 		if (foundCharacter) 
 		{
+			//Follow the character while in air
 			transform.position = new Vector3 (characterProjectile.transform.position.x, transform.position.y, transform.position.z);
 		}
 	}
