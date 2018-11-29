@@ -13,7 +13,7 @@ public class CharacterProjectile : MonoBehaviour {
 
 	void Update ()
 	{
-		//Rotate the character to face the direction of travel while in the air
+		// Rotate the character to face the direction of travel while in the air.
 		transform.rotation = Quaternion.LookRotation (Vector3.forward, rb.velocity);
 	}
 }
