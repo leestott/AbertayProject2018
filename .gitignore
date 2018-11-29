@@ -34,3 +34,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+ProjectFizzyo/Assets/CannonMG.meta
+ProjectFizzyo/Assets/CannonMG/Art.meta
+*.meta
