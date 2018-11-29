@@ -8,6 +8,7 @@ using Fizzyo;
 public class SceneChanger : MonoBehaviour
 {
     // Icon and fill amount of that icon which shows key hold.
+    [Header ("Image for visual indication of breath")]
     public Image holdingIcon;
     private float fillAmount;
 

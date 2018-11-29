@@ -36,6 +36,7 @@ public class Blowdart : MonoBehaviour {
 	
 	void Update ()
     {
+        // Detect breath pressure but only if below a fixed value to prevent bad breaths.
         breathPressure = FizzyoFramework.Instance.Device.Pressure();
         if (dartPower < 100f)
         {
@@ -54,6 +55,7 @@ public class Blowdart : MonoBehaviour {
     // Works off of button press and space bar for debugging.
     void handleInput()
     {
+        // Fire the dart on fizzyo button input.
         if (Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
             fired = true;

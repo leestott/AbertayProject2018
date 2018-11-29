@@ -32,11 +32,6 @@ public class ParentBalloon : MonoBehaviour {
         shadowAnimator = this.GetComponentInChildren<Animator>();
     }
 
-    private void Update()
-    {
-
-    }
-
     // When the balloon is hit by another collider.
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -56,7 +56,7 @@ void Start()
 
             selected++;
 
-            // Wrap selected round.
+            // Wrap selected around.
             if (selected > 3)
             {
                 selected = 1;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Child of the ParentBalloon class
+// Child of the ParentBalloon class: The green balloon moves up and down.
 public class BlueBalloon : ParentBalloon
 {
     // Set up the correct sprite, randomise the speed and find the shadows animator.
