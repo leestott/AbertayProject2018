@@ -14,6 +14,18 @@ TextureImporter:
     21300018: Balloon tyes for minigame new_9
     21300020: Balloon tyes for minigame new_10
     21300022: Balloon tyes for minigame new_11
+    21300024: BalloonSpriteSheet_0
+    21300026: BalloonSpriteSheet_1
+    21300028: BalloonSpriteSheet_2
+    21300030: BalloonSpriteSheet_3
+    21300032: BalloonSpriteSheet_4
+    21300034: BalloonSpriteSheet_5
+    21300036: BalloonSpriteSheet_6
+    21300038: BalloonSpriteSheet_7
+    21300040: BalloonSpriteSheet_8
+    21300042: BalloonSpriteSheet_9
+    21300044: BalloonSpriteSheet_10
+    21300046: BalloonSpriteSheet_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -96,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_0
+      name: BalloonSpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -110,19 +122,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98369208116864a409bb482f1df2f246
+      spriteID: e88e2e84284981f45b31c77b7a3874b5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_1
+      name: BalloonSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 217
-        y: 587
-        width: 219
-        height: 294
+        x: 219
+        y: 587.3334
+        width: 219.25
+        height: 293.66666
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,13 +142,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d89dfeb108fbf95418a99706396603c1
+      spriteID: 54a55ea22d5da8b4fa1ae10fe5c4d246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_2
+      name: BalloonSpriteSheet_2
       rect:
         serializedVersion: 2
         x: 438
@@ -150,13 +162,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8542274d8ffd17b4ebdc375c4f2faaeb
+      spriteID: 4d81bc447629ca3408cf4d1112a924dd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_3
+      name: BalloonSpriteSheet_3
       rect:
         serializedVersion: 2
         x: 657
@@ -170,13 +182,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a1c7faf10785c1488b3819208839f92
+      spriteID: d170f663c2e81a0478bed5f6836f5392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_4
+      name: BalloonSpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -190,13 +202,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 081abc389267ac54598ada79bc3046a3
+      spriteID: f2193ea27c46ff24fbbdc4644a90e8c0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_5
+      name: BalloonSpriteSheet_5
       rect:
         serializedVersion: 2
         x: 219
@@ -210,13 +222,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3bd3c4bab672024baeb588c907d576e
+      spriteID: b3605f66365cd21409d4e87256a121e1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_6
+      name: BalloonSpriteSheet_6
       rect:
         serializedVersion: 2
         x: 438
@@ -230,13 +242,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c443776039566e24c95977e28b6799ce
+      spriteID: 33cfca301cb2c5a4e93b3e99b096945f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_7
+      name: BalloonSpriteSheet_7
       rect:
         serializedVersion: 2
         x: 657
@@ -250,13 +262,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 459f62b160a78bf46b75cc9b734b0c23
+      spriteID: 3568f4578a4cfb34493b5e08c96ee30d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_8
+      name: BalloonSpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -270,13 +282,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a81204444c13b2409f3182825a2c647
+      spriteID: ce9fb60908ea16a4fb9a4b8deb78677d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_9
+      name: BalloonSpriteSheet_9
       rect:
         serializedVersion: 2
         x: 219
@@ -290,13 +302,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03851f97f6d857942bd4320fdde05933
+      spriteID: 49ad5ef2f06b5014fab1d3a7e7fbf95e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_10
+      name: BalloonSpriteSheet_10
       rect:
         serializedVersion: 2
         x: 438
@@ -310,13 +322,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a5d5ae2f558e804fbd567281909c494
+      spriteID: 92bd4a10664334145ae23e69c8718907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balloon tyes for minigame new_11
+      name: BalloonSpriteSheet_11
       rect:
         serializedVersion: 2
         x: 657
@@ -330,7 +342,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eca1a9913b3b4cc4aa1fd950454f9df5
+      spriteID: eb417544f2f5ddd4f9e073731a18f61a
       vertices: []
       indices: 
       edges: []

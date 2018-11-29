@@ -33,8 +33,6 @@ public class UISelector : MonoBehaviour {
     private float minimum = 0.0F;
     private float maximum = 0.1F;
 
-    private bool buttonHeld = false;
-
 void Start()
     {
         cameraPos = mainCamera.transform.position;
@@ -44,8 +42,6 @@ void Start()
 
 	void Update ()
     {
-        if (FizzyoFramework.Instance.Device.ButtonDown())
-            Debug.Log("Button is down");
         whichGame();
         moveCamera(mainCamera.transform.position, newCamPos);
     }
@@ -54,8 +50,10 @@ void Start()
     private void whichGame()
     {
         // On button press change minigame selected.
-		if (Input.GetKeyUp(KeyCode.Space)|| Input.GetButtonUp("Fire1") ||FizzyoFramework.Instance.Device.ButtonDown())
+		if (Input.GetKeyUp(KeyCode.Space)|| FizzyoFramework.Instance.Device.ButtonDown())
         {
+            Debug.Log("The button was pressed.");
+
             selected++;
 
             // Wrap selected round.

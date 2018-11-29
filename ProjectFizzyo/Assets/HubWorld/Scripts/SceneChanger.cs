@@ -11,36 +11,35 @@ public class SceneChanger : MonoBehaviour
     public Image holdingIcon;
     private float fillAmount;
 
+    // Breath pressure and whether the breath has began.
+    private float breathPressure = 0;
+    private bool breathBegin = false;
+
     private void Start()
     {
         fillAmount = holdingIcon.fillAmount;
+
+        // Links up the breath started and breath complete functions.
+        FizzyoFramework.Instance.Recogniser.BreathStarted += OnBreathStarted;
+        FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
     }
 
     private void Update()
     {
-        Debug.Log(Input.GetJoystickNames());
+        // Using the fizzyo device set the breath pressure equal to it.
+        breathPressure = FizzyoFramework.Instance.Device.Pressure();
 
-        // Whilst holding the key increase UI elements fill.
-		if (Input.GetKey(KeyCode.Space) || Input.GetButtonDown("Fire1"))
+        // If the breath has began then increase the fill amount based on the pressure.
+        if (breathBegin)
         {
-            fillAmount += 0.01f;
-        }
-        else
-        {
-            fillAmount = 0.0f;
+            // Scale the breath pressure down a bit for filling icon.
+            fillAmount += breathPressure/25;
         }
 
         // Only show the icon when held for certain amount of time.
-        if (fillAmount >= 0.3)
-        {
-            holdingIcon.fillAmount = fillAmount;
-        }
-        else
-        {
-            holdingIcon.fillAmount = 0.0f;
-        }
-
-        // If UI bar fills up select that minigame.
+        holdingIcon.fillAmount = fillAmount;
+        
+        // If UI bar fills up select that minigame. Or Spacebar will select for debug mode.
         if(fillAmount >= 1)
         {
             // TO DO: Remove debug code of automatically going to blowdart game
@@ -53,5 +52,18 @@ public class SceneChanger : MonoBehaviour
     private void sceneChanger(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    // Function called when breath begins.
+    void OnBreathStarted(object sender)
+    {
+        breathBegin = true;
+    }
+
+    // Function called when breath ends. Reset the fill bar.
+    void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
+    {
+        fillAmount = 0.0f;
+        breathBegin = false;
     }
 }
