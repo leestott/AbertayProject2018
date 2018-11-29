@@ -99,7 +99,6 @@ public class ReticleMovement : MonoBehaviour {
 		//If the reticle is over a coconut, set it as the current target
 		//This is how the ball hit is detected upon launch
 		currentTarget = col.gameObject;
-		Debug.Log ("Current Target Name: " + currentTarget.name);
 	}
 
 	void OnTriggerExit2D (Collider2D col) 
