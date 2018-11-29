@@ -34,6 +34,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+<<<<<<< HEAD
 ProjectFizzyo/Assets/CannonMG.meta
 ProjectFizzyo/Assets/CannonMG/Art.meta
+=======
+>>>>>>> BlowdartMG_Code_Jamie
 *.meta
