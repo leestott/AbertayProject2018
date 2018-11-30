@@ -10,24 +10,60 @@ public class BreathMetre : MonoBehaviour {
     public Scrollbar breathMetre;
 
     // How far the bar is currently filled.
-    private float fillAmount;
+    [Range (0, 1)]
+    public float fillAmount = 0;
 
-    // Links the bars power to the dart power.
+    public bool lockBar = true;
+    public bool beganBreath;
+    public float breathTime = 0.0f;
+
+    // Reset the bar to 0.
     public bool reset = false;
-	
-	void Update ()
-    {
-        // Connect the fill amount to the pressure.
-        fillAmount += FizzyoFramework.Instance.Device.Pressure()/100;
 
-        // Links the fill amount float to the breathMetre.
-        breathMetre.size = fillAmount;
+    public void Start()
+    {
+        fillAmount = 0.0f;
+        breathTime = 0.0f;
+        // Links up the breath started and breath complete functions.
+        FizzyoFramework.Instance.Recogniser.BreathStarted += OnBreathStarted;
+        FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
+    }
+
+    void Update ()
+    {
+
+        if (!lockBar)
+        {
+            if (beganBreath)
+            {
+                breathTime += Time.deltaTime;
+                fillAmount = breathTime / 3;
+            }
+
+            // Links the fill amount float to the breathMetre.
+            breathMetre.size = fillAmount;
+        }
 
         // Reset the fill amount.
         if(reset)
         {
             fillAmount = 0.0f;
+            breathTime = 0.0f;
             reset = false;
+            lockBar = false;
         }
+    }
+
+    private void OnBreathStarted(object sender)
+    {
+        Debug.Log("Began breath");
+        breathTime = 0.0f;
+        beganBreath = true;
+    }
+
+    private void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
+    {
+        beganBreath = false;
+        lockBar = true;
     }
 }

@@ -24,9 +24,13 @@ public class Blowdart : MonoBehaviour {
     BreathRecogniser br = new BreathRecogniser();
     private float breathPressure;
 
+    BreathMetre breathMetre;
+
     // Initialises the variables
     void Start ()
     {
+        breathMetre = FindObjectOfType<BreathMetre>();
+
         rb = GetComponent<Rigidbody2D>();
         startingPos = transform.position;
 
@@ -37,13 +41,9 @@ public class Blowdart : MonoBehaviour {
 	void Update ()
     {
         // Detect breath pressure but only if below a fixed value to prevent bad breaths.
-        breathPressure = FizzyoFramework.Instance.Device.Pressure();
-        if (dartPower < 100f)
-        {
-            dartPower += breathPressure;
-        }
+        dartPower = breathMetre.fillAmount * 100;
 
-        handleInput();
+        HandleInput();
 
         if (!fired)
         {
@@ -53,7 +53,7 @@ public class Blowdart : MonoBehaviour {
 
     // TO DO: Remove the debug space bar.
     // Works off of button press and space bar for debugging.
-    void handleInput()
+    void HandleInput()
     {
         // Fire the dart on fizzyo button input.
         if (Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())

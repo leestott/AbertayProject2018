@@ -16,6 +16,8 @@ public class SceneChanger : MonoBehaviour
     private float breathPressure = 0;
     private bool breathBegin = false;
 
+    private float breathTime = 0.0f;
+
     private void Start()
     {
         fillAmount = holdingIcon.fillAmount;
@@ -34,7 +36,8 @@ public class SceneChanger : MonoBehaviour
         if (breathBegin)
         {
             // Scale the breath pressure down a bit for filling icon.
-            fillAmount += breathPressure/25;
+            breathTime += Time.deltaTime;
+            fillAmount = breathTime / 1;
         }
 
         // Only show the icon when held for certain amount of time.
@@ -45,8 +48,7 @@ public class SceneChanger : MonoBehaviour
         {
             // TO DO: Remove debug code of automatically going to blowdart game
             // Using a getter to retrieve current minigame selected.
-            //sceneChanger(GetComponent<UISelector>().getSelected());
-            sceneChanger(2);
+            sceneChanger(GetComponent<UISelector>().getSelected());
         }
     }
 
@@ -58,6 +60,7 @@ public class SceneChanger : MonoBehaviour
     // Function called when breath begins.
     void OnBreathStarted(object sender)
     {
+        breathTime = 0.0f;
         breathBegin = true;
     }
 
