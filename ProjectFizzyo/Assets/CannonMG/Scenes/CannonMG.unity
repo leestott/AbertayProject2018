@@ -628,6 +628,7 @@ MonoBehaviour:
   characterProjectile: {fileID: 1184756915539016, guid: 05cccfb096389f8499bf4fb7c9668a99,
     type: 2}
   playerCamera: {fileID: 0}
+  breathPowerScale: 800
 --- !u!1 &1208474449
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +662,7 @@ MonoBehaviour:
   lockBar: 1
   beganBreath: 0
   breathTime: 0
-  reset: 0
+  reset: 1
 --- !u!4 &1208474451
 Transform:
   m_ObjectHideFlags: 0

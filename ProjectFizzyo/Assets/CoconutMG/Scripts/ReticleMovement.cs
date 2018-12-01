@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fizzyo;
 
 public class ReticleMovement : MonoBehaviour {
 
@@ -28,17 +29,40 @@ public class ReticleMovement : MonoBehaviour {
 	public float minScale = 0.2f;
 	public float travelHeight = 0.5f;
 
+	//Debug value for player input travel time
+	public float inputTravelTime;
+
     // Debug value for it flying through the air.
 	private float currentTravelTime;
 
     // When the reticle is over a target this object is assigned here.
 	GameObject currentTarget;
 
+	BreathRecogniser br = new BreathRecogniser();
+	private float breathPressure;
+
+	BreathMetre breathMetre;
+
+	void Start () 
+	{
+		//Get reference to breath meter instance
+		breathMetre = FindObjectOfType<BreathMetre>();
+
+		br.BreathStarted += Br_BreathStarted;
+		br.BreathComplete += Br_BreathComplete;
+	}
+
 	void Update () 
 	{
 		// If the ball has not been thrown move along the X axis and await player input.
 		if (!hasLaunched)
 		{
+			float playerBreathAmount = breathMetre.fillAmount;
+
+			inputTravelTime = playerBreathAmount;
+
+			inputTravelTime = inputTravelTime * travelTime;
+
 			AxisMovement ();
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				hasLaunched = true;
@@ -110,5 +134,16 @@ public class ReticleMovement : MonoBehaviour {
 	void OnTriggerExit2D (Collider2D col) 
 	{
 		currentTarget = null;
+	}
+
+	private void Br_BreathStarted(object sender)
+	{
+		br.MaxBreathLength = FizzyoFramework.Instance.Device.maxBreathCalibrated;
+		br.MaxPressure = FizzyoFramework.Instance.Device.maxPressureCalibrated;
+	}
+
+	private void Br_BreathComplete(object sender, ExhalationCompleteEventArgs e)
+	{
+		Debug.LogFormat("Breath Complete.\n Results: Quality [{0}] : Percentage [{1}] : Breath Full [{2}] : Breath Count [{3}] ", e.BreathQuality, e.BreathPercentage, e.IsBreathFull, e.BreathCount);
 	}
 }
