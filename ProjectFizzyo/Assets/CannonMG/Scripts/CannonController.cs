@@ -26,6 +26,7 @@ public class CannonController : MonoBehaviour {
 	
 
 	bool hasLaunched = false;
+	bool canPlay = false;
 
 	BreathRecogniser br = new BreathRecogniser();
 	private float breathPressure;
@@ -41,6 +42,13 @@ public class CannonController : MonoBehaviour {
 		br.BreathComplete += Br_BreathComplete;
 	}
 
+	public void Reset () 
+	{
+		breathMetre.reset = true;
+		hasLaunched = false;
+		launchForce = 0;
+	}
+
 	void Update() 
 	{
 		if (!hasLaunched)
@@ -49,7 +57,7 @@ public class CannonController : MonoBehaviour {
 			launchForce = breathMetre.fillAmount * breathPowerScale;
 
 			// Launch on player action input.
-			if (Input.GetKeyDown (KeyCode.Space)) 
+			if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && canPlay && breathMetre.fillAmount > 0) 
 			{
 				hasLaunched = true;
 
@@ -66,6 +74,14 @@ public class CannonController : MonoBehaviour {
 				// If has not been launched oscillate between the launch angle.
 				AxisRotation ();
 			}
+		}
+	}
+
+	void LateUpdate () 
+	{
+		if (!breathMetre.lockBar) 
+		{
+			canPlay = true;
 		}
 	}
 

@@ -10,6 +10,8 @@ public class VoidCollider : MonoBehaviour {
 		if (col.name == "CharacterProjectile(Clone)") 
 		{
 			GameObject.Destroy (col.gameObject);
+			CannonController controller = GameObject.FindObjectOfType<CannonController> ();
+			controller.Reset ();
 		}
 	}
 }

@@ -41,7 +41,15 @@ public class ReticleMovement : MonoBehaviour {
 	BreathRecogniser br = new BreathRecogniser();
 	private float breathPressure;
 
+	private float resetDelay = 3.0f;
+
+	public bool canPlay = false;
+
 	BreathMetre breathMetre;
+
+	GameObject reticle;
+
+	public float playerBreathAmount;
 
 	void Start () 
 	{
@@ -50,6 +58,25 @@ public class ReticleMovement : MonoBehaviour {
 
 		br.BreathStarted += Br_BreathStarted;
 		br.BreathComplete += Br_BreathComplete;
+
+		reticle = GameObject.Find ("TargetReticle");
+	}
+
+	void Reset() 
+	{
+		Debug.Log ("Reset");
+		GameObject.Destroy (GameObject.Find ("BallPrefabClone"));
+		hasLaunched = false;
+		hasHit = false;
+		currentTravelTime = 0.0f;
+		reticle.SetActive (true);
+		breathMetre.reset = true;
+	}
+
+	IEnumerator ResetTimer () 
+	{
+		yield return new WaitForSeconds (resetDelay);
+		Reset ();
 	}
 
 	void Update () 
@@ -57,23 +84,32 @@ public class ReticleMovement : MonoBehaviour {
 		// If the ball has not been thrown move along the X axis and await player input.
 		if (!hasLaunched)
 		{
-			float playerBreathAmount = breathMetre.fillAmount;
+			playerBreathAmount = breathMetre.fillAmount;
 
 			inputTravelTime = playerBreathAmount;
 
 			inputTravelTime = inputTravelTime * travelTime;
 
 			AxisMovement ();
-			if (Input.GetKeyDown (KeyCode.Space)) {
+			if ((Input.GetKeyDown (KeyCode.Space)  || FizzyoFramework.Instance.Device.ButtonDown()) && playerBreathAmount > 0 && canPlay) {
 				hasLaunched = true;
 				LaunchBall ();
+				StartCoroutine (ResetTimer ());
 			}
-		} 
+		}
 		// If the ball has been thrown, travel until object has been hit.
 		else if (!hasHit)
 		{
 			currentTravelTime += Time.deltaTime;
 			BallTravel ();
+		}
+	}
+
+	void LateUpdate () 
+	{
+		if (!breathMetre.lockBar) 
+		{
+			canPlay = true;
 		}
 	}
 
@@ -87,7 +123,6 @@ public class ReticleMovement : MonoBehaviour {
 	void LaunchBall () 
 	{
 		// Hide the target reticle once launched.
-		GameObject reticle = GameObject.Find ("TargetReticle");
 		if (reticle != null)
 		{
 			reticle.SetActive (false);
