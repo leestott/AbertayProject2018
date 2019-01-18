@@ -23,7 +23,13 @@ public class CannonController : MonoBehaviour {
 
 	[Header("Breath power scale:")]
 	public float breathPowerScale = 800;
-	
+
+	public float skimSpeed = 5.0f;
+
+	GameObject projectile;
+
+	GameObject buttonPrompt;
+	Transform promptHeight;
 
 	bool hasLaunched = false;
 	bool canPlay = false;
@@ -40,6 +46,10 @@ public class CannonController : MonoBehaviour {
 
 		br.BreathStarted += Br_BreathStarted;
 		br.BreathComplete += Br_BreathComplete;
+
+		buttonPrompt = GameObject.Find ("ButtonPrompt");
+		promptHeight = GameObject.Find ("PromptHeightTransform").transform;
+		buttonPrompt.SetActive (false);
 	}
 
 	public void Reset () 
@@ -51,29 +61,50 @@ public class CannonController : MonoBehaviour {
 
 	void Update() 
 	{
-		if (!hasLaunched)
-		{
+		if (!hasLaunched) {
 			//Calculate launch force based on breath amount
 			launchForce = breathMetre.fillAmount * breathPowerScale;
 
 			// Launch on player action input.
-			if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && canPlay && breathMetre.fillAmount > 0) 
-			{
+			if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && canPlay && breathMetre.fillAmount > 0) {
 				hasLaunched = true;
 
 				// Calculate launch vector.
 				GameObject launchDir = GameObject.Find ("LaunchDirection");
-				GameObject projectile = Instantiate (characterProjectile, transform.position, launchDir.transform.rotation);
+				projectile = Instantiate (characterProjectile, transform.position, launchDir.transform.rotation);
 
 				// Apply a force to the character projectile in the direction launch vector.
 				Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
 				projectileRb.AddForce (projectile.transform.up * launchForce);
+				projectileRb.AddTorque (20.0f);
 			} 
 			else 
 			{
 				// If has not been launched oscillate between the launch angle.
 				AxisRotation ();
 			}
+		} 
+		else if (hasLaunched) 
+		{
+			if (projectile.transform.position.y < promptHeight.position.y)
+			{
+				buttonPrompt.SetActive (true);
+
+				if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && canPlay && breathMetre.fillAmount > 0)
+				{
+					breathMetre.fillAmount -= 0.1f;
+
+					Vector2 fireDirection = new Vector2 (0, 1);
+
+					Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
+					projectileRb.velocity = new Vector2 (projectileRb.velocity.x, skimSpeed);
+				}
+			}
+			else
+			{
+				buttonPrompt.SetActive (false);
+			}
+				
 		}
 	}
 
