@@ -28,7 +28,7 @@ public class CloudSpawner : MonoBehaviour {
 
 	void Update () 
 	{
-		if (GameObject.Find("CharacterProjectile(Clone)") != null && !hasStarted)
+		if (GameObject.FindGameObjectWithTag("CharacterProjectile") != null && !hasStarted)
 		{
 			hasStarted = true;
 			StartCoroutine (SpawnTimer ());
