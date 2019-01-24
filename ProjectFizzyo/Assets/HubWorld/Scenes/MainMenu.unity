@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingIcon: {fileID: 983918104}
+  minigameName: {fileID: 245520325}
 --- !u!82 &309234251
 AudioSource:
   m_ObjectHideFlags: 0

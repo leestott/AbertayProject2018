@@ -18,6 +18,10 @@ public class SceneChanger : MonoBehaviour
 
     private float breathTime = 0.0f;
 
+    //Text of the minigames names to tell analytics
+    [Header("The minigames names")]
+    public Text minigameName;
+
     private void Start()
     {
         fillAmount = holdingIcon.fillAmount;
@@ -46,9 +50,9 @@ public class SceneChanger : MonoBehaviour
         // If UI bar fills up select that minigame. Or Spacebar will select for debug mode.
         if(fillAmount >= 1)
         {
-            // TO DO: Remove debug code of automatically going to blowdart game
             // Using a getter to retrieve current minigame selected.
             sceneChanger(GetComponent<UISelector>().getSelected());
+            AnalyticsManager.SendWhichMinigameData(minigameName.text);
         }
     }
 

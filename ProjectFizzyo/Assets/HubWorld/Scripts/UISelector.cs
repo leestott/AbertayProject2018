@@ -38,18 +38,16 @@ void Start()
         cameraPos = mainCamera.transform.position;
         newCamPos = minigames[selected - 1].transform.position;
         minigameName.text = minigameNames[selected - 1];
-
-		AnalyticsManager.ReportTestData (2.5f, "Hub World");
     }
 
 	void Update ()
     {
-        whichGame();
-        moveCamera(mainCamera.transform.position, newCamPos);
+        WhichGame();
+        MoveCamera(mainCamera.transform.position, newCamPos);
     }
 
     // Choose which minigame
-    private void whichGame()
+    private void WhichGame()
     {
         // On button press change minigame selected.
 		if (Input.GetKeyUp(KeyCode.Space)|| FizzyoFramework.Instance.Device.ButtonDown())
@@ -91,7 +89,7 @@ void Start()
     }
 
     // Lerp camera towards vector
-    private void moveCamera(Vector3 currentPos, Vector3 newPos)
+    private void MoveCamera(Vector3 currentPos, Vector3 newPos)
     {
         mainCamera.transform.position = new Vector3(Mathf.Lerp(currentPos.x, newPos.x, 0.12f), Mathf.Lerp(currentPos.y, newPos.y, 0.12f), -10.0f) ;
     } 
