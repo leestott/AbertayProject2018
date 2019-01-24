@@ -17,7 +17,8 @@ public class CameraFollow : MonoBehaviour {
 	void Update () 
 	{
 		// Find launched character.
-		characterProjectile = GameObject.Find ("CharacterProjectile(Clone)");
+		characterProjectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
+
 		if (characterProjectile != null) 
 		{
 			foundCharacter = true;
