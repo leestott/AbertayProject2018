@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/HubWorld/Scenes/MainMenu.unity
     guid: fccb464864be8ab4687af6076196d2e6
   - enabled: 1
-    path: Assets/BlowdartMG/Scripts/Scenes/BlowDart.unity
+    path: Assets/BlowdartMG/Scenes/BlowDart.unity
     guid: 5c76fa854c0e51c4fb7b6b001bfcc567
   - enabled: 1
     path: Assets/CoconutMG/Scenes/CoconutMG.unity
