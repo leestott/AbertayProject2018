@@ -25,9 +25,9 @@ public class CannonScoreManager : MonoBehaviour {
 
 	void Update () 
 	{
-		if (GameObject.Find ("CharacterProjectile(Clone)") != null)
+		if (GameObject.FindGameObjectWithTag("CharacterProjectile") != null)
 		{
-			GameObject projectile = GameObject.Find ("CharacterProjectile(Clone)");
+			GameObject projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
 			score = projectile.transform.position.x - startPosition;
 			score *= scoreMultiplier;
 			scoreText.text = Mathf.RoundToInt (score).ToString ();

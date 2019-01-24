@@ -44,7 +44,11 @@ public class CloudSpawner : MonoBehaviour {
 
 		GameObject cloudInstance = Instantiate (cloudPrefab, spawnPosition, Quaternion.identity) as GameObject;
 		cloudInstance.transform.localScale = new Vector3 (spawnSize, spawnSize, spawnSize);
-		StartCoroutine (SpawnTimer ());
+
+		if (GameObject.FindGameObjectWithTag ("CharacterProjectile") != null)
+		{
+			StartCoroutine (SpawnTimer ());
+		}
 	}
 
 	IEnumerator SpawnTimer ()
