@@ -87,6 +87,7 @@ namespace Fizzyo
         {
             //Get all achievements from server
             string getAchievements = "https://api.fizzyo-ucl.co.uk/api/v1/games/" + FizzyoFramework.Instance.FizzyoConfigurationProfile.GameID + "/achievements"; 
+			//string getAchievements = FizzyoFramework.Instance.FizzyoConfigurationProfile.ApiPath + FizzyoFramework.Instance.FizzyoConfigurationProfile.GameID + "/achievements"; 
 
             Dictionary<string, string> headers = new Dictionary<string, string>();
             headers.Add("Authorization", "Bearer " + FizzyoFramework.Instance.User.AccessToken);

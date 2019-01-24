@@ -38,6 +38,8 @@ void Start()
         cameraPos = mainCamera.transform.position;
         newCamPos = minigames[selected - 1].transform.position;
         minigameName.text = minigameNames[selected - 1];
+
+		AnalyticsManager.ReportTestData (2.5f, "Hub World");
     }
 
 	void Update ()
@@ -99,4 +101,10 @@ void Start()
     {
         return selected;
     }
+
+	void OnApplicationQuit () 
+	{
+		Debug.Log ("Quit Game");
+		AnalyticsManager.ReportEndSession (Time.time, 24);
+	}
 }
