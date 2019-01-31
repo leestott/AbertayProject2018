@@ -100,6 +100,10 @@ void Start()
         return selected;
     }
 
+	void OnDestroy()
+	{
+		AnalyticsManager.ReportEndSession (Time.time, 24);
+	}
 	void OnApplicationQuit () 
 	{
 		Debug.Log ("Quit Game");

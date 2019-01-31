@@ -26,6 +26,8 @@ public class SceneChanger : MonoBehaviour
     {
         fillAmount = holdingIcon.fillAmount;
 
+		AnalyticsManager.SendWhichMinigameData ("Test Data");
+
         // Links up the breath started and breath complete functions.
         FizzyoFramework.Instance.Recogniser.BreathStarted += OnBreathStarted;
         FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
