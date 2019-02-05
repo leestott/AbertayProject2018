@@ -18,25 +18,8 @@ public class ReticleMovement : MonoBehaviour {
 
     [Header("The ball prefab:")]
     public GameObject ballPrefab;
-	GameObject ballProjectile ;
 
-	bool hasLaunched = false;
-	bool hasHit = false;
-
-    // Scaling and height values for ball in air.
-    [Header("The scale and height for the ball when fired:")]
-    public float maxScale = 0.4f;
-	public float minScale = 0.2f;
-	public float travelHeight = 0.5f;
-
-	//Debug value for player input travel time
-	public float inputTravelTime;
-
-    // Debug value for it flying through the air.
-	private float currentTravelTime;
-
-    // When the reticle is over a target this object is assigned here.
-	GameObject currentTarget;
+	public GameObject currentTarget;
 
 	BreathRecogniser br = new BreathRecogniser();
 	private float breathPressure;
@@ -61,55 +44,19 @@ public class ReticleMovement : MonoBehaviour {
 
 		reticle = GameObject.Find ("TargetReticle");
 	}
-
-	void Reset() 
-	{
-		Debug.Log ("Reset");
-		GameObject.Destroy (GameObject.Find ("BallPrefabClone"));
-		hasLaunched = false;
-		hasHit = false;
-		currentTravelTime = 0.0f;
-		reticle.SetActive (true);
-		breathMetre.reset = true;
-	}
-
-	IEnumerator ResetTimer () 
-	{
-		yield return new WaitForSeconds (resetDelay);
-		Reset ();
-	}
-
+		
 	void Update () 
 	{
-		// If the ball has not been thrown move along the X axis and await player input.
-		if (!hasLaunched)
+		AxisMovement ();
+
+		if (Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ())
 		{
-			playerBreathAmount = breathMetre.fillAmount;
-
-			inputTravelTime = playerBreathAmount;
-
-			inputTravelTime = inputTravelTime * travelTime;
-
-			AxisMovement ();
-			if ((Input.GetKeyDown (KeyCode.Space)  || FizzyoFramework.Instance.Device.ButtonDown()) && playerBreathAmount > 0 && canPlay) {
-				hasLaunched = true;
-				LaunchBall ();
-				StartCoroutine (ResetTimer ());
-			}
-		}
-		// If the ball has been thrown, travel until object has been hit.
-		else if (!hasHit)
-		{
-			currentTravelTime += Time.deltaTime;
-			BallTravel ();
-		}
-	}
-
-	void LateUpdate () 
-	{
-		if (!breathMetre.lockBar) 
-		{
-			canPlay = true;
+			if (currentTarget != null) 
+			{
+				Debug.Log ("Hit Coconut");
+				Rigidbody2D coconutRB = currentTarget.GetComponent<Rigidbody2D> ();
+				coconutRB.gravityScale = 1.0f;
+			}	
 		}
 	}
 
@@ -120,53 +67,15 @@ public class ReticleMovement : MonoBehaviour {
 		transform.position = new Vector3 (xPos, transform.position.y, 0);
 	}
 
-	void LaunchBall () 
-	{
-		// Hide the target reticle once launched.
-		if (reticle != null)
-		{
-			reticle.SetActive (false);
-		}
-		// Instantiate ball from saved prefab.
-		ballProjectile = Instantiate (ballPrefab, transform.position, Quaternion.identity);
-		// Reset the balls current travel time.
-		currentTravelTime = 0;
-	}
-
-	void BallTravel () 
-	{
-		// If the ball is currently in the air but has not hit an object.
-		if (currentTravelTime < travelTime) 
-		{
-			// Scale the ball down over the course of its travel to imitate distance.
-			float scaleValue = Mathf.Lerp (maxScale, minScale, currentTravelTime / travelTime);
-			ballProjectile.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
-
-			// Move the ball up and back down to the target over the travel time to imitate a thrown object while maintaining the accuracy of the reticle.
-			float height = 2.5f + (travelHeight * Mathf.Sin ((currentTravelTime / travelTime) * 180 * Mathf.Deg2Rad));
-			ballProjectile.transform.position = new Vector2 (transform.position.x, height);
-		}
-		else 
-		{
-			// If the ball has hit then apply gravity to it.
-			hasHit = true;
-			ballProjectile.GetComponent<Rigidbody2D> ().gravityScale = 1.0f;
-			if (currentTarget != null) 
-			{
-				// If the ball has hit a coconut then apply gravity to the hit coconut.
-				currentTarget.GetComponent<Rigidbody2D> ().gravityScale = 1.0f;
-			}
-		}
-	}
-
 	void OnTriggerEnter2D (Collider2D col) 
 	{
-		// If the reticle is over a coconut, set it as the current target,
-		// This is how the ball hit is detected upon launch.
-		currentTarget = col.gameObject;
+		if (col.name == "Coconut") 
+		{
+			currentTarget = col.gameObject;
+		}
 	}
 
-	void OnTriggerExit2D (Collider2D col) 
+	void OnTriggerExit2D (Collider2D col)
 	{
 		currentTarget = null;
 	}
