@@ -666,6 +666,17 @@ Prefab:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114720980465372088, guid: d6b5e42bde27d0c4fbd4d74414767991,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ac751fb6b8e93dc4babfc89c0f031637,
+        type: 3}
+    - target: {fileID: 224807827792165194, guid: d6b5e42bde27d0c4fbd4d74414767991,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -83
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b5e42bde27d0c4fbd4d74414767991, type: 2}
   m_IsPrefabAsset: 0
