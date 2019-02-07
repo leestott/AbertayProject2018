@@ -21,7 +21,6 @@ public class UISelector : MonoBehaviour {
     // Camera variables.
     [Header("Main Camera:")]
     public Camera mainCamera;
-    private Vector3 cameraPos;
     private Vector3 newCamPos;
 
     // Private variable which represents selected minigames, access with getters.
@@ -35,7 +34,6 @@ public class UISelector : MonoBehaviour {
 
 void Start()
     {
-        cameraPos = mainCamera.transform.position;
         newCamPos = minigames[selected - 1].transform.position;
         minigameName.text = minigameNames[selected - 1];
     }
@@ -102,11 +100,12 @@ void Start()
 
 	void OnDestroy()
 	{
-		AnalyticsManager.ReportEndSession (Time.time, 24);
+        Debug.Log("On Destroy call end session");
+        AnalyticsManager.ReportEndSession (Time.time, 24);
 	}
 	void OnApplicationQuit () 
 	{
-		Debug.Log ("Quit Game");
+		Debug.Log ("On application quit call end session");
 		AnalyticsManager.ReportEndSession (Time.time, 24);
 	}
 }

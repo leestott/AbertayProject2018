@@ -17,6 +17,8 @@ public class BreathMetre : MonoBehaviour {
     public bool beganBreath;
     public float breathTime = 0.0f;
 
+    public Animator barFull;
+
     // Reset the bar to 0.
     public bool reset = false;
 
@@ -42,6 +44,11 @@ public class BreathMetre : MonoBehaviour {
 
             // Links the fill amount float to the breathMetre.
             breathMetre.size = fillAmount;
+        }
+
+        if(fillAmount>=1)
+        {
+            barFull.SetBool("barFull", true);
         }
 
         // Reset the fill amount.

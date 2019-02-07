@@ -18,8 +18,8 @@ public static class AnalyticsManager {
 		Debug.Log ("SESSION_TIME: " + time);
 		Debug.Log ("SESSION_BREATHS: " + breaths);
 
-		AnalyticsEvent.Custom ("Session_Details", new Dictionary<string, object> 
-		{
+        AnalyticsEvent.Custom("Session_Details", new Dictionary<string, object>
+        {
 			{ "Session_Time", time },	
 			{ "Session_Breaths", breaths}
 		});

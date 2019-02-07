@@ -21,7 +21,6 @@ public class SetSelect : MonoBehaviour {
     private float fillAmount;
 
     // Breath pressure and whether the breath has began.
-    private float breathPressure = 0;
     private bool breathBegin = false;
 
     private float breathTime = 0.0f;
@@ -31,6 +30,8 @@ public class SetSelect : MonoBehaviour {
 
     [SerializeField]
     private GameObject selectedDisplay;
+
+    private int moveVisualsDown = -35;
 
     // Use this for initialization
     void Start ()
@@ -85,9 +86,6 @@ public class SetSelect : MonoBehaviour {
 
     private void LockingIn()
     {
-        // Using the fizzyo device set the breath pressure equal to it.
-        breathPressure = FizzyoFramework.Instance.Device.Pressure();
-
         // If the breath has began then increase the fill amount based on the pressure.
         if (breathBegin && !finishedFill)
         {
@@ -112,7 +110,7 @@ public class SetSelect : MonoBehaviour {
                 breathsConfirmed = true;
                 currentNumber = 8;
                 holdingIcon.fillAmount = fillAmount;
-                selectedDisplay.transform.position += new Vector3(0, -165, 0);
+                selectedDisplay.transform.position += new Vector3(0, moveVisualsDown, 0);
             }
             else
             {
