@@ -97,15 +97,4 @@ void Start()
     {
         return selected;
     }
-
-	void OnDestroy()
-	{
-        Debug.Log("On Destroy call end session");
-        AnalyticsManager.ReportEndSession (Time.time, 24);
-	}
-	void OnApplicationQuit () 
-	{
-		Debug.Log ("On application quit call end session");
-		AnalyticsManager.ReportEndSession (Time.time, 24);
-	}
 }

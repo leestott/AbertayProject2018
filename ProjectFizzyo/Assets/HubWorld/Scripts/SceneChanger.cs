@@ -26,8 +26,6 @@ public class SceneChanger : MonoBehaviour
     {
         fillAmount = holdingIcon.fillAmount;
 
-		AnalyticsManager.SendWhichMinigameData ("Test Data");
-
         // Links up the breath started and breath complete functions.
         FizzyoFramework.Instance.Recogniser.BreathStarted += OnBreathStarted;
         FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
@@ -43,7 +41,7 @@ public class SceneChanger : MonoBehaviour
         {
             // Scale the breath pressure down a bit for filling icon.
             breathTime += Time.deltaTime;
-            fillAmount = breathTime / 1;
+            fillAmount = breathTime / 0.5f;
         }
 
         // Only show the icon when held for certain amount of time.
@@ -55,6 +53,7 @@ public class SceneChanger : MonoBehaviour
             // Using a getter to retrieve current minigame selected.
             ChangeScene(GetComponent<UISelector>().getSelected() + 1);
             AnalyticsManager.SendWhichMinigameData(minigameName.text);
+            Debug.Log("This minigame has been selected " + minigameName.text);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -65,8 +64,7 @@ public class SceneChanger : MonoBehaviour
 
     private void ChangeScene(int sceneIndex)
     {
-        //SceneManager.LoadScene(sceneIndex);
-        SceneManager.LoadScene("BlowDart");
+        SceneManager.LoadScene(sceneIndex);
     }
 
     // Function called when breath begins.
@@ -81,5 +79,11 @@ public class SceneChanger : MonoBehaviour
     {
         fillAmount = 0.0f;
         breathBegin = false;
+    }
+
+    void OnApplicationQuit()
+    {
+        Debug.Log("On application quit call end session");
+        AnalyticsManager.ReportEndSession(Time.time);
     }
 }

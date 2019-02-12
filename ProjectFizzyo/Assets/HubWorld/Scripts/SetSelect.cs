@@ -97,7 +97,7 @@ public class SetSelect : MonoBehaviour {
             Debug.Log("Breath begin");
             // Scale the breath pressure down a bit for filling icon.
             breathTime += Time.deltaTime;
-            fillAmount = breathTime / 1;
+            fillAmount = breathTime / 0.5f;
         }
 
         // Only show the icon when held for certain amount of time.

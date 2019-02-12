@@ -19,4 +19,9 @@ public class MenuReturn : MonoBehaviour {
         }
 		
 	}
+
+    void OnDestroy()
+    {
+        AnalyticsManager.ReportEndOfMinigame(AnalyticsManager.GetCurrentGame(),Time.time,AnalyticsManager.GetTotalBreaths());
+    }
 }
