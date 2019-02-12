@@ -17,7 +17,8 @@ public class SetSelect : MonoBehaviour {
 
     // Icon and fill amount of that icon which shows key hold.
     [Header("Image for visual indication of breath")]
-    public Image holdingIcon;
+    public Image topHoldingIcon;
+    public Image bottomHoldingIcon;
     private float fillAmount;
 
     // Breath pressure and whether the breath has began.
@@ -29,14 +30,18 @@ public class SetSelect : MonoBehaviour {
     private bool finishedFill;
 
     [SerializeField]
-    private GameObject selectedDisplay;
+    private GameObject topDisplay;
 
-    private int moveVisualsDown = -35;
+    [SerializeField]
+    private GameObject bottomDisplay;
+
+    private int moveVisualsDown = -185;
 
     // Use this for initialization
     void Start ()
     {
-        fillAmount = holdingIcon.fillAmount;
+        fillAmount = topHoldingIcon.fillAmount;
+        fillAmount = bottomHoldingIcon.fillAmount;
 
         currentNumber = 8;
 
@@ -96,7 +101,8 @@ public class SetSelect : MonoBehaviour {
         }
 
         // Only show the icon when held for certain amount of time.
-        holdingIcon.fillAmount = fillAmount;
+        topHoldingIcon.fillAmount = fillAmount;
+        bottomHoldingIcon.fillAmount = fillAmount;
 
         // If UI bar fills up select that minigame. Or Spacebar will select for debug mode.
         if (fillAmount >= 1)
@@ -109,8 +115,10 @@ public class SetSelect : MonoBehaviour {
             {
                 breathsConfirmed = true;
                 currentNumber = 8;
-                holdingIcon.fillAmount = fillAmount;
-                selectedDisplay.transform.position += new Vector3(0, moveVisualsDown, 0);
+                topHoldingIcon.fillAmount = fillAmount;
+                bottomHoldingIcon.fillAmount = fillAmount;
+                topDisplay.SetActive(false);
+                bottomDisplay.SetActive(true);
             }
             else
             {

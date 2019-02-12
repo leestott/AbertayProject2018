@@ -53,14 +53,20 @@ public class SceneChanger : MonoBehaviour
         if(fillAmount >= 1)
         {
             // Using a getter to retrieve current minigame selected.
-            sceneChanger(GetComponent<UISelector>().getSelected());
+            ChangeScene(GetComponent<UISelector>().getSelected() + 1);
             AnalyticsManager.SendWhichMinigameData(minigameName.text);
         }
-    }
 
-    private void sceneChanger(int sceneIndex)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+       }
+
+    private void ChangeScene(int sceneIndex)
     {
-        SceneManager.LoadScene(sceneIndex);
+        //SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene("BlowDart");
     }
 
     // Function called when breath begins.

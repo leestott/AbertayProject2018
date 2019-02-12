@@ -58,6 +58,7 @@ public class BreathMetre : MonoBehaviour {
             breathTime = 0.0f;
             reset = false;
             lockBar = false;
+            barFull.SetBool("barFull", false);
         }
     }
 
