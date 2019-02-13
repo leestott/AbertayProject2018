@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 1562400413332038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.9, y: 1.03, z: 1.984375}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4953921378158766}
   m_Father: {fileID: 0}
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46622a40c0258549ab313964466c0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonSprites: []
   speed: 0
+  balloonSprites: []
 --- !u!212 &212211356793913032
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300026, guid: d32fcfeee1abaa14bbe5ed5f3946cdc0, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 44b559d3e6d60e143a5f7f31a947e816, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

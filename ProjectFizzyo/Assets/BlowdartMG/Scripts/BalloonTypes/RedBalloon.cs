@@ -7,7 +7,7 @@ public class RedBalloon : ParentBalloon
 {
     // How wide the circle is.
     [Header("The size of the circular path:")]
-    public float radius = 2.0f;
+    public float radius;
 
     // The centre of the circlular path the balloon follows.
     private Vector2 centre;
@@ -17,7 +17,8 @@ public class RedBalloon : ParentBalloon
     private void Start()
     {
         whichBalloon = 0;
-        speed = 3.0f;
+        speed = Random.Range(0.5f, 3.5f);
+        radius = Random.Range(1.7f, 2.3f);
         shadowAnimator = GetComponentInChildren<Animator>();
         centre = transform.position;
     }
