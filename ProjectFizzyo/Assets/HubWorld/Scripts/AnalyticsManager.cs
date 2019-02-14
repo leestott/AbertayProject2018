@@ -32,6 +32,8 @@ public static class AnalyticsManager {
 
     public static void UserBreathed()
     {
+        Debug.Log("User breathed function in analytics Manager was triggered");
+
         totalBreaths++;
         curBreath++;
         minigameBreaths++;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Fizzyo;
+using UnityEngine.SceneManagement;
 
 public class BreathCounting : MonoBehaviour {
 
@@ -24,7 +25,8 @@ public class BreathCounting : MonoBehaviour {
     // Function called when breath begins.
     void OnBreathStarted(object sender)
     {
-        AnalyticsManager.UserBreathed();
+        if(SceneManager.GetActiveScene().name != "MainMenu")
+            AnalyticsManager.UserBreathed();
     }
 
     // Function called when breath ends. Reset the fill bar.

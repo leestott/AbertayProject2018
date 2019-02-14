@@ -99,7 +99,7 @@ namespace Fizzyo
 #else
                     pressure = Input.GetAxisRaw("Horizontal");
 #endif
-                    Debug.Log("Pressure recorded at: " + pressure);
+                    //Debug.Log("Pressure recorded at: " + pressure);
                     //Check if pressure value is beyond the 0..1 range
                     if (pressure > 1)
                     {

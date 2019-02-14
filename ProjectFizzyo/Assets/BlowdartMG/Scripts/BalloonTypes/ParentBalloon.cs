@@ -38,7 +38,7 @@ public class ParentBalloon : MonoBehaviour {
         // When hit by the dart, pop the balloon.
         if (collision.gameObject.tag == "Dart")
         {
-            Debug.Log("hit by dart");
+            //Debug.Log("hit by dart");
             popBalloon();
         }
     }
@@ -52,7 +52,7 @@ public class ParentBalloon : MonoBehaviour {
         GetComponent<SpriteRenderer>().sprite = balloonSprites[whichBalloon];
         whichBalloon += 4;
         GetComponent<SpriteRenderer>().sprite = balloonSprites[whichBalloon];
-        Debug.Log("I am in the parent balloon popping function");
+        //Debug.Log("I am in the parent balloon popping function");
         Destroy(gameObject, 0.2f);
     }
 }

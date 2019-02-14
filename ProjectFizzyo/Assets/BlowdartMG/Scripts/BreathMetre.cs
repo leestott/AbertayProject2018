@@ -28,6 +28,9 @@ public class BreathMetre : MonoBehaviour {
     // Reset the bar to 0.
     public bool reset = false;
 
+    // For screenshake
+    ScreenShake screenShake;
+
     public void Start()
     {
         fillAmount = 0.0f;
@@ -38,6 +41,8 @@ public class BreathMetre : MonoBehaviour {
 
         maxCaliBreath = FizzyoFramework.Instance.Device.maxBreathCalibrated;
         Debug.Log("This is the maximum calibrated breath " + maxCaliBreath);
+
+        screenShake = FindObjectOfType<ScreenShake>();
     }
 
     void Update ()
@@ -56,9 +61,15 @@ public class BreathMetre : MonoBehaviour {
             breathMetre.size = fillAmount;
         }
 
-        if(fillAmount>=1)
+        if (fillAmount >= 1)
         {
-            barFull.SetBool("barFull", true);
+            if (!lockBar)
+            {
+                barFull.SetBool("barFull", true);
+                screenShake.ShakeScreen();
+            }
+
+            lockBar = true;
         }
 
         // Reset the fill amount.
@@ -74,7 +85,7 @@ public class BreathMetre : MonoBehaviour {
 
     private void OnBreathStarted(object sender)
     {
-        Debug.Log("Began breath");
+        //Debug.Log("Began breath");
         breathTime = 0.0f;
         beganBreath = true;
     }

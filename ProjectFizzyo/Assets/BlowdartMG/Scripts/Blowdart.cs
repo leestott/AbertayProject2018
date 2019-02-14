@@ -41,7 +41,7 @@ public class Blowdart : MonoBehaviour {
 	void Update ()
     {
         // Detect breath pressure but only if below a fixed value to prevent bad breaths.
-        dartPower = breathMetre.fillAmount * 100;
+        dartPower = breathMetre.fillAmount * 50;
 
         HandleInput();
 
@@ -93,7 +93,7 @@ public class Blowdart : MonoBehaviour {
         // It has hit a balloon. 
         if (collision.gameObject.tag == "Balloon")
         {
-            Debug.Log("Pop");
+            //Debug.Log("Pop");
         }
     }
 
