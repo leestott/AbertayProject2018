@@ -7,9 +7,10 @@ public static class AnalyticsManager {
 
     // Overall number of breaths
     private static int totalBreaths = 0;
+    private static int totalGoodBreaths = 0;
 
     // Current minigame name
-    private static string curMgName = "";
+    private static string curMgName = "Hub";
 
     // Set information
     private static int breathsPerSet = 0;
@@ -21,6 +22,7 @@ public static class AnalyticsManager {
 
     // Current minigame information
     private static int minigameBreaths = 0;
+    private static int minigameGoodBreaths = 0;
 
     public static void SetupSets(int _breathsPerSet, int _numOfSets)
     {
@@ -30,13 +32,19 @@ public static class AnalyticsManager {
 
     public static int getBreathsPerSet()    {return breathsPerSet;}
 
-    public static void UserBreathed()
+    public static void UserBreathed(bool isGoodBreath)
     {
         Debug.Log("User breathed function in analytics Manager was triggered");
 
         totalBreaths++;
         curBreath++;
         minigameBreaths++;
+
+        if(isGoodBreath)
+        {
+            minigameGoodBreaths++;
+            totalGoodBreaths++;
+        }
 
         if(curBreath > breathsPerSet)
         {
@@ -71,14 +79,17 @@ public static class AnalyticsManager {
         Debug.Log("LEVEL NAME: " + levelName);
         Debug.Log("TIME_IN_MINIGAME: " + (Time.time - minigameStartTime));
         Debug.Log("BREATHS_DURING_MINIGAME: " + minigameBreaths);
+        Debug.Log("GOOD_BREATHS_DURING_MINIGAME: " + minigameGoodBreaths);
 
         AnalyticsEvent.Custom("Minigame_Session_Details", new Dictionary<string, object>
         {
             { "Minigame_Name", levelName },
             { "Minigame_Time", (Time.time - minigameStartTime) },
-            { "Minigame_Breaths", minigameBreaths }
+            { "Minigame_Breaths", minigameBreaths },
+            { "Minigame_Good_Breaths", minigameGoodBreaths }
         });
 
+        minigameGoodBreaths = 0;
         minigameBreaths = 0;
     }
 
@@ -87,12 +98,14 @@ public static class AnalyticsManager {
         Debug.Log("End of session report: ");
 		Debug.Log ("TOTAL_SESSION_TIME: " + time);
 		Debug.Log ("TOTAL_SESSION_BREATHS: " + totalBreaths);
+        Debug.Log("TOTAL_SESSION_GOOD_BREATHS: " + totalGoodBreaths);
 
         AnalyticsEvent.Custom("Session_Details", new Dictionary<string, object>
         {
 			{ "Session_Time", time },	
-			{ "Session_Breaths", totalBreaths}
-		});
+			{ "Session_Breaths", totalBreaths},
+            { "Session_Good_Breaths", totalGoodBreaths}
+        });
 	}
 
 }
