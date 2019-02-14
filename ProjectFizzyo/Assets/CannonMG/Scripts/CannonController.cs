@@ -65,6 +65,23 @@ public class CannonController : MonoBehaviour {
 		breathMetre.reset = true;
 		hasLaunched = false;
 		launchForce = 0;
+
+		GameObject[] coins = GameObject.FindGameObjectsWithTag ("Coin");
+		if (coins.Length > 0) 
+		{
+			for (int i = 0; i < coins.Length; i++) 
+			{
+				GameObject.Destroy (coins [i]);
+			}
+		}
+		GameObject[] clouds = GameObject.FindGameObjectsWithTag("Cloud");
+		if (clouds.Length > 0) 
+		{
+			for (int i = 0; i < clouds.Length; i++) 
+			{
+				GameObject.Destroy (clouds [i]);
+			}
+		}
 	}
 
 	void Update() 

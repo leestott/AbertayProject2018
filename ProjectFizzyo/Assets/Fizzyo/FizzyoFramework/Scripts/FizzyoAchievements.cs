@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Fizzyo
 {
-
+	
     // Serializable which holds high score data
     [System.Serializable]
     public class AllHighscoreData

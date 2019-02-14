@@ -62,6 +62,8 @@ public class ReticleMovement : MonoBehaviour {
 
 	bool hasLaunched = false;
 
+	ScreenShake screenShake;
+
 	BreathMetre breathMetre;
 
 	GameObject reticle;
@@ -78,6 +80,8 @@ public class ReticleMovement : MonoBehaviour {
 		br.BreathComplete += Br_BreathComplete;
 
 		reticle = GameObject.Find ("TargetReticle");
+
+		screenShake = GameObject.FindObjectOfType<ScreenShake> ();
 	}
 
 	void Update () 
@@ -154,6 +158,7 @@ public class ReticleMovement : MonoBehaviour {
 								int audioNumber = Random.Range (0, coconutHitEffects.Length);
 								Debug.Log ("Playing Coconut SFX: " + audioNumber);
 								audioSource.PlayOneShot (coconutHitEffects [audioNumber]);
+								screenShake.ShakeScreen ();
 							}
 							Rigidbody2D coconutRB = currentTarget.GetComponent<Rigidbody2D> ();
 							coconutRB.gravityScale = 1.0f;
@@ -188,7 +193,7 @@ public class ReticleMovement : MonoBehaviour {
 				if (ballProjectile.transform.position.y <= groundPosition.position.y) 
 				{
 					hasHitGround = true;
-					AudioSource.PlayClipAtPoint (groundHit, audioSource.transform.position);
+					//AudioSource.PlayClipAtPoint (groundHit, audioSource.transform.position);
 				}
 			}
 		}

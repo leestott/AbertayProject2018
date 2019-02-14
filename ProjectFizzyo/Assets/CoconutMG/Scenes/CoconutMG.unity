@@ -598,7 +598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &253413218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7793,7 +7793,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3b05a3d17d471f344bf412a83d3a341c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -12856,6 +12856,7 @@ GameObject:
   - component: {fileID: 2074930320}
   - component: {fileID: 2074930319}
   - component: {fileID: 2074930318}
+  - component: {fileID: 2074930321}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12924,6 +12925,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2074930321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2074930317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18376deab533a514d8510d64b2aaba5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.25
+  shakeMagnitude: 0.025
 --- !u!1 &2133875572
 GameObject:
   m_ObjectHideFlags: 0

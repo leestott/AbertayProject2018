@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - CharacterProjectile
+  - Coin
+  - Cloud
   layers:
   - Default
   - TransparentFX
