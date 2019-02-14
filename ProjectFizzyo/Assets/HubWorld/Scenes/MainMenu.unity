@@ -1173,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievementId: a8705928-6416-45ac-939f-cda6db6ab274
+  userId: c19d43d0-8546-4d7a-aaf3-aea686d9b62d
   totalScore: 10
 --- !u!4 &1668555242
 Transform:
@@ -1216,13 +1217,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1926502202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 207469858, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Script: {fileID: 11500000, guid: e8a7d79041034644caddbab7cdbb5c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EventName: 
-  m_TrackableProperty:
-    m_Fields: []
-  m_Trigger: 0
 --- !u!4 &1926502204
 Transform:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class SetSelect : MonoBehaviour {
         // On button press change minigame selected.
         if (Input.GetKeyUp(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
-            Debug.Log("The button was pressed.");
+            //Debug.Log("The button was pressed.");
 
             currentNumber++;
 
@@ -100,7 +100,7 @@ public class SetSelect : MonoBehaviour {
         // If the breath has began then increase the fill amount based on the pressure.
         if (breathBegin && !finishedFill)
         {
-            Debug.Log("Breath begin");
+            //Debug.Log("Breath begin");
             // Scale the breath pressure down a bit for filling icon.
             breathTime += Time.deltaTime;
             fillAmount = breathTime / 0.5f;

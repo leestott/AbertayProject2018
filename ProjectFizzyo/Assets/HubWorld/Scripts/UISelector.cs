@@ -50,7 +50,7 @@ void Start()
         // On button press change minigame selected.
 		if (Input.GetKeyUp(KeyCode.Space)|| FizzyoFramework.Instance.Device.ButtonDown())
         {
-            Debug.Log("The button was pressed.");
+            //Debug.Log("The button was pressed.");
 
             selected++;
 
