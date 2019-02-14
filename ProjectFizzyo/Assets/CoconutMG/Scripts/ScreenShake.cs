@@ -9,6 +9,13 @@ public class ScreenShake : MonoBehaviour {
 	public float shakeMagnitude = 0.15f;
 	float dampingSpeed = 1.0f;
 
+	Vector3 originalPosition;
+
+	void Start () 
+	{
+		originalPosition = transform.position;	
+	}
+
 	void Update () 
 	{
 		if (shake > 0)
@@ -20,6 +27,7 @@ public class ScreenShake : MonoBehaviour {
 		else 
 		{
 			shake = 0.0f;
+			transform.position = originalPosition;
 		}
 	}
 
