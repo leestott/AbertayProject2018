@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 44b559d3e6d60e143a5f7f31a947e816
+guid: 5eaf4363983dd4d43a53b37892a7e982
 TextureImporter:
   fileIDToRecycleName:
-    21300000: updated balloon assets_0
-    21300002: updated balloon assets_1
-    21300004: updated balloon assets_2
-    21300006: updated balloon assets_3
-    21300008: updated balloon assets_4
-    21300010: updated balloon assets_5
-    21300012: updated balloon assets_6
-    21300014: updated balloon assets_7
-    21300016: updated balloon assets_8
-    21300018: updated balloon assets_9
-    21300020: updated balloon assets_10
-    21300022: updated balloon assets_11
+    21300000: banner animation loop (6 rows of 1 frame at 500x72px)_0
+    21300002: banner animation loop (6 rows of 1 frame at 500x72px)_1
+    21300004: banner animation loop (6 rows of 1 frame at 500x72px)_2
+    21300006: banner animation loop (6 rows of 1 frame at 500x72px)_3
+    21300008: banner animation loop (6 rows of 1 frame at 500x72px)_4
+    21300010: banner animation loop (6 rows of 1 frame at 500x72px)_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -118,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: updated balloon assets_0
+      name: banner animation loop (6 rows of 1 frame at 500x72px)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 587.3334
-        width: 219.25
-        height: 293.66666
+        y: 360
+        width: 500
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,79 +126,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4c327e266761534c91c2587cc76829e
+      spriteID: f72a88c33f3e8ba4bbe23a4da0b4f012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_1
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 587.3334
-        width: 219.25
-        height: 293.66666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ba1cfb1da3b49b40b467d13eb2b1f64
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: updated balloon assets_2
-      rect:
-        serializedVersion: 2
-        x: 438
-        y: 587.3334
-        width: 219.25
-        height: 293.66666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 380d912e0081662479a36a7c8abd62d1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: updated balloon assets_3
-      rect:
-        serializedVersion: 2
-        x: 657
-        y: 587.3334
-        width: 219.25
-        height: 293.66666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a1613f7ab01e344988db64df19cbe53
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: updated balloon assets_4
+      name: banner animation loop (6 rows of 1 frame at 500x72px)_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 294.33334
-        width: 219.25
-        height: 293.66666
+        y: 288
+        width: 500
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,79 +146,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45d81ef33a2e69f4e9f2043b7dbb1f70
+      spriteID: 9da8a4b1695b2d04e92a557684eab84d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_5
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 294.33334
-        width: 219.25
-        height: 293.66666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc236b70651507e41b2f2995116159c5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: updated balloon assets_6
-      rect:
-        serializedVersion: 2
-        x: 438
-        y: 294.33334
-        width: 219.25
-        height: 293.66666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4364f700f721cb4fabb23053b920aaf
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: updated balloon assets_7
-      rect:
-        serializedVersion: 2
-        x: 657
-        y: 294.33334
-        width: 219.25
-        height: 293.66666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92296aa39fe5e444a9d15b383f9096d8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: updated balloon assets_8
+      name: banner animation loop (6 rows of 1 frame at 500x72px)_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 1.3333435
-        width: 219.25
-        height: 293.66666
+        y: 216
+        width: 500
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,19 +166,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b07b797f4b02954a8828762e5d68ec0
+      spriteID: 263ae8a113c7e724e977814357dc925a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_9
+      name: banner animation loop (6 rows of 1 frame at 500x72px)_3
       rect:
         serializedVersion: 2
-        x: 219
-        y: 1.3333435
-        width: 219.25
-        height: 293.66666
+        x: 0
+        y: 144
+        width: 500
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,19 +186,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1823fd98cad346d49867d1d360c1fb9a
+      spriteID: 2881c0a082e753b42ae6617a0429556a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_10
+      name: banner animation loop (6 rows of 1 frame at 500x72px)_4
       rect:
         serializedVersion: 2
-        x: 438
-        y: 1.3333435
-        width: 219.25
-        height: 293.66666
+        x: 0
+        y: 72
+        width: 500
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -332,19 +206,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42974aae323601e449ad542bab9f3931
+      spriteID: 1b38a174f8ff688438883159b3bf24d5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_11
+      name: banner animation loop (6 rows of 1 frame at 500x72px)_5
       rect:
         serializedVersion: 2
-        x: 657
-        y: 1.3333435
-        width: 219.25
-        height: 293.66666
+        x: 0
+        y: 0
+        width: 500
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 419a0a654e542314b88ee27eb2259082
+      spriteID: c396fd37ff04ae3428e674740bcb4af7
       vertices: []
       indices: 
       edges: []
@@ -360,7 +234,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 962944c7fa6a8f741b13a517f277036b
+    spriteID: 6203d7c1e63fbc04daf96fc32e11c309
     vertices: []
     indices: 
     edges: []

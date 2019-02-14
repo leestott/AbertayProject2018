@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d4bdec8de0c7d4e887cfaa0528aa98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonSprites: []
   speed: 0
+  balloonSprites: []
 --- !u!212 &212538667506959704
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300028, guid: d32fcfeee1abaa14bbe5ed5f3946cdc0, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 44b559d3e6d60e143a5f7f31a947e816, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

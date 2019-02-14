@@ -17,6 +17,11 @@ public class BreathMetre : MonoBehaviour {
     public bool beganBreath;
     public float breathTime = 0.0f;
 
+    public Animator barFull;
+
+    // Set to the maximum calibrated breath length
+    private float maxCaliBreath = 0.0f;
+
     // Reset the bar to 0.
     public bool reset = false;
 
@@ -27,6 +32,9 @@ public class BreathMetre : MonoBehaviour {
         // Links up the breath started and breath complete functions.
         FizzyoFramework.Instance.Recogniser.BreathStarted += OnBreathStarted;
         FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
+
+        maxCaliBreath = FizzyoFramework.Instance.Device.maxBreathCalibrated;
+        Debug.Log("This is the maximum calibrated breath " + maxCaliBreath);
     }
 
     void Update ()
@@ -37,11 +45,17 @@ public class BreathMetre : MonoBehaviour {
             if (beganBreath)
             {
                 breathTime += Time.deltaTime;
-                fillAmount = breathTime / 3;
+                fillAmount = breathTime / maxCaliBreath;
+                
             }
 
             // Links the fill amount float to the breathMetre.
             breathMetre.size = fillAmount;
+        }
+
+        if(fillAmount>=1)
+        {
+            barFull.SetBool("barFull", true);
         }
 
         // Reset the fill amount.
@@ -51,6 +65,7 @@ public class BreathMetre : MonoBehaviour {
             breathTime = 0.0f;
             reset = false;
             lockBar = false;
+            barFull.SetBool("barFull", false);
         }
     }
 

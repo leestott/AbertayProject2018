@@ -47,7 +47,7 @@ public class Blowdart : MonoBehaviour {
 
         if (!fired)
         {
-            moveUpDown();
+            MoveUpDown();
         } 
 	}
 
@@ -59,19 +59,19 @@ public class Blowdart : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
             fired = true;
-            fireDart();
+            FireDart();
         }
     }
 
     // Moves the dart up and down via a sine wave.
-    void moveUpDown()
+    void MoveUpDown()
     {
         float newY = Mathf.Sin(Time.time * speed) * height;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
     // Fire the dart based on input breath.
-    void fireDart()
+    void FireDart()
     {
         rb.velocity = new Vector2(dartPower, 0);
         dartPower = 0;

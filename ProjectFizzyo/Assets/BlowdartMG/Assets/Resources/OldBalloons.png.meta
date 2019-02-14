@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: 44b559d3e6d60e143a5f7f31a947e816
+guid: d32fcfeee1abaa14bbe5ed5f3946cdc0
 TextureImporter:
   fileIDToRecycleName:
-    21300000: updated balloon assets_0
-    21300002: updated balloon assets_1
-    21300004: updated balloon assets_2
-    21300006: updated balloon assets_3
-    21300008: updated balloon assets_4
-    21300010: updated balloon assets_5
-    21300012: updated balloon assets_6
-    21300014: updated balloon assets_7
-    21300016: updated balloon assets_8
-    21300018: updated balloon assets_9
-    21300020: updated balloon assets_10
-    21300022: updated balloon assets_11
+    21300000: Balloon tyes for minigame new_0
+    21300002: Balloon tyes for minigame new_1
+    21300004: Balloon tyes for minigame new_2
+    21300006: Balloon tyes for minigame new_3
+    21300008: Balloon tyes for minigame new_4
+    21300010: Balloon tyes for minigame new_5
+    21300012: Balloon tyes for minigame new_6
+    21300014: Balloon tyes for minigame new_7
+    21300016: Balloon tyes for minigame new_8
+    21300018: Balloon tyes for minigame new_9
+    21300020: Balloon tyes for minigame new_10
+    21300022: Balloon tyes for minigame new_11
+    21300024: BalloonSpriteSheet_0
+    21300026: BalloonSpriteSheet_1
+    21300028: BalloonSpriteSheet_2
+    21300030: BalloonSpriteSheet_3
+    21300032: BalloonSpriteSheet_4
+    21300034: BalloonSpriteSheet_5
+    21300036: BalloonSpriteSheet_6
+    21300038: BalloonSpriteSheet_7
+    21300040: BalloonSpriteSheet_8
+    21300042: BalloonSpriteSheet_9
+    21300044: BalloonSpriteSheet_10
+    21300046: BalloonSpriteSheet_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -48,7 +60,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -92,33 +104,11 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: updated balloon assets_0
+      name: BalloonSpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,13 +122,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4c327e266761534c91c2587cc76829e
+      spriteID: e88e2e84284981f45b31c77b7a3874b5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_1
+      name: BalloonSpriteSheet_1
       rect:
         serializedVersion: 2
         x: 219
@@ -152,13 +142,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ba1cfb1da3b49b40b467d13eb2b1f64
+      spriteID: 54a55ea22d5da8b4fa1ae10fe5c4d246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_2
+      name: BalloonSpriteSheet_2
       rect:
         serializedVersion: 2
         x: 438
@@ -172,13 +162,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 380d912e0081662479a36a7c8abd62d1
+      spriteID: 4d81bc447629ca3408cf4d1112a924dd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_3
+      name: BalloonSpriteSheet_3
       rect:
         serializedVersion: 2
         x: 657
@@ -192,13 +182,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a1613f7ab01e344988db64df19cbe53
+      spriteID: d170f663c2e81a0478bed5f6836f5392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_4
+      name: BalloonSpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -212,13 +202,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45d81ef33a2e69f4e9f2043b7dbb1f70
+      spriteID: f2193ea27c46ff24fbbdc4644a90e8c0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_5
+      name: BalloonSpriteSheet_5
       rect:
         serializedVersion: 2
         x: 219
@@ -232,13 +222,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc236b70651507e41b2f2995116159c5
+      spriteID: b3605f66365cd21409d4e87256a121e1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_6
+      name: BalloonSpriteSheet_6
       rect:
         serializedVersion: 2
         x: 438
@@ -252,13 +242,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4364f700f721cb4fabb23053b920aaf
+      spriteID: 33cfca301cb2c5a4e93b3e99b096945f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_7
+      name: BalloonSpriteSheet_7
       rect:
         serializedVersion: 2
         x: 657
@@ -272,13 +262,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92296aa39fe5e444a9d15b383f9096d8
+      spriteID: 3568f4578a4cfb34493b5e08c96ee30d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_8
+      name: BalloonSpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -292,13 +282,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b07b797f4b02954a8828762e5d68ec0
+      spriteID: ce9fb60908ea16a4fb9a4b8deb78677d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_9
+      name: BalloonSpriteSheet_9
       rect:
         serializedVersion: 2
         x: 219
@@ -312,13 +302,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1823fd98cad346d49867d1d360c1fb9a
+      spriteID: 49ad5ef2f06b5014fab1d3a7e7fbf95e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_10
+      name: BalloonSpriteSheet_10
       rect:
         serializedVersion: 2
         x: 438
@@ -332,13 +322,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42974aae323601e449ad542bab9f3931
+      spriteID: 92bd4a10664334145ae23e69c8718907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: updated balloon assets_11
+      name: BalloonSpriteSheet_11
       rect:
         serializedVersion: 2
         x: 657
@@ -352,7 +342,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 419a0a654e542314b88ee27eb2259082
+      spriteID: eb417544f2f5ddd4f9e073731a18f61a
       vertices: []
       indices: 
       edges: []
@@ -360,7 +350,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 962944c7fa6a8f741b13a517f277036b
+    spriteID: 75e3445819e0e4a4dafa02d0d2ff1958
     vertices: []
     indices: 
     edges: []
