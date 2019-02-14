@@ -8,10 +8,12 @@ using UnityEngine.SceneManagement;
 public class SetSelect : MonoBehaviour {
 
     [SerializeField]
-    private Text breathsPerSet;
+    private Text breathsPerSetText;
+    private int breathsPerSet;
 
     [SerializeField]
-    private Text numOfSets;
+    private Text numOfSetsText;
+    private int numOfSets;
 
     private int currentNumber;
 
@@ -44,6 +46,8 @@ public class SetSelect : MonoBehaviour {
         fillAmount = bottomHoldingIcon.fillAmount;
 
         currentNumber = 8;
+        numOfSets = 8;
+        breathsPerSet = 8;
 
         breathsConfirmed = false;
 
@@ -80,11 +84,13 @@ public class SetSelect : MonoBehaviour {
 
             if (!breathsConfirmed)
             {
-                breathsPerSet.text = currentNumber.ToString();
+                breathsPerSetText.text = currentNumber.ToString();
+                breathsPerSet = currentNumber;
             }
             else
             {
-                numOfSets.text = currentNumber.ToString();
+                numOfSetsText.text = currentNumber.ToString();
+                numOfSets = currentNumber;
             }
         }
     }
@@ -122,6 +128,7 @@ public class SetSelect : MonoBehaviour {
             }
             else
             {
+                AnalyticsManager.SetupSets(breathsPerSet, numOfSets);
                 SceneManager.LoadScene("MainMenu");
             }
 

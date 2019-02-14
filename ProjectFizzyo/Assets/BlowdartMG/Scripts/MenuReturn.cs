@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuReturn : MonoBehaviour {
 
+    private float timeAtStart;
+
 	// Use this for initialization
 	void Start () {
-		
+        timeAtStart = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,6 @@ public class MenuReturn : MonoBehaviour {
 
     void OnDestroy()
     {
-        AnalyticsManager.ReportEndOfMinigame(AnalyticsManager.GetCurrentGame(),Time.time,AnalyticsManager.GetTotalBreaths());
+        AnalyticsManager.ReportEndOfMinigame(AnalyticsManager.GetCurrentGame(), timeAtStart);
     }
 }
