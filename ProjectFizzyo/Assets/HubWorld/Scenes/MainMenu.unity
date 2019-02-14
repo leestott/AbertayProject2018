@@ -197,9 +197,9 @@ MonoBehaviour:
   - {fileID: 997686962}
   - {fileID: 662480988}
   minigameNames:
-  - Blowdart Game
-  - Coconut Shy
-  - Circus Game
+  - Aztecies Temple
+  - Freaky Tiki's Coconut Shy
+  - Yeety Petey's Crazy Cannon
   minigameName: {fileID: 245520325}
   mainCamera: {fileID: 1888829737}
 --- !u!114 &309234250
@@ -1130,6 +1130,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1570133387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1570133389}
+  - component: {fileID: 1570133388}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1570133388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570133387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e19208e7df3ad74486208aecf25a271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goodBreaths: 0
+  totalBreaths: 0
+  qualityScore: 0
+--- !u!4 &1570133389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570133387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1570324762
 Transform:
   m_ObjectHideFlags: 0
@@ -1173,7 +1216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievementId: a8705928-6416-45ac-939f-cda6db6ab274
-  totalScore: 10
+  gameId: c19d43d0-8546-4d7a-aaf3-aea686d9b62d
+  allAchievements: []
+  unlockAchievements: []
 --- !u!4 &1668555242
 Transform:
   m_ObjectHideFlags: 0

@@ -214,6 +214,7 @@ public class ReticleMovement : MonoBehaviour {
 		hasHitCoconut = false;
 		GameObject.Destroy (ballProjectile);
 		breathMetre.fillAmount = 0.0f;
+		breathMetre.reset = true;
 	}
 
 	void AxisMovement ()
@@ -263,7 +264,7 @@ public class ReticleMovement : MonoBehaviour {
 
 	IEnumerator ResetDelay () 
 	{
-		yield return new WaitForSeconds (2.0f);
+		yield return new WaitForSeconds (0.0f);
 		Reset ();
 	}
 

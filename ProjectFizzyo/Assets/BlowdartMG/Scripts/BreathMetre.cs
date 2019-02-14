@@ -17,6 +17,9 @@ public class BreathMetre : MonoBehaviour {
     public bool beganBreath;
     public float breathTime = 0.0f;
 
+	public int goodBreaths = 0;
+	public int totalBreaths = 0;
+
     public Animator barFull;
 
     // Set to the maximum calibrated breath length
@@ -80,5 +83,20 @@ public class BreathMetre : MonoBehaviour {
     {
         beganBreath = false;
         lockBar = true;
+
+		//bool isBreathFull = false;
+		//isBreathFull = isBreathFull && ((e.ExhaledVolume / e.Breathlength) >  0.8f * e.);
+		if (fillAmount >= 0.1f) 
+		{
+			totalBreaths++;
+		}
+
+		Debug.Log("IS BREATH FULL: " + e.IsBreathFull);
+		if (e.IsBreathFull && fillAmount >= 0.7f) 
+		{
+			goodBreaths++;
+		}
+
+		//Debug.Log ("BREATH QUALITY: " + FizzyoFramework.Instance.Recogniser.GetBreathQuality());
     }
 }
