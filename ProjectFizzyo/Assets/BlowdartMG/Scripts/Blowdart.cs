@@ -26,6 +26,8 @@ public class Blowdart : MonoBehaviour {
 
     BreathMetre breathMetre;
 
+    public BalloonSpawner balloonSpawner;
+
     // Initialises the variables
     void Start ()
     {
@@ -87,13 +89,18 @@ public class Blowdart : MonoBehaviour {
             rb.velocity = new Vector2(0, 0);
             fired = false;
             transform.position = startingPos;
+            
+            if(balloonSpawner.AllPopped())
+            {
+                balloonSpawner.NextLevel();
+            }
         }
 
         // TO DO: Add scoring functionality here.
         // It has hit a balloon. 
         if (collision.gameObject.tag == "Balloon")
         {
-            //Debug.Log("Pop");
+            balloonSpawner.BalloonPopped();
         }
     }
 

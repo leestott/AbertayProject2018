@@ -39,12 +39,12 @@ public class ParentBalloon : MonoBehaviour {
         if (collision.gameObject.tag == "Dart")
         {
             //Debug.Log("hit by dart");
-            popBalloon();
+            PopBalloon();
         }
     }
 
     // Animates through the popping animation, triggers the shadow pop animation and the destroys the object.
-    private void popBalloon()
+    private void PopBalloon()
     {
         shadowAnimator.SetTrigger("Pop");
 

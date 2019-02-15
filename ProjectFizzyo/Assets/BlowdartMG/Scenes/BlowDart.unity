@@ -231,6 +231,7 @@ MonoBehaviour:
   - {fileID: 1208499037528570, guid: a2256b8a67397224abffb3f47a34e6eb, type: 2}
   - {fileID: 1089806685018762, guid: ff084500665112841a61237e4806a0a6, type: 2}
   - {fileID: 1684657763475506, guid: 36442aad7f5c4704bb0bc211a632118a, type: 2}
+  levelBalloonNumbers: 04000000040000000300000004000000030000000400000004000000030000000600000003000000
   currentLevel: 0
 --- !u!4 &372289098
 Transform:
@@ -279,6 +280,8 @@ MonoBehaviour:
   lockBar: 1
   beganBreath: 0
   breathTime: 0
+  goodBreaths: 0
+  totalBreaths: 0
   barFull: {fileID: 1194341457}
   reset: 0
 --- !u!4 &489709907
@@ -489,7 +492,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.707377, y: 0.04742998}
+  m_Offset: {x: 3.1992989, y: 0.04742998}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -500,7 +503,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.7058306, y: 0.45952833}
+  m_Size: {x: 1.721987, y: 0.45952833}
   m_EdgeRadius: 0
 --- !u!212 &990130302
 SpriteRenderer:
@@ -575,6 +578,7 @@ MonoBehaviour:
   speed: 2
   height: 3.9
   dartPower: 100
+  balloonSpawner: {fileID: 372289097}
 --- !u!95 &1194341457 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95415088876799384, guid: b777725328c1cf14ea621bc971e281aa,

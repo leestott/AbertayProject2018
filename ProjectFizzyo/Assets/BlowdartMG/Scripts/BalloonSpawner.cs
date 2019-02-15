@@ -9,6 +9,9 @@ public class BalloonSpawner : MonoBehaviour {
     public GameObject[] levels;
 
     [SerializeField]
+    private int[] levelBalloonNumbers;
+
+    [SerializeField]
     private int currentLevel = 0;
 
     // Start the scene with three balloons.
@@ -16,6 +19,11 @@ public class BalloonSpawner : MonoBehaviour {
     {
         Instantiate(levels[currentLevel]);
 	}
+
+    public void BalloonPopped()
+    {
+        levelBalloonNumbers[currentLevel]--;
+    }
 	
     // TO DO: Add respawning of balloons.
     // Currently for debugging 'R' respawns the balloons.
@@ -23,15 +31,32 @@ public class BalloonSpawner : MonoBehaviour {
     {
 		if(Input.GetKeyDown(KeyCode.N))
         {
-            currentLevel++;
-
-            if(currentLevel > levels.Length-1)
-            {
-                currentLevel = 0;
-            }
-
-            Instantiate(levels[currentLevel]);
+            NextLevel();
         }
 	}
+
+    public bool AllPopped()
+    {
+        bool ifPopped = false;
+
+        if (levelBalloonNumbers[currentLevel] <= 0)
+        {
+            ifPopped = true;
+        }
+
+        return ifPopped;
+    }
+
+    public void NextLevel()
+    {
+        currentLevel++;
+
+        if (currentLevel > levels.Length - 1)
+        {
+            currentLevel = 0;
+        }
+
+        Instantiate(levels[currentLevel]);
+    }
 
 }
