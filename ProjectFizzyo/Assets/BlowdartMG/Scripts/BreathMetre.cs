@@ -61,15 +61,12 @@ public class BreathMetre : MonoBehaviour {
             breathMetre.size = fillAmount;
         }
 
-        if (fillAmount >= 1)
+        if ((fillAmount >= 1) && (!lockBar) && (!reset))
         {
-            if (!lockBar)
-            {
-                barFull.SetBool("barFull", true);
-                screenShake.ShakeScreen();
-            }
-
+            barFull.SetBool("barFull", true);
+            screenShake.ShakeScreen();
             lockBar = true;
+
         }
 
         // Reset the fill amount.

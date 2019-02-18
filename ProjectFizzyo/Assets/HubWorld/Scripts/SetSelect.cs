@@ -79,7 +79,7 @@ public class SetSelect : MonoBehaviour {
             // Wrap selected around.
             if (currentNumber > 12)
             {
-                currentNumber = 1;
+                currentNumber = 5;
             }
 
             if (!breathsConfirmed)
