@@ -16,9 +16,16 @@ public class ScrollingWater : MonoBehaviour {
 		//GetComponent<Renderer>().material.mainTextureOffset = offset;
 
 		if (GameObject.FindGameObjectWithTag ("CharacterProjectile") != null) {
-			Rigidbody2D rb = GameObject.FindGameObjectWithTag ("CharacterProjectile").GetComponent<Rigidbody2D> ();
-			float rbSpeed = rb.velocity.x * multiplier;
-			speed = rbSpeed;
+			if (GameObject.FindGameObjectWithTag ("CharacterProjectile").transform.position.x > 2)
+			{
+				Rigidbody2D rb = GameObject.FindGameObjectWithTag ("CharacterProjectile").GetComponent<Rigidbody2D> ();
+				float rbSpeed = rb.velocity.x * multiplier;
+				speed = rbSpeed;
+			}
+			else 
+			{
+				speed = 0.0f;
+			}
 		}
 		else 
 		{

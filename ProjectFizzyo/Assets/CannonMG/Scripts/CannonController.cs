@@ -40,6 +40,7 @@ public class CannonController : MonoBehaviour {
 	Transform promptHeight;
 
 	bool hasLaunched = false;
+	bool hasSpawnedShadow = false;
 	public bool gameplayState = false;
 
 	CannonScoreManager scoreManager;
@@ -48,6 +49,9 @@ public class CannonController : MonoBehaviour {
 	private float breathPressure;
 
 	BreathMetre breathMetre;
+
+	public AudioClip cannonFireClip;
+	AudioSource cannonAudioSource;
 
 	void Start () 
 	{
@@ -63,12 +67,15 @@ public class CannonController : MonoBehaviour {
 		buttonPrompt.SetActive (false);
 
 		breathMetre.fillAmount = 0.0f;
+
+		cannonAudioSource = GetComponent<AudioSource> ();
 	}
 
 	public void Reset () 
 	{
 		breathMetre.reset = true;
 		hasLaunched = false;
+		hasSpawnedShadow = false;
 		launchForce = 0;
 
 		GameObject[] coins = GameObject.FindGameObjectsWithTag ("Coin");
@@ -101,9 +108,11 @@ public class CannonController : MonoBehaviour {
 				if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && canPlay && breathMetre.fillAmount > 0) 
 				{
 					hasLaunched = true;
+					cannonAudioSource.PlayOneShot (cannonFireClip);
 
 					// Calculate launch vector.
 					GameObject launchDir = GameObject.Find ("LaunchDirection");
+
 
 					switch(CannonStaticValues.playerCharacter)
 					{
@@ -126,23 +135,29 @@ public class CannonController : MonoBehaviour {
 						projectile = Instantiate (alienProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					}
-
-					Vector3 shadowPosition = new Vector3 (projectile.transform.position.x, -1.0f, -9.0f);
-					Instantiate (shadowPrefab, shadowPosition, Quaternion.identity);
-
 					// Apply a force to the character projectile in the direction launch vector.
 					Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
 					projectileRb.AddForce (projectile.transform.up * launchForce);
 					//projectileRb.AddTorque (20.0f);
+
+					StartCoroutine (GroundRespawnDelay ());
 				} 
 				else
 				{
 					// If has not been launched oscillate between the launch angle.
 					AxisRotation ();
+					//cannonAudioSource.enabled = true;
 				}
 			} 
 			else if (hasLaunched) 
 			{
+				if (projectile.transform.position.x > 1.0f && !hasSpawnedShadow)
+				{
+					hasSpawnedShadow = true;
+					Vector3 shadowPosition = new Vector3 (projectile.transform.position.x, -1.0f, -9.0f);
+					Instantiate (shadowPrefab, shadowPosition, Quaternion.identity);
+				}
+
 				if (projectile.transform.position.y < promptHeight.position.y) 
 				{
 					buttonPrompt.SetActive (true);
@@ -191,5 +206,18 @@ public class CannonController : MonoBehaviour {
 	private void Br_BreathComplete(object sender, ExhalationCompleteEventArgs e)
 	{
 		Debug.LogFormat("Breath Complete.\n Results: Quality [{0}] : Percentage [{1}] : Breath Full [{2}] : Breath Count [{3}] ", e.BreathQuality, e.BreathPercentage, e.IsBreathFull, e.BreathCount);
+	}
+
+	IEnumerator GroundRespawnDelay () 
+	{
+		yield return new WaitForSeconds (6.0f);
+		if (projectile != null) 
+		{
+			if (projectile.transform.position.x < 2) 
+			{
+				GameObject.Destroy (projectile);
+				Reset ();
+			}
+		}
 	}
 }
