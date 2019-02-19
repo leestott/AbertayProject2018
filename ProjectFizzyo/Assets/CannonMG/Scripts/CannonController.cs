@@ -20,6 +20,8 @@ public class CannonController : MonoBehaviour {
 	public GameObject unicornProjectile;
 	public GameObject batboyProjectile;
 
+	public GameObject shadowPrefab;
+
     // The camera which follows the character.
     [Header("Camera object:")]
     public GameObject playerCamera;
@@ -58,6 +60,8 @@ public class CannonController : MonoBehaviour {
 		buttonPrompt = GameObject.Find ("ButtonPrompt");
 		promptHeight = GameObject.Find ("PromptHeightTransform").transform;
 		buttonPrompt.SetActive (false);
+
+		breathMetre.fillAmount = 0.0f;
 	}
 
 	public void Reset () 
@@ -119,10 +123,13 @@ public class CannonController : MonoBehaviour {
 						break;
 					}
 
+					Vector3 shadowPosition = new Vector3 (projectile.transform.position.x, -1.0f, -9.0f);
+					Instantiate (shadowPrefab, shadowPosition, Quaternion.identity);
+
 					// Apply a force to the character projectile in the direction launch vector.
 					Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
 					projectileRb.AddForce (projectile.transform.up * launchForce);
-					projectileRb.AddTorque (20.0f);
+					//projectileRb.AddTorque (20.0f);
 				} 
 				else
 				{

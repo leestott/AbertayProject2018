@@ -116,6 +116,9 @@ public class CannonMenuState : MonoBehaviour {
 				Debug.Log ("GAME START");
 				gameState = GameState.StartPrompt;
 
+				BreathMetre metreScipt = GameObject.FindObjectOfType<BreathMetre> ();
+				metreScipt.reset = true;
+
 				switch (menuItems [menuIndex].name) 
 				{
 				case "Alien":
