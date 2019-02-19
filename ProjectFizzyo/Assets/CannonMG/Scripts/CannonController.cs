@@ -19,6 +19,7 @@ public class CannonController : MonoBehaviour {
 	public GameObject bearProjectile;
 	public GameObject unicornProjectile;
 	public GameObject batboyProjectile;
+	public GameObject bigfootProjectile;
 
 	public GameObject shadowPrefab;
 
@@ -117,6 +118,9 @@ public class CannonController : MonoBehaviour {
 						break;
 					case CannonStaticValues.Characters.Unicorn:
 						projectile = Instantiate (unicornProjectile, transform.position, launchDir.transform.rotation);
+						break;
+					case CannonStaticValues.Characters.BigFoot:
+						projectile = Instantiate (bigfootProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					default:
 						projectile = Instantiate (alienProjectile, transform.position, launchDir.transform.rotation);

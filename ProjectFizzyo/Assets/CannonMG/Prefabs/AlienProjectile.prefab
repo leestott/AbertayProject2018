@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50335273130962918}
   - component: {fileID: 70634670442343984}
   - component: {fileID: 96004410229740886}
-  - component: {fileID: 114782208689928738}
+  - component: {fileID: 95841560122975182}
   m_Layer: 0
   m_Name: AlienProjectile
   m_TagString: CharacterProjectile
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1184756915539016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.225045, y: 2.8737288, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: -4.722394, y: 3.0782883, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -77,8 +77,26 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 6.92, y: 12.15}
+  m_Size: {x: 4, y: 8}
   m_Direction: 0
+--- !u!95 &95841560122975182
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184756915539016}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ae9f5da4c1465444aef181d9f4650b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!96 &96004410229740886
 TrailRenderer:
   serializedVersion: 2
@@ -180,22 +198,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &114782208689928738
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1184756915539016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d933ce28b51b642a464c30827f9c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 2a932249f9d253440856b02267768bba, type: 3}
-  - {fileID: 21300000, guid: 8245befe387103f47a64f04981214c44, type: 3}
-  - {fileID: 21300000, guid: a6441cd45cb0f144e8cba7e30a8f4d5d, type: 3}
-  - {fileID: 21300000, guid: 7c46794eb959a804ab115b0a5f46cc83, type: 3}
 --- !u!212 &212955289169857122
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -231,7 +233,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2a932249f9d253440856b02267768bba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3bac1c5c90f79f45a1117393cdb4746, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

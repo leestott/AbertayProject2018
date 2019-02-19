@@ -279,6 +279,8 @@ MonoBehaviour:
   lockBar: 1
   beganBreath: 0
   breathTime: 0
+  goodBreaths: 0
+  totalBreaths: 0
   barFull: {fileID: 1194341457}
   reset: 0
 --- !u!4 &489709907
@@ -1079,7 +1081,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

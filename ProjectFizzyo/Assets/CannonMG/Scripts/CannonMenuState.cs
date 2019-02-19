@@ -133,6 +133,9 @@ public class CannonMenuState : MonoBehaviour {
 				case "Unicorn":
 					CannonStaticValues.playerCharacter = CannonStaticValues.Characters.Unicorn;
 					break;
+				case "BigFoot":
+					CannonStaticValues.playerCharacter = CannonStaticValues.Characters.BigFoot;
+					break;
 				}
 			}
 		}
