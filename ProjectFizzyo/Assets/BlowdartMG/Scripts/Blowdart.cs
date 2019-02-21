@@ -13,6 +13,7 @@ public class Blowdart : MonoBehaviour {
     // Input breath currently always at max for testing.
     [Header("Power of the dart (for testing):")]
     public float dartPower = 100.0f;
+    public float minPower = 30.0f;
 
     // Has the dart been shot.
     private bool fired = false;
@@ -20,6 +21,8 @@ public class Blowdart : MonoBehaviour {
     // The darts rigidbody and starting pos
     private Rigidbody2D rb;
     private Vector3 startingPos;
+
+    public GameObject blowPipe;
 
     BreathRecogniser br = new BreathRecogniser();
     private float breathPressure;
@@ -45,13 +48,27 @@ public class Blowdart : MonoBehaviour {
         // Detect breath pressure but only if below a fixed value to prevent bad breaths.
         dartPower = breathMetre.fillAmount * 50;
 
+        if (dartPower < minPower)
+            dartPower = minPower;
+
+       
         HandleInput();
 
         if (!fired)
         {
             MoveUpDown();
-        } 
-	}
+        }
+        else
+        {
+            float angle;
+            float dot = Vector2.right.x * rb.velocity.x + Vector2.right.y * rb.velocity.y;      //Works out dot product
+            float det = Vector2.right.x * rb.velocity.y - Vector2.right.y * rb.velocity.x;      //Works out determinant
+            angle = Mathf.Atan2(det, dot);                                        //Calculates angle in radians
+            angle = angle * (180.0f / 3.1415f);                                 //Converts angle to degrees
+
+            rb.transform.eulerAngles = new Vector3(rb.transform.rotation.eulerAngles.x, rb.transform.eulerAngles.y, angle);
+        }
+    }
 
     // TO DO: Remove the debug space bar.
     // Works off of button press and space bar for debugging.
@@ -70,6 +87,7 @@ public class Blowdart : MonoBehaviour {
     {
         float newY = Mathf.Sin(Time.time * speed) * height;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        blowPipe.transform.position = new Vector3(transform.position.x-0.5f, newY, transform.position.z);
     }
 
     // Fire the dart based on input breath.
@@ -87,10 +105,13 @@ public class Blowdart : MonoBehaviour {
         if (collision.gameObject.tag == "Reset")
         {
             rb.velocity = new Vector2(0, 0);
+            rb.transform.eulerAngles = new Vector3(0.0f,0.0f,0.0f);
             fired = false;
             transform.position = startingPos;
-            
-            if(balloonSpawner.AllPopped())
+            blowPipe.transform.position = startingPos;
+
+
+            if (balloonSpawner.AllPopped())
             {
                 balloonSpawner.NextLevel();
             }
