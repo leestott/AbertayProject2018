@@ -31,6 +31,10 @@ public class Blowdart : MonoBehaviour {
 
     public BalloonSpawner balloonSpawner;
 
+    AudioSource audioSource;
+    public AudioClip[] dartLaunchSounds;
+    public AudioClip[] balloonPoppingSounds;
+
     // Initialises the variables
     void Start ()
     {
@@ -41,6 +45,8 @@ public class Blowdart : MonoBehaviour {
 
         br.BreathStarted += Br_BreathStarted;
         br.BreathComplete += Br_BreathComplete;
+
+        audioSource = GameObject.FindObjectOfType<AudioSource>();
     }
 	
 	void Update ()
@@ -93,6 +99,8 @@ public class Blowdart : MonoBehaviour {
     // Fire the dart based on input breath.
     void FireDart()
     {
+        int soundSelection = Random.Range(0, dartLaunchSounds.Length);
+        audioSource.PlayOneShot(dartLaunchSounds[soundSelection]);
         rb.velocity = new Vector2(dartPower, 0);
         dartPower = 0;
         GameObject.Find("UIManager").GetComponent<BreathMetre>().reset = true;
@@ -122,6 +130,8 @@ public class Blowdart : MonoBehaviour {
         if (collision.gameObject.tag == "Balloon")
         {
             balloonSpawner.BalloonPopped();
+            int soundSelection = Random.Range(0, balloonPoppingSounds.Length);
+            audioSource.PlayOneShot(balloonPoppingSounds[soundSelection]);
         }
     }
 

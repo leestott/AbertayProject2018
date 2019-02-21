@@ -738,6 +738,14 @@ MonoBehaviour:
   minPower: 5
   blowPipe: {fileID: 75487986}
   balloonSpawner: {fileID: 372289097}
+  dartLaunchSounds:
+  - {fileID: 8300000, guid: f64dab24d4b524242a8ff82e341b1317, type: 3}
+  - {fileID: 8300000, guid: cde57e29401381945a3369ee116eedc8, type: 3}
+  balloonPoppingSounds:
+  - {fileID: 8300000, guid: 40199fb5111a5284c8a45ad48304f182, type: 3}
+  - {fileID: 8300000, guid: dc86dc3bc941e2f4692ebd84c25989c9, type: 3}
+  - {fileID: 8300000, guid: 7d6cbf9c38842a042b54189e9ea50daf, type: 3}
+  - {fileID: 8300000, guid: f90c3092461fc0a48bcedeeb2e507de4, type: 3}
 --- !u!95 &1194341457 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95415088876799384, guid: b777725328c1cf14ea621bc971e281aa,
@@ -1104,7 +1112,7 @@ GameObject:
   - component: {fileID: 1675080824}
   - component: {fileID: 1675080823}
   m_Layer: 5
-  m_Name: BreathMetreCanvas
+  m_Name: BreathBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
