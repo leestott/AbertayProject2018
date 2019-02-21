@@ -199,6 +199,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1331810257}
+  - {fileID: 1978056613}
+  - {fileID: 974612974}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -440,7 +442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &253413218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,10 +1415,10 @@ Transform:
   m_GameObject: {fileID: 644960279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3}
-  m_LocalScale: {x: 16, y: 12, z: 1}
+  m_LocalScale: {x: 24, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &706132075
 GameObject:
@@ -1632,7 +1634,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789819991
 GameObject:
@@ -2018,11 +2020,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 974612971}
   m_LocalRotation: {x: -0, y: -0, z: 0.1116391, w: 0.99374884}
-  m_LocalPosition: {x: 5.76, y: 3.96, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalPosition: {x: 343.29602, y: 236.016, z: 536.4}
+  m_LocalScale: {x: -59.599995, y: 59.599995, z: 59.600002}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 41212337}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.820001}
 --- !u!1 &1042656275
 GameObject:
@@ -2109,7 +2111,7 @@ Transform:
   m_LocalScale: {x: 20, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045992858
 GameObject:
@@ -8035,12 +8037,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1978056610}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.8, y: 4.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -345.68002, y: 245.552, z: 536.4}
+  m_LocalScale: {x: 59.600002, y: 59.600002, z: 59.600002}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 41212337}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1997223259
 GameObject:
@@ -8175,6 +8177,8 @@ MonoBehaviour:
   lockBar: 1
   beganBreath: 0
   breathTime: 0
+  goodBreaths: 0
+  totalBreaths: 0
   barFull: {fileID: 1870005741}
   reset: 0
 --- !u!114 &2049844222

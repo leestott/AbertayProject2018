@@ -33,7 +33,14 @@ public class CameraFollow : MonoBehaviour {
 		if (foundCharacter) 
 		{
 			// Follow the character while in air.
-			transform.position = new Vector3 (characterProjectile.transform.position.x, transform.position.y, transform.position.z);
+			if (characterProjectile.transform.position.x > 0)
+			{
+				transform.position = new Vector3 (characterProjectile.transform.position.x, transform.position.y, transform.position.z);
+			} 
+			else 
+			{
+				transform.position = startPosition;
+			}
 		}
 	}
 }

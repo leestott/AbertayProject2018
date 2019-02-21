@@ -19,6 +19,10 @@ public class CannonController : MonoBehaviour {
 	public GameObject bearProjectile;
 	public GameObject unicornProjectile;
 	public GameObject batboyProjectile;
+	public GameObject bigfootProjectile;
+
+	public GameObject shadowPrefab;
+	public GameObject splashPrefab;
 
     // The camera which follows the character.
     [Header("Camera object:")]
@@ -26,6 +30,8 @@ public class CannonController : MonoBehaviour {
 
 	[Header("Breath power scale:")]
 	public float breathPowerScale = 800;
+
+	bool hasSplashed = false;
 
 	public float skimSpeed = 5.0f;
 
@@ -37,6 +43,7 @@ public class CannonController : MonoBehaviour {
 	Transform promptHeight;
 
 	bool hasLaunched = false;
+	bool hasSpawnedShadow = false;
 	public bool gameplayState = false;
 
 	CannonScoreManager scoreManager;
@@ -45,6 +52,20 @@ public class CannonController : MonoBehaviour {
 	private float breathPressure;
 
 	BreathMetre breathMetre;
+
+	public AudioClip cannonFireClip;
+	AudioSource cannonAudioSource;
+
+	AudioSource sfxSource;
+
+	GameObject currentSplash;
+	GameObject cannonSmoke;
+
+	Animation splashAnim;
+
+	CharacterAudioManager characterAudio;
+
+	public AudioClip[] waterSkiffs;
 
 	void Start () 
 	{
@@ -58,13 +79,26 @@ public class CannonController : MonoBehaviour {
 		buttonPrompt = GameObject.Find ("ButtonPrompt");
 		promptHeight = GameObject.Find ("PromptHeightTransform").transform;
 		buttonPrompt.SetActive (false);
+
+		breathMetre.fillAmount = 0.0f;
+
+		cannonAudioSource = GetComponent<AudioSource> ();
+		sfxSource = GameObject.Find ("SFXAudioSource").GetComponent<AudioSource> ();
+
+		cannonSmoke = GameObject.Find ("CannonSmoke");
+
+		characterAudio = GameObject.FindObjectOfType<CharacterAudioManager> ();
+
+		cannonSmoke.SetActive (false);
 	}
 
 	public void Reset () 
 	{
 		breathMetre.reset = true;
 		hasLaunched = false;
+		hasSpawnedShadow = false;
 		launchForce = 0;
+		cannonSmoke.SetActive (false);
 
 		GameObject[] coins = GameObject.FindGameObjectsWithTag ("Coin");
 		if (coins.Length > 0) 
@@ -96,6 +130,10 @@ public class CannonController : MonoBehaviour {
 				if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && canPlay && breathMetre.fillAmount > 0) 
 				{
 					hasLaunched = true;
+					cannonAudioSource.PlayOneShot (cannonFireClip);
+					cannonSmoke.SetActive (true);
+					characterAudio.PlayerLaunch ();
+
 
 					// Calculate launch vector.
 					GameObject launchDir = GameObject.Find ("LaunchDirection");
@@ -114,27 +152,47 @@ public class CannonController : MonoBehaviour {
 					case CannonStaticValues.Characters.Unicorn:
 						projectile = Instantiate (unicornProjectile, transform.position, launchDir.transform.rotation);
 						break;
+					case CannonStaticValues.Characters.BigFoot:
+						projectile = Instantiate (bigfootProjectile, transform.position, launchDir.transform.rotation);
+						break;
 					default:
 						projectile = Instantiate (alienProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					}
-
 					// Apply a force to the character projectile in the direction launch vector.
 					Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
 					projectileRb.AddForce (projectile.transform.up * launchForce);
-					projectileRb.AddTorque (20.0f);
+					//projectileRb.AddTorque (20.0f);
+
+					StartCoroutine (GroundRespawnDelay ());
 				} 
 				else
 				{
 					// If has not been launched oscillate between the launch angle.
 					AxisRotation ();
+					//cannonAudioSource.enabled = true;
 				}
 			} 
 			else if (hasLaunched) 
 			{
+				if (projectile.transform.position.x > 1.0f && !hasSpawnedShadow)
+				{
+					hasSpawnedShadow = true;
+					Vector3 shadowPosition = new Vector3 (projectile.transform.position.x, -1.0f, -9.0f);
+					Instantiate (shadowPrefab, shadowPosition, Quaternion.identity);
+				}
+
 				if (projectile.transform.position.y < promptHeight.position.y) 
 				{
 					buttonPrompt.SetActive (true);
+
+					if (!hasSplashed) {
+
+						Vector3 splashPosition = new Vector3 (projectile.transform.position.x + 2.0f, -0.75f, -9.0f);
+						currentSplash = Instantiate (splashPrefab, splashPosition, Quaternion.identity) as GameObject;
+
+						hasSplashed = true;
+					}
 
 					if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && canPlay && breathMetre.fillAmount > 0) 
 					{
@@ -145,15 +203,29 @@ public class CannonController : MonoBehaviour {
 
 						Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
 						projectileRb.velocity = new Vector2 (projectileRb.velocity.x, skimSpeed);
+
+						int randomSkiffNum = Random.Range (0, waterSkiffs.Length - 1);
+						sfxSource.PlayOneShot (waterSkiffs [randomSkiffNum]);
+						characterAudio.PlaySkiff ();
 					}
 				} 
 				else 
 				{
 					buttonPrompt.SetActive (false);
+					hasSplashed = false;
+					//if (currentSplash != null) 
+					//{
+						//currentSplash.SetActive (false);
+					//}
 				}
 				
 			}
 		}
+	}
+
+	void PlaySplash ()
+	{
+		
 	}
 
 	void LateUpdate () 
@@ -180,5 +252,18 @@ public class CannonController : MonoBehaviour {
 	private void Br_BreathComplete(object sender, ExhalationCompleteEventArgs e)
 	{
 		Debug.LogFormat("Breath Complete.\n Results: Quality [{0}] : Percentage [{1}] : Breath Full [{2}] : Breath Count [{3}] ", e.BreathQuality, e.BreathPercentage, e.IsBreathFull, e.BreathCount);
+	}
+
+	IEnumerator GroundRespawnDelay () 
+	{
+		yield return new WaitForSeconds (6.0f);
+		if (projectile != null) 
+		{
+			if (projectile.transform.position.x < 2) 
+			{
+				GameObject.Destroy (projectile);
+				Reset ();
+			}
+		}
 	}
 }

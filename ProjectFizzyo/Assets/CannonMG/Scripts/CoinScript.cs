@@ -11,7 +11,7 @@ public class CoinScript : MonoBehaviour {
 	void Start () 
 	{
 		coinDeletePoint = GameObject.Find ("CoinDeletePoint");
-		sfxSource = GameObject.Find ("SFXAudioSource").GetComponent<AudioSource> ();
+		//sfxSource = GameObject.Find ("SFXAudioSource").GetComponent<AudioSource> ();
 	}
 
 	void Update () 
@@ -26,7 +26,7 @@ public class CoinScript : MonoBehaviour {
 	{
 		if (col.tag == "CharacterProjectile")
 		{
-			sfxSource.Play ();
+			//sfxSource.Play ();
 
 			GameObject.Destroy (this.gameObject);
 		}
