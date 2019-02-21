@@ -22,6 +22,7 @@ public class CannonController : MonoBehaviour {
 	public GameObject bigfootProjectile;
 
 	public GameObject shadowPrefab;
+	public GameObject splashPrefab;
 
     // The camera which follows the character.
     [Header("Camera object:")]
@@ -29,6 +30,8 @@ public class CannonController : MonoBehaviour {
 
 	[Header("Breath power scale:")]
 	public float breathPowerScale = 800;
+
+	bool hasSplashed = false;
 
 	public float skimSpeed = 5.0f;
 
@@ -53,6 +56,17 @@ public class CannonController : MonoBehaviour {
 	public AudioClip cannonFireClip;
 	AudioSource cannonAudioSource;
 
+	AudioSource sfxSource;
+
+	GameObject currentSplash;
+	GameObject cannonSmoke;
+
+	Animation splashAnim;
+
+	CharacterAudioManager characterAudio;
+
+	public AudioClip[] waterSkiffs;
+
 	void Start () 
 	{
 		//Get reference to breath meter instance
@@ -69,6 +83,13 @@ public class CannonController : MonoBehaviour {
 		breathMetre.fillAmount = 0.0f;
 
 		cannonAudioSource = GetComponent<AudioSource> ();
+		sfxSource = GameObject.Find ("SFXAudioSource").GetComponent<AudioSource> ();
+
+		cannonSmoke = GameObject.Find ("CannonSmoke");
+
+		characterAudio = GameObject.FindObjectOfType<CharacterAudioManager> ();
+
+		cannonSmoke.SetActive (false);
 	}
 
 	public void Reset () 
@@ -77,6 +98,7 @@ public class CannonController : MonoBehaviour {
 		hasLaunched = false;
 		hasSpawnedShadow = false;
 		launchForce = 0;
+		cannonSmoke.SetActive (false);
 
 		GameObject[] coins = GameObject.FindGameObjectsWithTag ("Coin");
 		if (coins.Length > 0) 
@@ -109,10 +131,12 @@ public class CannonController : MonoBehaviour {
 				{
 					hasLaunched = true;
 					cannonAudioSource.PlayOneShot (cannonFireClip);
+					cannonSmoke.SetActive (true);
+					characterAudio.PlayerLaunch ();
+
 
 					// Calculate launch vector.
 					GameObject launchDir = GameObject.Find ("LaunchDirection");
-
 
 					switch(CannonStaticValues.playerCharacter)
 					{
@@ -162,6 +186,14 @@ public class CannonController : MonoBehaviour {
 				{
 					buttonPrompt.SetActive (true);
 
+					if (!hasSplashed) {
+
+						Vector3 splashPosition = new Vector3 (projectile.transform.position.x + 2.0f, -0.75f, -9.0f);
+						currentSplash = Instantiate (splashPrefab, splashPosition, Quaternion.identity) as GameObject;
+
+						hasSplashed = true;
+					}
+
 					if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && canPlay && breathMetre.fillAmount > 0) 
 					{
 						breathMetre.fillAmount -= 0.1f;
@@ -171,15 +203,29 @@ public class CannonController : MonoBehaviour {
 
 						Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
 						projectileRb.velocity = new Vector2 (projectileRb.velocity.x, skimSpeed);
+
+						int randomSkiffNum = Random.Range (0, waterSkiffs.Length - 1);
+						sfxSource.PlayOneShot (waterSkiffs [randomSkiffNum]);
+						characterAudio.PlaySkiff ();
 					}
 				} 
 				else 
 				{
 					buttonPrompt.SetActive (false);
+					hasSplashed = false;
+					//if (currentSplash != null) 
+					//{
+						//currentSplash.SetActive (false);
+					//}
 				}
 				
 			}
 		}
+	}
+
+	void PlaySplash ()
+	{
+		
 	}
 
 	void LateUpdate () 

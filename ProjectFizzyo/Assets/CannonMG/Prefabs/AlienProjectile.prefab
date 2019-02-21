@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 70634670442343984}
   - component: {fileID: 96004410229740886}
   - component: {fileID: 95841560122975182}
+  - component: {fileID: 114637701643441322}
   m_Layer: 0
   m_Name: AlienProjectile
   m_TagString: CharacterProjectile
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1184756915539016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.722394, y: 3.0782883, z: 0}
+  m_LocalPosition: {x: -13.9559555, y: 4.8726506, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,7 +87,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1184756915539016}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5ae9f5da4c1465444aef181d9f4650b6, type: 2}
   m_CullingMode: 0
@@ -198,6 +199,23 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114637701643441322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184756915539016}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d933ce28b51b642a464c30827f9c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: f3bac1c5c90f79f45a1117393cdb4746, type: 3}
+  - {fileID: 21300000, guid: 95ab0513e5dd8834185ea2b4862a266b, type: 3}
+  - {fileID: 21300000, guid: 92258e133f7b31f41afa6fdf260c8b67, type: 3}
+  - {fileID: 21300000, guid: b09e19765996f9349b94cd2e16b239a3, type: 3}
+  - {fileID: 21300000, guid: c574d83ea3354194e85ee1817b5e50ca, type: 3}
 --- !u!212 &212955289169857122
 SpriteRenderer:
   m_ObjectHideFlags: 1

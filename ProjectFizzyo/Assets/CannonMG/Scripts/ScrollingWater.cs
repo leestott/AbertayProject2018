@@ -12,7 +12,7 @@ public class ScrollingWater : MonoBehaviour {
 	}
 
 	void Update () {
-		_material.mainTextureOffset = new Vector2 (Time.time * speed, 0);
+		_material.mainTextureOffset = new Vector2 (Time.time * speed, _material.mainTextureOffset.y);
 		//GetComponent<Renderer>().material.mainTextureOffset = offset;
 
 		if (GameObject.FindGameObjectWithTag ("CharacterProjectile") != null) {
