@@ -20,6 +20,8 @@ public class BreathMetre : MonoBehaviour {
 	public int goodBreaths = 0;
 	public int totalBreaths = 0;
 
+    public int scoreMultiplier = 1;
+
     public Animator barFull;
 
     // Set to the maximum calibrated breath length
@@ -94,21 +96,26 @@ public class BreathMetre : MonoBehaviour {
 
         if (AnalyticsManager.GetCurrentGame() != "Hub")
         {
-            //bool isBreathFull = false;
-            //isBreathFull = isBreathFull && ((e.ExhaledVolume / e.Breathlength) >  0.8f * e.);
             if (fillAmount >= 0.1f)
             {
                 Debug.Log("IS BREATH FULL: " + e.IsBreathFull);
                 if (e.IsBreathFull && fillAmount >= 0.7f)
                 {
                     AnalyticsManager.UserBreathed(true);
+                    scoreMultiplier *= 2;
+                    if (scoreMultiplier > 16)
+                    {
+                        scoreMultiplier = 16;
+                    }
                 }
                 else
                 {
                     AnalyticsManager.UserBreathed(false);
+                    scoreMultiplier = 1;
                 }
             }
         }
-		//Debug.Log ("BREATH QUALITY: " + FizzyoFramework.Instance.Recogniser.GetBreathQuality());
+
+        Debug.Log("score multi: " + scoreMultiplier);
     }
 }
