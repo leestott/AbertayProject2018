@@ -30,7 +30,9 @@ public static class AnalyticsManager {
         numOfSets = _numOfSets;
     }
 
-    public static int getBreathsPerSet()    {return breathsPerSet;}
+    public static int GetBreathsPerSet()    {return breathsPerSet;}
+
+    public static int GetTotalSets() { return numOfSets; }
 
     public static void UserBreathed(bool isGoodBreath)
     {
@@ -58,6 +60,10 @@ public static class AnalyticsManager {
     }
 
     public static int GetTotalBreaths() {return totalBreaths; }
+
+    public static int GetCurrBreath() { return curBreath; }
+
+    public static int GetCurrSet() { return curSet; }
 
     public static void SetCurrentGame(string current)   {curMgName = current;}
 
