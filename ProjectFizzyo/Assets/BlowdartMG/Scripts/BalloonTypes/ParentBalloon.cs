@@ -19,9 +19,13 @@ public class ParentBalloon : MonoBehaviour {
     // Animator for the baloons shadow.
     protected Animator shadowAnimator;
 
+    // The score manager
+    public MinigameScoring minigameScoring;
+
     // When scene loads, load all of the sprites from the spritesheet.
     private void Awake()
     {
+        minigameScoring = FindObjectOfType<MinigameScoring>();
         balloonSprites = Resources.LoadAll<Sprite>("BalloonSpriteSheet");
     }
 
@@ -38,7 +42,35 @@ public class ParentBalloon : MonoBehaviour {
         // When hit by the dart, pop the balloon.
         if (collision.gameObject.tag == "Dart")
         {
-            //Debug.Log("hit by dart");
+            int score;
+
+            switch (whichBalloon)
+            {
+                // Red balloon score
+                case 0:
+                    score = 40;
+                    break;
+                // Blue balloon score
+                case 1:
+                    score = 20;
+                    break;
+                // Green balloon score
+                case 2:
+                    score = 30;
+                    break;
+                // Yellow balloon score
+                case 3:
+                    score = 10;
+                    break;
+                default:
+                    score = 0;
+                    break;
+            }
+
+            // Updating the score
+            minigameScoring.AddScore(score);
+
+            // Calling the pop animation
             PopBalloon();
         }
     }
