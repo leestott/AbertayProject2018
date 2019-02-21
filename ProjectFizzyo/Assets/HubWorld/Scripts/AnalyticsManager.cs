@@ -24,6 +24,7 @@ public static class AnalyticsManager {
     private static int minigameBreaths = 0;
     private static int minigameGoodBreaths = 0;
 
+
     public static void SetupSets(int _breathsPerSet, int _numOfSets)
     {
         breathsPerSet = _breathsPerSet;
@@ -59,7 +60,9 @@ public static class AnalyticsManager {
         Debug.Log("On set: " + curSet + "/" + numOfSets);
     }
 
-    public static int GetTotalBreaths() {return totalBreaths; }
+    public static int GetTotalBreaths() {return totalBreaths;}
+
+	public static int GetGoodBreaths () {return totalGoodBreaths;}
 
     public static int GetCurrBreath() { return curBreath; }
 

@@ -11,7 +11,6 @@ public class SetDisplayInfo : MonoBehaviour {
     private int breathMax;
     private int setMax;
 
-
 	// Use this for initialization
 	void Start ()
     {

@@ -6,7 +6,8 @@ using Fizzyo;
 
 public class CannonScoreManager : MonoBehaviour {
 
-	float score = 0.0f;
+	public float score = 0.0f;
+	public float coinScore = 0.0f;
 	public int scoreMultiplier = 1;
 
 	public float startPosition;
@@ -28,8 +29,8 @@ public class CannonScoreManager : MonoBehaviour {
 		if (GameObject.FindGameObjectWithTag("CharacterProjectile") != null)
 		{
 			GameObject projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
-			score = projectile.transform.position.x - startPosition;
-			score *= scoreMultiplier;
+			score = (projectile.transform.position.x - startPosition) / 10.0f;
+			score += coinScore;
 			scoreText.text = Mathf.RoundToInt (score).ToString ();
 		}
 	}

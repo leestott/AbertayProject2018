@@ -66,6 +66,8 @@ public class ReticleMovement : MonoBehaviour {
 
 	BreathMetre breathMetre;
 
+	CoconutScoreManager scoreManager;
+
 	GameObject reticle;
 
 	public float playerBreathAmount;
@@ -82,6 +84,8 @@ public class ReticleMovement : MonoBehaviour {
 		reticle = GameObject.Find ("TargetReticle");
 
 		screenShake = GameObject.FindObjectOfType<ScreenShake> ();
+
+		scoreManager = GameObject.FindObjectOfType<CoconutScoreManager> ();
 	}
 
 	void Update () 
@@ -166,6 +170,9 @@ public class ReticleMovement : MonoBehaviour {
 							coconutRB.AddTorque (randomTorque);
 							Animator anim = currentTarget.GetComponent<Animator> ();
 							anim.SetBool ("isFalling", true);
+
+							scoreManager.score += 5;
+
 							StartCoroutine (ResetDelay ());
 						}
 					} 

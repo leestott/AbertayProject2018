@@ -17,6 +17,9 @@ public class SetSelect : MonoBehaviour {
 
     private int currentNumber;
 
+	private int minNumber = 2;
+	private int maxNumber = 3;
+
     // Icon and fill amount of that icon which shows key hold.
     [Header("Image for visual indication of breath")]
     public Image topHoldingIcon;
@@ -77,9 +80,9 @@ public class SetSelect : MonoBehaviour {
             currentNumber++;
 
             // Wrap selected around.
-            if (currentNumber > 12)
+			if (currentNumber > maxNumber)
             {
-                currentNumber = 5;
+				currentNumber = minNumber;
             }
 
             if (!breathsConfirmed)

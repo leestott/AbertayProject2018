@@ -100,6 +100,9 @@ public class CannonController : MonoBehaviour {
 		launchForce = 0;
 		cannonSmoke.SetActive (false);
 
+		CannonScoreManager scoreController = GameObject.FindObjectOfType<CannonScoreManager> ();
+		scoreController.score = 0.0f;
+
 		GameObject[] coins = GameObject.FindGameObjectsWithTag ("Coin");
 		if (coins.Length > 0) 
 		{
@@ -120,6 +123,7 @@ public class CannonController : MonoBehaviour {
 
 	void Update() 
 	{
+
 		if (gameplayState) {
 
 			if (!hasLaunched) {
