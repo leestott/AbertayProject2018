@@ -6,10 +6,12 @@ public class VoidCollider : MonoBehaviour {
 
 	AudioSource sfxSource;
 	public AudioClip waterSplash;
+	CannonScoreManager manager;
 
 	void Start () 
 	{
 		sfxSource = GameObject.Find ("SFXAudioSource").GetComponent<AudioSource> ();
+		manager = GameObject.FindObjectOfType<CannonScoreManager> ();
 	}
 
 	void OnTriggerEnter2D (Collider2D col) 
@@ -21,6 +23,7 @@ public class VoidCollider : MonoBehaviour {
 			GameObject.Destroy (col.gameObject);
 			CannonController controller = GameObject.FindObjectOfType<CannonController> ();
 			controller.Reset ();
+			manager.SendScore ();
 		}
 	}
 }

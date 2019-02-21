@@ -66,7 +66,7 @@ public class ReticleMovement : MonoBehaviour {
 
 	BreathMetre breathMetre;
 
-	CoconutScoreManager scoreManager;
+	MinigameScoring scoreManager;
 
 	GameObject reticle;
 
@@ -85,7 +85,7 @@ public class ReticleMovement : MonoBehaviour {
 
 		screenShake = GameObject.FindObjectOfType<ScreenShake> ();
 
-		scoreManager = GameObject.FindObjectOfType<CoconutScoreManager> ();
+		scoreManager = GameObject.FindObjectOfType<MinigameScoring> ();
 	}
 
 	void Update () 
@@ -171,7 +171,7 @@ public class ReticleMovement : MonoBehaviour {
 							Animator anim = currentTarget.GetComponent<Animator> ();
 							anim.SetBool ("isFalling", true);
 
-							scoreManager.score += 5;
+							scoreManager.AddScore (50);
 
 							StartCoroutine (ResetDelay ());
 						}

@@ -87,7 +87,7 @@ public class Blowdart : MonoBehaviour {
     {
         float newY = Mathf.Sin(Time.time * speed) * height;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-        blowPipe.transform.position = new Vector3(transform.position.x-0.5f, newY, transform.position.z);
+        blowPipe.transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
     // Fire the dart based on input breath.

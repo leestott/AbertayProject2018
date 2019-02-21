@@ -100,9 +100,6 @@ public class CannonController : MonoBehaviour {
 		launchForce = 0;
 		cannonSmoke.SetActive (false);
 
-		CannonScoreManager scoreController = GameObject.FindObjectOfType<CannonScoreManager> ();
-		scoreController.score = 0.0f;
-
 		GameObject[] coins = GameObject.FindGameObjectsWithTag ("Coin");
 		if (coins.Length > 0) 
 		{
@@ -123,7 +120,6 @@ public class CannonController : MonoBehaviour {
 
 	void Update() 
 	{
-
 		if (gameplayState) {
 
 			if (!hasLaunched) {
@@ -133,6 +129,9 @@ public class CannonController : MonoBehaviour {
 				// Launch on player action input.
 				if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && canPlay && breathMetre.fillAmount > 0) 
 				{
+					CannonScoreManager scoreController = GameObject.FindObjectOfType<CannonScoreManager> ();
+					scoreController.score = 0.0f;
+
 					hasLaunched = true;
 					cannonAudioSource.PlayOneShot (cannonFireClip);
 					cannonSmoke.SetActive (true);

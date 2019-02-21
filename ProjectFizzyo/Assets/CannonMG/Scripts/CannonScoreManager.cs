@@ -15,12 +15,13 @@ public class CannonScoreManager : MonoBehaviour {
 	GameObject projectile;
 	GameObject cannonBody;
 
+	public MinigameScoring scoreController;
+
 	Text scoreText;
 
 	void Start () 
 	{
 		cannonBody = GameObject.Find ("CannonBody");
-		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		startPosition = cannonBody.transform.position.x;
 	}
 
@@ -31,7 +32,14 @@ public class CannonScoreManager : MonoBehaviour {
 			GameObject projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
 			score = (projectile.transform.position.x - startPosition) / 10.0f;
 			score += coinScore;
-			scoreText.text = Mathf.RoundToInt (score).ToString ();
 		}
+	}
+
+	public void SendScore () 
+	{
+		Debug.Log ("CANNON FLOAT SCORE: " + score);
+		int integerScore = (int)score;
+		Debug.Log ("CANNON SCORE: " + integerScore);
+		scoreController.AddScore (Mathf.RoundToInt(integerScore));
 	}
 }
