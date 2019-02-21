@@ -61,15 +61,12 @@ public class BreathMetre : MonoBehaviour {
             breathMetre.size = fillAmount;
         }
 
-        if (fillAmount >= 1)
+        if ((fillAmount >= 1) && (!lockBar) && (!reset))
         {
-            if (!lockBar)
-            {
-                barFull.SetBool("barFull", true);
-                screenShake.ShakeScreen();
-            }
-
+            barFull.SetBool("barFull", true);
+            screenShake.ShakeScreen();
             lockBar = true;
+
         }
 
         // Reset the fill amount.
@@ -95,19 +92,23 @@ public class BreathMetre : MonoBehaviour {
         beganBreath = false;
         lockBar = true;
 
-		//bool isBreathFull = false;
-		//isBreathFull = isBreathFull && ((e.ExhaledVolume / e.Breathlength) >  0.8f * e.);
-		if (fillAmount >= 0.1f) 
-		{
-			totalBreaths++;
-		}
-
-		Debug.Log("IS BREATH FULL: " + e.IsBreathFull);
-		if (e.IsBreathFull && fillAmount >= 0.7f) 
-		{
-			goodBreaths++;
-		}
-
+        if (AnalyticsManager.GetCurrentGame() != "Hub")
+        {
+            //bool isBreathFull = false;
+            //isBreathFull = isBreathFull && ((e.ExhaledVolume / e.Breathlength) >  0.8f * e.);
+            if (fillAmount >= 0.1f)
+            {
+                Debug.Log("IS BREATH FULL: " + e.IsBreathFull);
+                if (e.IsBreathFull && fillAmount >= 0.7f)
+                {
+                    AnalyticsManager.UserBreathed(true);
+                }
+                else
+                {
+                    AnalyticsManager.UserBreathed(false);
+                }
+            }
+        }
 		//Debug.Log ("BREATH QUALITY: " + FizzyoFramework.Instance.Recogniser.GetBreathQuality());
     }
 }

@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4488737931307114}
   - component: {fileID: 212432214448546712}
   - component: {fileID: 61456767667290804}
-  - component: {fileID: 61387151463859232}
   - component: {fileID: 114446062443685118}
   m_Layer: 0
   m_Name: GreenBalloon
@@ -108,7 +107,6 @@ GameObject:
   - component: {fileID: 4266726486823354}
   - component: {fileID: 212466808540058732}
   - component: {fileID: 61981097036185376}
-  - component: {fileID: 61185710199892580}
   - component: {fileID: 114316185355609430}
   m_Layer: 0
   m_Name: RedBalloon
@@ -127,7 +125,6 @@ GameObject:
   - component: {fileID: 4576305556056452}
   - component: {fileID: 212902287952301252}
   - component: {fileID: 61794129307673662}
-  - component: {fileID: 61833818187996542}
   - component: {fileID: 114691600425554862}
   m_Layer: 0
   m_Name: BlueBalloon
@@ -161,7 +158,6 @@ GameObject:
   - component: {fileID: 4341760238502414}
   - component: {fileID: 212070738863385832}
   - component: {fileID: 61098124866997884}
-  - component: {fileID: 61397814432819194}
   - component: {fileID: 114127819307376970}
   m_Layer: 0
   m_Name: YellowBalloon
@@ -307,7 +303,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024874687, y: 0.5969901}
+  m_Offset: {x: -0.040310264, y: 0.2266748}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -318,82 +314,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7252674, y: 1.5045485}
-  m_EdgeRadius: 0
---- !u!61 &61185710199892580
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1310198430618888}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.007157773, y: -0.51534605}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1925, y: 2.9366665}
-    newSize: {x: 2.1925, y: 2.9366665}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0616016, y: 0.7034998}
-  m_EdgeRadius: 0
---- !u!61 &61387151463859232
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1207195137861422}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.007157773, y: -0.51534605}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1925, y: 2.9366665}
-    newSize: {x: 2.1925, y: 2.9366665}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0616016, y: 0.7034998}
-  m_EdgeRadius: 0
---- !u!61 &61397814432819194
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1702817346645012}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.007157773, y: -0.51534605}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1925, y: 2.9366665}
-    newSize: {x: 2.1925, y: 2.9366665}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0616016, y: 0.7034998}
+  m_Size: {x: 1.4474094, y: 2.2451792}
   m_EdgeRadius: 0
 --- !u!61 &61456767667290804
 BoxCollider2D:
@@ -407,7 +328,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024874687, y: 0.5969901}
+  m_Offset: {x: -0.040310264, y: 0.2266748}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -418,7 +339,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7252674, y: 1.5045485}
+  m_Size: {x: 1.4474094, y: 2.2451792}
   m_EdgeRadius: 0
 --- !u!61 &61794129307673662
 BoxCollider2D:
@@ -432,7 +353,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024874687, y: 0.5969901}
+  m_Offset: {x: -0.040310264, y: 0.2266748}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -443,32 +364,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7252674, y: 1.5045485}
-  m_EdgeRadius: 0
---- !u!61 &61833818187996542
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1421370999106930}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.007157773, y: -0.51534605}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1925, y: 2.9366665}
-    newSize: {x: 2.1925, y: 2.9366665}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0616016, y: 0.7034998}
+  m_Size: {x: 1.4474094, y: 2.2451792}
   m_EdgeRadius: 0
 --- !u!61 &61981097036185376
 BoxCollider2D:
@@ -482,7 +378,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024874687, y: 0.5969901}
+  m_Offset: {x: -0.040310264, y: 0.2266748}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -493,7 +389,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7252674, y: 1.5045485}
+  m_Size: {x: 1.4474094, y: 2.2451792}
   m_EdgeRadius: 0
 --- !u!95 &95069887903982186
 Animator:
