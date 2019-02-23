@@ -17,8 +17,8 @@ public class SetSelect : MonoBehaviour {
 
     private int currentNumber;
 
-	private int minNumber = 2;
-	private int maxNumber = 4;
+	private int minNumber = 5;
+    private int maxNumber = 12;
 
     // Icon and fill amount of that icon which shows key hold.
     [Header("Image for visual indication of breath")]

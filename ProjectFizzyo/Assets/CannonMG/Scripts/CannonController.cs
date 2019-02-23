@@ -67,13 +67,16 @@ public class CannonController : MonoBehaviour {
 
 	public AudioClip[] waterSkiffs;
 
-	void Start () 
+    private GlobalSessionScore globalSessionScore;
+
+    void Start () 
 	{
 		//Get reference to breath meter instance
 		breathMetre = FindObjectOfType<BreathMetre>();
 		scoreManager = FindObjectOfType<CannonScoreManager> ();
+        globalSessionScore = FindObjectOfType<GlobalSessionScore>();
 
-		br.BreathStarted += Br_BreathStarted;
+        br.BreathStarted += Br_BreathStarted;
 		br.BreathComplete += Br_BreathComplete;
 
 		buttonPrompt = GameObject.Find ("ButtonPrompt");
@@ -92,31 +95,40 @@ public class CannonController : MonoBehaviour {
 		cannonSmoke.SetActive (false);
 	}
 
-	public void Reset () 
-	{
-		breathMetre.reset = true;
-		hasLaunched = false;
-		hasSpawnedShadow = false;
-		launchForce = 0;
-		cannonSmoke.SetActive (false);
+    public void Reset()
+    {
+        breathMetre.reset = true;
+        hasLaunched = false;
+        hasSpawnedShadow = false;
+        launchForce = 0;
+        cannonSmoke.SetActive(false);
 
-		GameObject[] coins = GameObject.FindGameObjectsWithTag ("Coin");
-		if (coins.Length > 0) 
-		{
-			for (int i = 0; i < coins.Length; i++) 
-			{
-				GameObject.Destroy (coins [i]);
-			}
-		}
-		GameObject[] clouds = GameObject.FindGameObjectsWithTag("Cloud");
-		if (clouds.Length > 0) 
-		{
-			for (int i = 0; i < clouds.Length; i++) 
-			{
-				GameObject.Destroy (clouds [i]);
-			}
-		}
-	}
+        GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+        if (coins.Length > 0)
+        {
+            for (int i = 0; i < coins.Length; i++)
+            {
+                GameObject.Destroy(coins[i]);
+            }
+        }
+        GameObject[] clouds = GameObject.FindGameObjectsWithTag("Cloud");
+        if (clouds.Length > 0)
+        {
+            for (int i = 0; i < clouds.Length; i++)
+            {
+                GameObject.Destroy(clouds[i]);
+            }
+        }
+
+        if (globalSessionScore.boxDisplayed == false)
+        {
+            globalSessionScore.EndSessionScore();
+        }
+        else
+        {
+            gameplayState = false;
+        }
+    }
 
 	void Update() 
 	{

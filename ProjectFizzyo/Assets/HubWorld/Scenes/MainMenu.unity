@@ -472,6 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763972414}
   - component: {fileID: 763972413}
+  - component: {fileID: 763972415}
   m_Layer: 0
   m_Name: AchievementManager
   m_TagString: Untagged
@@ -490,8 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3eb748d91f0c941808a8ba9c81b44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementId: a8705928-6416-45ac-939f-cda6db6ab274
-  gameId: c19d43d0-8546-4d7a-aaf3-aea686d9b62d
   allAchievements: []
   unlockAchievements: []
 --- !u!4 &763972414
@@ -507,6 +506,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &763972415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 763972412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5042b857d80e704d8b809d02e410ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &765566805
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +553,7 @@ MonoBehaviour:
   - {fileID: 1660332740}
   - {fileID: 1184183800}
   minigameNames:
-  - Aztecies Temple
+  - Temple of Bloon
   - Freaky Tiki's Coconut Shy
   - Crazy Cannon
   minigameName: {fileID: 2081764552}
@@ -987,6 +997,7 @@ MonoBehaviour:
   endSessionWindowPrefab: {fileID: 1384140249260586, guid: ffb03256a99690c4382bef04619d5b3e,
     type: 2}
   qualityScore: 0
+  boxDisplayed: 0
   achievementSound: {fileID: 8300000, guid: 8709f314546480640918235f7a93291d, type: 3}
 --- !u!4 &1776502527
 Transform:
@@ -1233,7 +1244,7 @@ Prefab:
     - target: {fileID: 224807827792165194, guid: d6b5e42bde27d0c4fbd4d74414767991,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 271.96
+      value: 387.9
       objectReference: {fileID: 0}
     - target: {fileID: 224807827792165194, guid: d6b5e42bde27d0c4fbd4d74414767991,
         type: 2}

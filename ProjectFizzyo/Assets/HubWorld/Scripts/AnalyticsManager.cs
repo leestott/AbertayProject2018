@@ -49,7 +49,7 @@ public static class AnalyticsManager {
             totalGoodBreaths++;
         }
 
-        if(curBreath > breathsPerSet)
+        if(curBreath == breathsPerSet)
         {
             curSet++;
             curBreath = 0;
@@ -90,6 +90,11 @@ public static class AnalyticsManager {
         Debug.Log("BREATHS_DURING_MINIGAME: " + minigameBreaths);
         Debug.Log("GOOD_BREATHS_DURING_MINIGAME: " + minigameGoodBreaths);
 
+        if(0 > Time.time - minigameStartTime)
+        {
+            Debug.Log("ERROR TIME IN MINIGAME BELOW 0");
+        }
+
         AnalyticsEvent.Custom("Minigame_Session_Details", new Dictionary<string, object>
         {
             { "Minigame_Name", levelName },
@@ -104,6 +109,8 @@ public static class AnalyticsManager {
 
     public static void ReportEndSession (float time) 
 	{
+        AchievementTracker.GoodBreaths_Ach(totalGoodBreaths);
+
         Debug.Log("End of session report: ");
 		Debug.Log ("TOTAL_SESSION_TIME: " + time);
 		Debug.Log ("TOTAL_SESSION_BREATHS: " + totalBreaths);

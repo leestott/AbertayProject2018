@@ -35,6 +35,14 @@ public class Blowdart : MonoBehaviour {
     public AudioClip[] dartLaunchSounds;
     public AudioClip[] balloonPoppingSounds;
 
+    private GlobalSessionScore globalSessionScore;
+    private bool gameFinished = false;
+
+    [SerializeField]
+    private Animator howTo;
+
+    float timePassed = 0;
+
     // Initialises the variables
     void Start ()
     {
@@ -47,32 +55,38 @@ public class Blowdart : MonoBehaviour {
         br.BreathComplete += Br_BreathComplete;
 
         audioSource = GameObject.FindObjectOfType<AudioSource>();
+        globalSessionScore = FindObjectOfType<GlobalSessionScore>();
     }
 	
 	void Update ()
     {
-        // Detect breath pressure but only if below a fixed value to prevent bad breaths.
-        dartPower = breathMetre.fillAmount * 50;
+        timePassed += Time.deltaTime;
 
-        if (dartPower < minPower)
-            dartPower = minPower;
-
-       
-        HandleInput();
-
-        if (!fired)
+        if (!gameFinished)
         {
-            MoveUpDown();
-        }
-        else
-        {
-            float angle;
-            float dot = Vector2.right.x * rb.velocity.x + Vector2.right.y * rb.velocity.y;      //Works out dot product
-            float det = Vector2.right.x * rb.velocity.y - Vector2.right.y * rb.velocity.x;      //Works out determinant
-            angle = Mathf.Atan2(det, dot);                                        //Calculates angle in radians
-            angle = angle * (180.0f / 3.1415f);                                 //Converts angle to degrees
+            // Detect breath pressure but only if below a fixed value to prevent bad breaths.
+            dartPower = breathMetre.fillAmount * 50;
 
-            rb.transform.eulerAngles = new Vector3(rb.transform.rotation.eulerAngles.x, rb.transform.eulerAngles.y, angle);
+            if (dartPower < minPower)
+                dartPower = minPower;
+
+
+            HandleInput();
+
+            if (!fired)
+            {
+                MoveUpDown();
+            }
+            else
+            {
+                float angle;
+                float dot = Vector2.right.x * rb.velocity.x + Vector2.right.y * rb.velocity.y;      //Works out dot product
+                float det = Vector2.right.x * rb.velocity.y - Vector2.right.y * rb.velocity.x;      //Works out determinant
+                angle = Mathf.Atan2(det, dot);                                        //Calculates angle in radians
+                angle = angle * (180.0f / 3.1415f);                                 //Converts angle to degrees
+
+                rb.transform.eulerAngles = new Vector3(rb.transform.rotation.eulerAngles.x, rb.transform.eulerAngles.y, angle);
+            }
         }
     }
 
@@ -80,11 +94,15 @@ public class Blowdart : MonoBehaviour {
     // Works off of button press and space bar for debugging.
     void HandleInput()
     {
-        // Fire the dart on fizzyo button input.
-        if (Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
+        if (timePassed > 2.0f)
         {
-            fired = true;
-            FireDart();
+            // Fire the dart on fizzyo button input.
+            if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && !fired)
+            {
+                fired = true;
+                breathMetre.lockBar = true;
+                FireDart();
+            }
         }
     }
 
@@ -99,11 +117,12 @@ public class Blowdart : MonoBehaviour {
     // Fire the dart based on input breath.
     void FireDart()
     {
+        rb.transform.position = blowPipe.transform.position;
         int soundSelection = Random.Range(0, dartLaunchSounds.Length);
         audioSource.PlayOneShot(dartLaunchSounds[soundSelection]);
         rb.velocity = new Vector2(dartPower, 0);
         dartPower = 0;
-        GameObject.Find("UIManager").GetComponent<BreathMetre>().reset = true;
+
     }
 
     // When the dart hits a trigger collider.
@@ -112,6 +131,17 @@ public class Blowdart : MonoBehaviour {
         // It has hit the reset collider and should be moved back to the starting location.
         if (collision.gameObject.tag == "Reset")
         {
+            if (globalSessionScore.boxDisplayed == false)
+            {
+                globalSessionScore.EndSessionScore();
+            }
+            else
+            {
+                gameFinished = true;
+                rb.gravityScale = 0;
+            }
+
+            breathMetre.reset = true;
             rb.velocity = new Vector2(0, 0);
             rb.transform.eulerAngles = new Vector3(0.0f,0.0f,0.0f);
             fired = false;
@@ -130,6 +160,7 @@ public class Blowdart : MonoBehaviour {
         if (collision.gameObject.tag == "Balloon")
         {
             balloonSpawner.BalloonPopped();
+            AchievementTracker.PopBalloon_Ach();
             int soundSelection = Random.Range(0, balloonPoppingSounds.Length);
             audioSource.PlayOneShot(balloonPoppingSounds[soundSelection]);
         }

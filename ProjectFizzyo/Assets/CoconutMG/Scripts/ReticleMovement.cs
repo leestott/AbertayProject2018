@@ -72,13 +72,16 @@ public class ReticleMovement : MonoBehaviour {
 
 	public float playerBreathAmount;
 
-	void Start () 
+    private GlobalSessionScore globalSessionScore;
+
+    void Start () 
 	{
 		//Get reference to breath meter instance
 		breathMetre = FindObjectOfType<BreathMetre>();
 		audioSource = GameObject.FindObjectOfType<AudioSource> ();
+        globalSessionScore = FindObjectOfType<GlobalSessionScore>();
 
-		br.BreathStarted += Br_BreathStarted;
+        br.BreathStarted += Br_BreathStarted;
 		br.BreathComplete += Br_BreathComplete;
 
 		reticle = GameObject.Find ("TargetReticle");
@@ -135,7 +138,8 @@ public class ReticleMovement : MonoBehaviour {
 				}
 				if (isTravelling && !canReach)
 				{
-					currentTravelTime += Time.deltaTime;
+                    AchievementTracker.HitInARow_Ach("Miss");
+                    currentTravelTime += Time.deltaTime;
 					CalculateSizeFail ();
 				}
 				if (currentTravelTime >= coconutTravelTime && !hasHit && canReach) 
@@ -143,7 +147,8 @@ public class ReticleMovement : MonoBehaviour {
 					hasHit = true;
 					if (isMaskBlocking) 
 					{
-						isTravelling = false;
+                        AchievementTracker.HitInARow_Ach("Mask");
+                        isTravelling = false;
 						currentTarget = null;
 						currentTravelTime = 0.0f;
 						Debug.Log ("HIT MASK");
@@ -158,6 +163,7 @@ public class ReticleMovement : MonoBehaviour {
 							Debug.Log ("Hit Coconut");
 							if (!hasHitCoconut) 
 							{
+                                AchievementTracker.HitInARow_Ach("Coconut");
 								hasHitCoconut = true;
 								int audioNumber = Random.Range (0, coconutHitEffects.Length);
 								Debug.Log ("Playing Coconut SFX: " + audioNumber);
@@ -175,8 +181,12 @@ public class ReticleMovement : MonoBehaviour {
 
 							StartCoroutine (ResetDelay ());
 						}
-					} 
-				}
+					} else
+                    {
+                        AchievementTracker.HitInARow_Ach("Miss");
+                    }
+				}   
+
 				if (currentTravelTime >= maxTravelTime) 
 				{
 					StartCoroutine (ResetDelay ());
@@ -211,18 +221,27 @@ public class ReticleMovement : MonoBehaviour {
 		}
 	}
 
-	void Reset () 
-	{
-		isTravelling = false;
-		hasLaunched = false;
-		currentTravelTime = 0.0f;
-		hasHit = false;
-		hasHitGround = false;
-		hasHitCoconut = false;
-		GameObject.Destroy (ballProjectile);
-		breathMetre.fillAmount = 0.0f;
-		breathMetre.reset = true;
-	}
+    void Reset()
+    {
+        isTravelling = false;
+        hasLaunched = false;
+        currentTravelTime = 0.0f;
+        hasHit = false;
+        hasHitGround = false;
+        hasHitCoconut = false;
+        GameObject.Destroy(ballProjectile);
+        breathMetre.fillAmount = 0.0f;
+        breathMetre.reset = true;
+
+        if (globalSessionScore.boxDisplayed == false)
+        {
+            globalSessionScore.EndSessionScore();
+        }
+        else
+        {
+            canPlay = false;
+        }
+    }
 
 	void AxisMovement ()
 	{

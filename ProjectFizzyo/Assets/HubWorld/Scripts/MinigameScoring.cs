@@ -13,6 +13,8 @@ public class MinigameScoring : MonoBehaviour {
 
     private BreathMetre breatheMetre;
 
+    public int GetScore() { return score; }
+
     void Start()
     {
         score = 0;

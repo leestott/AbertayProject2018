@@ -5,17 +5,41 @@ using Fizzyo;
 
 public class AchievementController : MonoBehaviour
 {
-	public string achievementId = "a8705928-6416-45ac-939f-cda6db6ab274";
-	public string gameId = "c19d43d0-8546-4d7a-aaf3-aea686d9b62d";
-
 	public AchievementData[] allAchievements;
 	public AchievementData[] unlockAchievements;
 
-	void Start () 
+	void Awake () 
 	{
-		FizzyoFramework.Instance.Achievements.LoadAchievements ();
+        DontDestroyOnLoad(this.gameObject);
+
+        if (GameObject.Find(gameObject.name) && GameObject.Find(gameObject.name) != this.gameObject)
+        {
+            Destroy(GameObject.Find(gameObject.name));
+        }
+
+        FizzyoFramework.Instance.Achievements.LoadAchievements();
 
 		allAchievements = FizzyoFramework.Instance.Achievements.allAchievements;
 		unlockAchievements = FizzyoFramework.Instance.Achievements.unlockedAchievements;
 	}
+
+    public void UnlockAchievement(string achievementToUnlock)
+    {
+
+        string unlockAchievement = string.Empty;
+        if (FizzyoFramework.Instance.Achievements.allAchievements != null && FizzyoFramework.Instance.Achievements.allAchievements.Length > 0)
+        {
+            for (int i = 0; i < FizzyoFramework.Instance.Achievements.allAchievements.Length; i++)
+            {
+                if (FizzyoFramework.Instance.Achievements.allAchievements[i].title == achievementToUnlock)
+                {
+                    unlockAchievement = FizzyoFramework.Instance.Achievements.allAchievements[i].id;
+                }
+            }
+            if (unlockAchievement != string.Empty)
+            {
+                FizzyoFramework.Instance.Achievements.UnlockAchievement(unlockAchievement);
+            }
+        }
+    }
 }
