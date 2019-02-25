@@ -38,7 +38,7 @@ public class AchievementController : MonoBehaviour
             }
             if (unlockAchievement != string.Empty)
             {
-                FizzyoFramework.Instance.Achievements.UnlockAchievement(unlockAchievement);
+				FizzyoFramework.Instance.Achievements.CheckAndUnlockAchivement (unlockAchievement);
             }
         }
     }
