@@ -7800,6 +7800,12 @@ MonoBehaviour:
   minBallSizeFail: 0.4
   currentTravelTime: 0
   isTravelling: 0
+  coconuts:
+  - {fileID: 101489239}
+  - {fileID: 706132075}
+  - {fileID: 453563066}
+  - {fileID: 938771924}
+  - {fileID: 1752853758}
   hasStartedGame: 0
   playerBreathAmount: 0
 --- !u!1 &1752853758

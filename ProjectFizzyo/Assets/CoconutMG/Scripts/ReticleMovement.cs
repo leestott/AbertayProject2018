@@ -56,6 +56,8 @@ public class ReticleMovement : MonoBehaviour {
 
 	private float resetDelay = 3.0f;
 
+	public GameObject[] coconuts;
+
 	public bool hasStartedGame = false;
 
 	bool canReach = false;
@@ -71,6 +73,8 @@ public class ReticleMovement : MonoBehaviour {
 	GameObject reticle;
 
 	public float playerBreathAmount;
+
+	public int coconutsHit = 0;
 
     private GlobalSessionScore globalSessionScore;
 
@@ -89,11 +93,17 @@ public class ReticleMovement : MonoBehaviour {
 		screenShake = GameObject.FindObjectOfType<ScreenShake> ();
 
 		scoreManager = GameObject.FindObjectOfType<MinigameScoring> ();
+
 	}
 
 	void Update () 
 	{
 		DEBUG = breathMetre.fillAmount;
+
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			ResetLevel ();	
+		}
 
 		if (canPlay)
 		{
@@ -177,9 +187,18 @@ public class ReticleMovement : MonoBehaviour {
 							Animator anim = currentTarget.GetComponent<Animator> ();
 							anim.SetBool ("isFalling", true);
 
+							coconutsHit++;
+
 							scoreManager.AddScore (50);
 
-							StartCoroutine (ResetDelay ());
+							if (coconutsHit >= 5)
+							{
+								StartCoroutine (ResetLevelDelay ());
+							}
+							else 
+							{
+								StartCoroutine (ResetDelay ());
+							}
 						}
 					} else
                     {
@@ -189,7 +208,14 @@ public class ReticleMovement : MonoBehaviour {
 
 				if (currentTravelTime >= maxTravelTime) 
 				{
-					StartCoroutine (ResetDelay ());
+					if (coconutsHit >= 5)
+					{
+						StartCoroutine (ResetLevelDelay ());
+					}
+					else 
+					{
+						StartCoroutine (ResetDelay ());
+					}
 				}
 					//if (currentTravelTime >= travelTime && currentTarget != null) 
 					//{
@@ -221,6 +247,43 @@ public class ReticleMovement : MonoBehaviour {
 		}
 	}
 
+	public void ResetLevel() 
+	{
+		Reset ();
+		for (int i = 0; i < coconuts.Length; i++) 
+		{
+			Vector3 resetPosition = new Vector3 (0.0f, -0.2f, 0.0f);
+			switch (i)
+			{
+			case 0:
+				resetPosition = new Vector3 (-2.5f, -0.2f, 0);
+				break;
+			case 1:
+				resetPosition = new Vector3 (-1.25f, -0.2f, 0);
+				break;
+			case 2:
+				resetPosition = new Vector3 (-0.0f, -0.2f, 0);
+				break;
+			case 3:
+				resetPosition = new Vector3 (1.25f, -0.2f, 0);
+				break;
+			case 4:
+				resetPosition = new Vector3 (2.5f, -0.2f, 0);
+				break;
+			}
+
+			Rigidbody2D currentRB = coconuts [i].GetComponent<Rigidbody2D> ();
+			currentRB.gravityScale = 0.0f;
+			currentRB.velocity = new Vector2 (0.0f, 0.0f);
+			currentRB.angularVelocity = 0.0f;
+			coconuts [i].transform.position = resetPosition;
+			coconuts [i].transform.eulerAngles = new Vector3 (0.0f, 0.0f, 0.0f);
+			Animator anim = coconuts[i].GetComponent<Animator> ();
+			anim.SetBool ("isFalling", false);
+			coconutsHit = 0;
+		}
+	}
+
     void Reset()
     {
         isTravelling = false;
@@ -232,6 +295,7 @@ public class ReticleMovement : MonoBehaviour {
         GameObject.Destroy(ballProjectile);
         breathMetre.fillAmount = 0.0f;
         breathMetre.reset = true;
+		currentTarget = null;
 
         if (globalSessionScore.boxDisplayed == false)
         {
@@ -292,6 +356,12 @@ public class ReticleMovement : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (0.0f);
 		Reset ();
+	}
+
+	IEnumerator ResetLevelDelay ()
+	{
+		yield return new WaitForSeconds (2.0f);
+		ResetLevel ();
 	}
 
 	private void Br_BreathStarted(object sender)

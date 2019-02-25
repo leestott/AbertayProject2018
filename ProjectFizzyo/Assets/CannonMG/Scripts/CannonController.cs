@@ -98,6 +98,7 @@ public class CannonController : MonoBehaviour {
     public void Reset()
     {
         breathMetre.reset = true;
+		breathMetre.fillAmount = 0.0f;
         hasLaunched = false;
         hasSpawnedShadow = false;
         launchForce = 0;
