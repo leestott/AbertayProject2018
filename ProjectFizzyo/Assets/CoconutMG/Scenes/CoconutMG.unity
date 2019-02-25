@@ -7781,7 +7781,7 @@ MonoBehaviour:
   maxTravelTime: 1
   groundPosition: {fileID: 1788543371}
   DEBUG: 0
-  maskHitEffect: {fileID: 8300000, guid: 361955d9746eb5443a08bf2a15569bdf, type: 3}
+  maskHitEffect: {fileID: 8300000, guid: 58661b00048c9bf458bbee398f39e730, type: 3}
   groundHit: {fileID: 8300000, guid: d68647f71453cf34181b10aab9c98971, type: 3}
   coconutHitEffects:
   - {fileID: 8300000, guid: ffacf60d4b5f5a844a725150a792db58, type: 3}
@@ -8010,10 +8010,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3b05a3d17d471f344bf412a83d3a341c, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
