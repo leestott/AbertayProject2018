@@ -25,14 +25,14 @@ PlayerSettings:
   m_SplashScreenDrawMode: 1
   m_SplashScreenBackgroundAnimationZoom: 1
   m_SplashScreenLogoAnimationZoom: 1
-  m_SplashScreenBackgroundLandscapeAspect: 1.688376
+  m_SplashScreenBackgroundLandscapeAspect: 1.9284369
   m_SplashScreenBackgroundPortraitAspect: 1
   m_SplashScreenBackgroundLandscapeUvs:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
-    height: 0.99975705
+    height: 0.9999302
   m_SplashScreenBackgroundPortraitUvs:
     serializedVersion: 2
     x: 0
@@ -42,7 +42,7 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
-  - logo: {fileID: 21300000, guid: cc7d406b22690e74d85dd645dbd3d1e5, type: 3}
+  - logo: {fileID: 21300000, guid: 6ee8a5d42d2c1ac47aa5b17376289cd2, type: 3}
     duration: 2
   - logo: {fileID: 21300000, guid: 9f858d24b7eac884eb17598452bc3f61, type: 3}
     duration: 2
@@ -574,7 +574,7 @@ PlayerSettings:
   psp2InfoBarOnStartup: 0
   psp2InfoBarColor: 0
   psp2ScriptOptimizationLevel: 0
-  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: cdaef2ec4ee7d954292e2fdbf6ef7792,
+  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: 265f5d4e4a8398e43a06bf651d55e6d0,
     type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   spritePackerPolicy: 
@@ -636,7 +636,7 @@ PlayerSettings:
       HumanInterfaceDevice: True
       InputInjectionBrokered: False
       InternetClient: True
-      InternetClientServer: False
+      InternetClientServer: True
       Location: False
       LowLevelDevices: False
       Microphone: False
@@ -709,7 +709,7 @@ PlayerSettings:
     Collab: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 19ab3958-dfb7-4220-8ff6-4219e20b4938
   projectName: ProjectFizzyo
   organizationId: jamie_b818
