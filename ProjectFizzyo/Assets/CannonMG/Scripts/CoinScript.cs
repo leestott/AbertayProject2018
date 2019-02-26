@@ -31,7 +31,7 @@ public class CoinScript : MonoBehaviour {
 			//sfxSource.Play ();
 			controller.coinScore += 1.0f;
             AchievementTracker.AddCoin_Ach();
-            GameObject.Destroy (this.gameObject);
+			GameObject.Destroy (this.gameObject);
 		}
 	}
 }
