@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Fizzyo/FizzyoFramework/Scenes/Calibration.unity
-    guid: 19019ff99c632e74d84ac7c3ad4a7183
-  - enabled: 1
     path: Assets/HubWorld/Scenes/SetSelector.unity
     guid: d238460119331b4439bb6a24e1740b9c
   - enabled: 1
@@ -23,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CannonMG/Scenes/CannonMG.unity
     guid: 9e0584720c5f35142bd71749eb6a76fc
+  - enabled: 1
+    path: Assets/Fizzyo/FizzyoFramework/Scenes/Calibration.unity
+    guid: 19019ff99c632e74d84ac7c3ad4a7183
   m_configObjects: {}

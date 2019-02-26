@@ -153,28 +153,26 @@ public class CannonController : MonoBehaviour {
 
 					// Calculate launch vector.
 					GameObject launchDir = GameObject.Find ("LaunchDirection");
-					Vector3 spawnPosition = new Vector3 (transform.position.x, transform.position.y, 0);
-
 
 					switch(CannonStaticValues.playerCharacter)
 					{
 					case CannonStaticValues.Characters.Alien:
-						projectile = Instantiate (alienProjectile, spawnPosition, launchDir.transform.rotation);
+						projectile = Instantiate (alienProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					case CannonStaticValues.Characters.Batboy:
-						projectile = Instantiate (batboyProjectile, spawnPosition, launchDir.transform.rotation);
+						projectile = Instantiate (batboyProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					case CannonStaticValues.Characters.Bear:
-						projectile = Instantiate (bearProjectile, spawnPosition, launchDir.transform.rotation);
+						projectile = Instantiate (bearProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					case CannonStaticValues.Characters.Unicorn:
-						projectile = Instantiate (unicornProjectile, spawnPosition, launchDir.transform.rotation);
+						projectile = Instantiate (unicornProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					case CannonStaticValues.Characters.BigFoot:
-						projectile = Instantiate (bigfootProjectile, spawnPosition, launchDir.transform.rotation);
+						projectile = Instantiate (bigfootProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					default:
-						projectile = Instantiate (alienProjectile, spawnPosition, launchDir.transform.rotation);
+						projectile = Instantiate (alienProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					}
 					// Apply a force to the character projectile in the direction launch vector.
