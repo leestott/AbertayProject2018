@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f867855b2339e4b4c9cba2dcf9f8a10c, type: 3}
   m_Name: FizzyoConfigurationProfile
   m_EditorClassIdentifier: 
-  showLoginAutomatically: 1
-  requireLaunchFromHub: 1
   showSetGamerTagAutomatically: 0
   showCalibrateAutomatically: 1
-  gameID: c19d43d0-8546-4d7a-aaf3-aea686d9b62d
-  gameSecret: ml8rVoJX7ax2mRx9D8Az5lndyv4Ek36WJOyLkQWjneg2nDYwx2m2zlYdwZ1p0GDX
-  apiPath: https://api.fizzyo-ucl.co.uk/
+  gameID: <Enter GameID here/>
+  gameSecret: <Enter Game Secret here/>
+  apiPath: https://api-staging.fizzyo-ucl.co.uk
   useTestHarnessData: 0
   testHarnessDataFile: 0
+  loginFromDesktop: 0
+  requireLaunchFromHub: 1
