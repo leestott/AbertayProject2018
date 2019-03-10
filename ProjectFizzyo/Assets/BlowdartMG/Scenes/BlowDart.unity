@@ -598,6 +598,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224534423291077906, guid: b777725328c1cf14ea621bc971e281aa,
     type: 2}
   m_PrefabInternal: {fileID: 779574147}
+--- !u!114 &975116097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114277280424566102, guid: b777725328c1cf14ea621bc971e281aa,
+    type: 2}
+  m_PrefabInternal: {fileID: 779574147}
+  m_Script: {fileID: 11500000, guid: 32e11128bd422304a943fc691e288d7c, type: 3}
 --- !u!1 &990130299
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +753,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7d6cbf9c38842a042b54189e9ea50daf, type: 3}
   - {fileID: 8300000, guid: f90c3092461fc0a48bcedeeb2e507de4, type: 3}
   howTo: {fileID: 1273193931}
+  setDisplayInfo: {fileID: 975116097}
 --- !u!95 &1194341457 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95415088876799384, guid: b777725328c1cf14ea621bc971e281aa,

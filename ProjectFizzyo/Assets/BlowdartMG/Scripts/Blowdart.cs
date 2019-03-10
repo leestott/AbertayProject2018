@@ -43,6 +43,8 @@ public class Blowdart : MonoBehaviour {
 
     float timePassed = 0;
 
+    public SetDisplayInfo setDisplayInfo;
+
     // Initialises the variables
     void Start ()
     {
@@ -60,6 +62,11 @@ public class Blowdart : MonoBehaviour {
 	
 	void Update ()
     {
+        if(setDisplayInfo.GetIsPopupDisplayed())
+        {
+            timePassed = 0;
+        }
+
         timePassed += Time.deltaTime;
 
         if (!gameFinished)
@@ -90,11 +97,10 @@ public class Blowdart : MonoBehaviour {
         }
     }
 
-    // TO DO: Remove the debug space bar.
     // Works off of button press and space bar for debugging.
     void HandleInput()
     {
-        if (timePassed > 2.0f)
+        if (timePassed > 1.0f)
         {
             // Fire the dart on fizzyo button input.
             if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && !fired)
