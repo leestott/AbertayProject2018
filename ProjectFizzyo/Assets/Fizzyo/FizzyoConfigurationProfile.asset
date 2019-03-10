@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showSetGamerTagAutomatically: 0
   showCalibrateAutomatically: 1
-  gameID: <Enter GameID here/>
-  gameSecret: <Enter Game Secret here/>
+  gameID: 
+  gameSecret: 
   apiPath: https://api-staging.fizzyo-ucl.co.uk
   useTestHarnessData: 0
   testHarnessDataFile: 0

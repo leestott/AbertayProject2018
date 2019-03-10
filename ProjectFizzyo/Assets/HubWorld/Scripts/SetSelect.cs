@@ -17,7 +17,7 @@ public class SetSelect : MonoBehaviour {
 
     private int currentNumber;
 
-	private int minNumber = 5;
+	private int minNumber = 3;
     private int maxNumber = 12;
 
     // Icon and fill amount of that icon which shows key hold.
