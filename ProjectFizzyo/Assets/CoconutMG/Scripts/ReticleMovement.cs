@@ -78,6 +78,8 @@ public class ReticleMovement : MonoBehaviour {
 
     private GlobalSessionScore globalSessionScore;
 
+	private SetDisplayInfo setDisplayInfo;
+
     void Start () 
 	{
 		//Get reference to breath meter instance
@@ -94,6 +96,8 @@ public class ReticleMovement : MonoBehaviour {
 
 		scoreManager = GameObject.FindObjectOfType<MinigameScoring> ();
 
+		setDisplayInfo = GameObject.FindObjectOfType<SetDisplayInfo> ();
+
 	}
 
 	void Update () 
@@ -105,7 +109,7 @@ public class ReticleMovement : MonoBehaviour {
 			ResetLevel ();	
 		}
 
-		if (canPlay)
+		if (canPlay && !setDisplayInfo.GetIsPopupDisplayed())
 		{
 			if (!hasLaunched) 
 			{

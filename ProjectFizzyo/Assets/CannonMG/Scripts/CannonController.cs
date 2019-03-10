@@ -69,6 +69,8 @@ public class CannonController : MonoBehaviour {
 
     private GlobalSessionScore globalSessionScore;
 
+	private SetDisplayInfo setDisplayInfo;
+
     void Start () 
 	{
 		//Get reference to breath meter instance
@@ -93,6 +95,8 @@ public class CannonController : MonoBehaviour {
 		characterAudio = GameObject.FindObjectOfType<CharacterAudioManager> ();
 
 		cannonSmoke.SetActive (false);
+
+		setDisplayInfo = GameObject.FindObjectOfType<SetDisplayInfo> ();
 	}
 
     public void Reset()
@@ -135,7 +139,7 @@ public class CannonController : MonoBehaviour {
 	{
 		if (gameplayState) {
 
-			if (!hasLaunched) {
+			if (!hasLaunched && !setDisplayInfo.GetIsPopupDisplayed()) {
 				//Calculate launch force based on breath amount
 				launchForce = breathMetre.fillAmount * breathPowerScale;
 
