@@ -170,7 +170,7 @@ public class CannonController : MonoBehaviour {
 						projectile = Instantiate (bearProjectile, transform.position, launchDir.transform.rotation);
 						break;
 					case CannonStaticValues.Characters.Unicorn:
-						projectile = Instantiate (unicornProjectile, transform.position, launchDir.transform.rotation);
+						projectile = Instantiate (unicornProjectile, transform.position, Quaternion.identity);
 						break;
 					case CannonStaticValues.Characters.BigFoot:
 						projectile = Instantiate (bigfootProjectile, transform.position, launchDir.transform.rotation);
@@ -181,7 +181,7 @@ public class CannonController : MonoBehaviour {
 					}
 					// Apply a force to the character projectile in the direction launch vector.
 					Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D> ();
-					projectileRb.AddForce (projectile.transform.up * launchForce);
+					projectileRb.AddForce (launchDir.transform.up * launchForce);
 					//projectileRb.AddTorque (20.0f);
 
 					StartCoroutine (GroundRespawnDelay ());

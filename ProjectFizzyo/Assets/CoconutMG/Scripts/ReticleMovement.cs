@@ -116,7 +116,7 @@ public class ReticleMovement : MonoBehaviour {
 				AxisMovement ();
 			}
 
-			if (Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown () && !hasLaunched)
+			if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && !hasLaunched && breathMetre.fillAmount > 0.1f)
 			{
 				if (breathMetre.fillAmount > 0.75f) 
 				{
