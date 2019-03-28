@@ -8,13 +8,14 @@ public class MenuReturn : MonoBehaviour {
     private float timeAtStart;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         timeAtStart = Time.time;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    void Update ()
     {
+        // If the user presses escape go back to the main menu and set current game to hub.
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
@@ -24,6 +25,7 @@ public class MenuReturn : MonoBehaviour {
 		
 	}
 
+    // When the scene changes tell the analytics manager the time at the start of the minigame.
     void OnDestroy()
     {
         AnalyticsManager.ReportEndOfMinigame(AnalyticsManager.GetCurrentGame(), timeAtStart);

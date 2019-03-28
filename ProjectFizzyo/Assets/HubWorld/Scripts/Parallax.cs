@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// NOT USED IN GAME
 public class Parallax : MonoBehaviour {
 
     // Each layer that scrolls

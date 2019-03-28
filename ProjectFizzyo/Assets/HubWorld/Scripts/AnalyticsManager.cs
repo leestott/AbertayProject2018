@@ -25,53 +25,63 @@ public static class AnalyticsManager {
     private static int minigameGoodBreaths = 0;
 
 
+
+    // Getters for breaths and sets information.
+    public static int GetBreathsPerSet() { return breathsPerSet; }
+    public static int GetTotalSets() { return numOfSets; }
+
+    // Getters for current breath and set information.
+    public static int GetCurrBreath() { return curBreath; }
+    public static int GetCurrSet() { return curSet; }
+
+    // Getters for total number of breaths and good breaths.
+    public static int GetTotalBreaths() { return totalBreaths; }
+    public static int GetGoodBreaths() { return totalGoodBreaths; }
+
+    // Getter and setter for current minigame information.
+    public static void SetCurrentGame(string current) { curMgName = current; }
+    public static string GetCurrentGame() { return curMgName; }
+
+
+
+    // Initialise the set information.
     public static void SetupSets(int _breathsPerSet, int _numOfSets)
     {
         breathsPerSet = _breathsPerSet;
         numOfSets = _numOfSets;
     }
 
-    public static int GetBreathsPerSet()    {return breathsPerSet;}
-
-    public static int GetTotalSets() { return numOfSets; }
-
+    // Function for when user breaths to keep track of all stats.
     public static void UserBreathed(bool isGoodBreath)
     {
         Debug.Log("User breathed function in analytics Manager was triggered");
 
+        // Add to the breath information.
         totalBreaths++;
         curBreath++;
         minigameBreaths++;
 
+        // If it is a good breath add to the various good breath stats.
         if(isGoodBreath)
         {
             minigameGoodBreaths++;
             totalGoodBreaths++;
         }
 
+        // If the current set has finished reset current breath info.
         if(curBreath == breathsPerSet)
         {
             curSet++;
             curBreath = 0;
         }
 
+        // Debug the information.
         Debug.Log("User breathed, total breaths now at: " + totalBreaths);
         Debug.Log("Breaths of current set: " + curBreath + "/" + breathsPerSet);
         Debug.Log("On set: " + curSet + "/" + numOfSets);
     }
 
-    public static int GetTotalBreaths() {return totalBreaths;}
-
-	public static int GetGoodBreaths () {return totalGoodBreaths;}
-
-    public static int GetCurrBreath() { return curBreath; }
-
-    public static int GetCurrSet() { return curSet; }
-
-    public static void SetCurrentGame(string current)   {curMgName = current;}
-
-    public static string GetCurrentGame()   {return curMgName;}
-	
+    // Send which minigame has been chosen.
 	public static void SendWhichMinigameData (string levelName) 
 	{
         curMgName = levelName;
@@ -82,19 +92,23 @@ public static class AnalyticsManager {
         });
     }
 
+    // At the end of the minigame send analytics all the various information and reset them.
     public static void ReportEndOfMinigame(string levelName, float minigameStartTime)
     {
+        // Debug the information
         Debug.Log("End of minigame report: ");
         Debug.Log("LEVEL NAME: " + levelName);
         Debug.Log("TIME_IN_MINIGAME: " + (Time.time - minigameStartTime));
         Debug.Log("BREATHS_DURING_MINIGAME: " + minigameBreaths);
         Debug.Log("GOOD_BREATHS_DURING_MINIGAME: " + minigameGoodBreaths);
 
+        // If the time spent in the minigame is less than zero debug.
         if(0 > Time.time - minigameStartTime)
         {
             Debug.Log("ERROR TIME IN MINIGAME BELOW 0");
         }
 
+        // Send the custom event.
         AnalyticsEvent.Custom("Minigame_Session_Details", new Dictionary<string, object>
         {
             { "Minigame_Name", levelName },
@@ -103,19 +117,24 @@ public static class AnalyticsManager {
             { "Minigame_Good_Breaths", minigameGoodBreaths }
         });
 
+        // Reset the minigame information.
         minigameGoodBreaths = 0;
         minigameBreaths = 0;
     }
 
+    // Tell the analytics all of the tracked information.
     public static void ReportEndSession (float time) 
 	{
+        // Check the good breath achievement.
         AchievementTracker.GoodBreaths_Ach(totalGoodBreaths);
 
+        // Debug the information.
         Debug.Log("End of session report: ");
 		Debug.Log ("TOTAL_SESSION_TIME: " + time);
 		Debug.Log ("TOTAL_SESSION_BREATHS: " + totalBreaths);
         Debug.Log("TOTAL_SESSION_GOOD_BREATHS: " + totalGoodBreaths);
 
+        // Post information to analytics.
         AnalyticsEvent.Custom("Session_Details", new Dictionary<string, object>
         {
 			{ "Session_Time", time },	

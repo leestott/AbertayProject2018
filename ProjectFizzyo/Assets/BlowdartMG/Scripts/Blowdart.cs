@@ -5,81 +5,92 @@ using Fizzyo;
 
 public class Blowdart : MonoBehaviour {
 
+    // The tutorial panel.
+    [SerializeField]
+    private Animator howTo;
+
     // Variables determine how fast and high the dart moves.
-    [Header("Controls how fast and high the dart moves:")]
+    [Header("Controls how fast and high the dart moves vertically:")]
     public float speed = 5f;
     public float height = 5f;
 
     // Input breath currently always at max for testing.
-    [Header("Power of the dart (for testing):")]
+    [Header("Power of the dart (for testing) and its multiplier:")]
+    public float dartPowerMultiplier = 50.0f;
     public float dartPower = 100.0f;
     public float minPower = 30.0f;
+
+    // The pipe covering the dart.
+    public GameObject blowPipe;
+
+    // The darts rigidbody and starting pos.
+    private Rigidbody2D rb;
+    private Vector3 startingPos;
 
     // Has the dart been shot.
     private bool fired = false;
 
-    // The darts rigidbody and starting pos
-    private Rigidbody2D rb;
-    private Vector3 startingPos;
-
-    public GameObject blowPipe;
-
-    BreathRecogniser br = new BreathRecogniser();
-    private float breathPressure;
-
-    BreathMetre breathMetre;
-
+    // Controls the spawning and levels.
     public BalloonSpawner balloonSpawner;
 
+    // The breath metre.
+    BreathMetre breathMetre;
+
+    // Timer variable for stopping dart firing with UI.
+    float timePassed = 0;
+
+    // Shows breath and sets information.
+    public SetDisplayInfo setDisplayInfo;
+
+    // Scoring.
+    private GlobalSessionScore globalSessionScore;
+    private bool gameFinished = false;
+
+    // Audio.
     AudioSource audioSource;
     public AudioClip[] dartLaunchSounds;
     public AudioClip[] balloonPoppingSounds;
 
-    private GlobalSessionScore globalSessionScore;
-    private bool gameFinished = false;
-
-    [SerializeField]
-    private Animator howTo;
-
-    float timePassed = 0;
-
-    public SetDisplayInfo setDisplayInfo;
-
     // Initialises the variables
     void Start ()
     {
+        // Find the objects in the scene
         breathMetre = FindObjectOfType<BreathMetre>();
+        audioSource = GameObject.FindObjectOfType<AudioSource>();
+        globalSessionScore = FindObjectOfType<GlobalSessionScore>();
 
         rb = GetComponent<Rigidbody2D>();
         startingPos = transform.position;
-
-        br.BreathStarted += Br_BreathStarted;
-        br.BreathComplete += Br_BreathComplete;
-
-        audioSource = GameObject.FindObjectOfType<AudioSource>();
-        globalSessionScore = FindObjectOfType<GlobalSessionScore>();
     }
 	
 	void Update ()
     {
-        if(setDisplayInfo.GetIsPopupDisplayed())
+        // Increment the timer.
+        timePassed += Time.deltaTime;
+
+        // Check if popup is displayed if so reset the timer.
+        if (setDisplayInfo.GetIsPopupDisplayed())
         {
             timePassed = 0;
         }
 
-        timePassed += Time.deltaTime;
-
+        // If the game isn't finished run through the core loop.
         if (!gameFinished)
         {
-            // Detect breath pressure but only if below a fixed value to prevent bad breaths.
-            dartPower = breathMetre.fillAmount * 50;
+            // Set the darts power based on the current fill amount multiplied by a constant.
+            dartPower = breathMetre.fillAmount * dartPowerMultiplier;
 
+            // Set the power to a minimum if too weak so it doesnt just go straight down.
             if (dartPower < minPower)
+            {
                 dartPower = minPower;
+            }
 
-
+            // Check for input from the player.
             HandleInput();
 
+            // If not fired move the dart up and down
+            // Else the dart has been fired and make it rotate based on its velocity.
             if (!fired)
             {
                 MoveUpDown();
@@ -89,9 +100,10 @@ public class Blowdart : MonoBehaviour {
                 float angle;
                 float dot = Vector2.right.x * rb.velocity.x + Vector2.right.y * rb.velocity.y;      //Works out dot product
                 float det = Vector2.right.x * rb.velocity.y - Vector2.right.y * rb.velocity.x;      //Works out determinant
-                angle = Mathf.Atan2(det, dot);                                        //Calculates angle in radians
-                angle = angle * (180.0f / 3.1415f);                                 //Converts angle to degrees
+                angle = Mathf.Atan2(det, dot);                                                      //Calculates angle in radians
+                angle = angle * (180.0f / 3.1415f);                                                 //Converts angle to degrees
 
+                // Apply the new angle.
                 rb.transform.eulerAngles = new Vector3(rb.transform.rotation.eulerAngles.x, rb.transform.eulerAngles.y, angle);
             }
         }
@@ -100,9 +112,10 @@ public class Blowdart : MonoBehaviour {
     // Works off of button press and space bar for debugging.
     void HandleInput()
     {
+        // As long as time has passed ( To stop the dart from firing when the user is clicking for the tutorial ).
         if (timePassed > 1.0f)
         {
-            // Fire the dart on fizzyo button input.
+            // Fire the dart on fizzyo button input and lock the bar so it cant be filled.
             if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && !fired)
             {
                 fired = true;
@@ -112,7 +125,7 @@ public class Blowdart : MonoBehaviour {
         }
     }
 
-    // Moves the dart up and down via a sine wave.
+    // Moves the dart ( and the attached blowpipe) up and down via a sine wave.
     void MoveUpDown()
     {
         float newY = Mathf.Sin(Time.time * speed) * height;
@@ -123,12 +136,16 @@ public class Blowdart : MonoBehaviour {
     // Fire the dart based on input breath.
     void FireDart()
     {
+        // Ensure the dart comes out of the pipe.
         rb.transform.position = blowPipe.transform.position;
+
+        // Pick a random sound and play on firing.
         int soundSelection = Random.Range(0, dartLaunchSounds.Length);
         audioSource.PlayOneShot(dartLaunchSounds[soundSelection]);
+
+        // Give it a veloctiy for the dart power then reset the dart power.
         rb.velocity = new Vector2(dartPower, 0);
         dartPower = 0;
-
     }
 
     // When the dart hits a trigger collider.
@@ -137,9 +154,10 @@ public class Blowdart : MonoBehaviour {
         // It has hit the reset collider and should be moved back to the starting location.
         if (collision.gameObject.tag == "Reset")
         {
+            // Check if the final score box is not displayed and then check if the session should be finished else the game has ended.
             if (globalSessionScore.boxDisplayed == false)
             {
-                globalSessionScore.EndSessionScore();
+                globalSessionScore.IsSessionFinished();
             }
             else
             {
@@ -147,22 +165,16 @@ public class Blowdart : MonoBehaviour {
                 rb.gravityScale = 0;
             }
 
+            // Reset everything.
             breathMetre.reset = true;
             rb.velocity = new Vector2(0, 0);
             rb.transform.eulerAngles = new Vector3(0.0f,0.0f,0.0f);
             fired = false;
             transform.position = startingPos;
             blowPipe.transform.position = startingPos;
-
-
-            if (balloonSpawner.AllPopped())
-            {
-                balloonSpawner.NextLevel();
-            }
         }
 
-        // TO DO: Add scoring functionality here.
-        // It has hit a balloon. 
+        // It has hit a balloon, tell the spawner and the achievements then play a popping sound.
         if (collision.gameObject.tag == "Balloon")
         {
             balloonSpawner.BalloonPopped();
@@ -172,14 +184,4 @@ public class Blowdart : MonoBehaviour {
         }
     }
 
-    private void Br_BreathStarted(object sender)
-    {
-        br.MaxBreathLength = FizzyoFramework.Instance.Device.maxBreathCalibrated;
-        br.MaxPressure = FizzyoFramework.Instance.Device.maxPressureCalibrated;
-    }
-
-    private void Br_BreathComplete(object sender, ExhalationCompleteEventArgs e)
-    {
-        Debug.LogFormat("Breath Complete.\n Results: Quality [{0}] : Percentage [{1}] : Breath Full [{2}] : Breath Count [{3}] ", e.BreathQuality, e.BreathPercentage, e.IsBreathFull, e.BreathCount);
-    }
 }

@@ -5,18 +5,22 @@ using UnityEngine.UI;
 using Fizzyo;
 using UnityEngine.SceneManagement;
 
-public class SetSelect : MonoBehaviour {
-
+public class SetSelect : MonoBehaviour
+{
+    // Info + text for the breath per set.
     [SerializeField]
     private Text breathsPerSetText;
     private int breathsPerSet;
 
+    // Info + text for the num of set.
     [SerializeField]
     private Text numOfSetsText;
     private int numOfSets;
 
+    // What number they are on.
     private int currentNumber;
 
+    // The min and max the numbers can go to.
 	private int minNumber = 3;
     private int maxNumber = 12;
 
@@ -29,8 +33,10 @@ public class SetSelect : MonoBehaviour {
     // Breath pressure and whether the breath has began.
     private bool breathBegin = false;
 
+    // How long the breath has lasted.
     private float breathTime = 0.0f;
 
+    // Check if the breaths per set has been confirmed and have they selected the option.
     private bool breathsConfirmed;
     private bool finishedFill;
 
@@ -42,7 +48,7 @@ public class SetSelect : MonoBehaviour {
 
     private int moveVisualsDown = -185;
 
-    // Use this for initialization
+    // Initalise the variables
     void Start ()
     {
         fillAmount = topHoldingIcon.fillAmount;
@@ -61,18 +67,18 @@ public class SetSelect : MonoBehaviour {
         FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
     }
 	
-	// Update is called once per frame
 	void Update ()
     {
+        // Deals with changing the values.
         CyclingNumbers();
 
+        // Deals with locking in the selection.
         LockingIn();
-
     }
 
     private void CyclingNumbers()
     {
-        // On button press change minigame selected.
+        // On button press increase current number.
         if (Input.GetKeyUp(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
             //Debug.Log("The button was pressed.");
@@ -85,6 +91,7 @@ public class SetSelect : MonoBehaviour {
 				currentNumber = minNumber;
             }
 
+            // If breaths per set hasnt been confirmed update that number else update the set number.
             if (!breathsConfirmed)
             {
                 breathsPerSetText.text = currentNumber.ToString();
@@ -100,7 +107,7 @@ public class SetSelect : MonoBehaviour {
 
     private void LockingIn()
     {
-        // If the breath has began then increase the fill amount based on the pressure.
+        // If the breath has began then increase the fill amount based on the time.
         if (breathBegin && !finishedFill)
         {
             //Debug.Log("Breath begin");
@@ -120,6 +127,8 @@ public class SetSelect : MonoBehaviour {
             fillAmount = 0;
             breathTime = 0;
 
+            // If the breaths per set hasn't been confirmed then lock it in and set up UI for set selection
+            // Else tell analytics the set information and load the main menu.
             if (!breathsConfirmed)
             {
                 breathsConfirmed = true;

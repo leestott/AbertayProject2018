@@ -5,16 +5,21 @@ using Fizzyo;
 
 public class HelperText : MonoBehaviour {
 
+    // The animation for the helper text.
     public Animator helpAnim;
+
+    // The breath metre in the current scene.
     BreathMetre breathMetre;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         breathMetre = FindObjectOfType<BreathMetre>();
     }
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        // When the user presses the button move the helper text out.
         if (Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
             helpAnim.SetTrigger("moveOut");

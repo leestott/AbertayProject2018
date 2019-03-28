@@ -6,23 +6,29 @@ using Fizzyo;
 
 public class SetDisplayInfo : MonoBehaviour {
 
+    // The Text UI.
     public Text breathsDataText;
     public Text setsDataText;
 
+    // The values for breath and sets total.
     private int breathMax;
     private int setMax;
 
+    // Popup prefab and the current popup.
     public GameObject popupPrefab;
     private GameObject currPopup;
     private bool isPopupDisplayed;
+
+    // The set currently on.
     private int currSet;
 
+    // Check if popup is displayed.
     public bool GetIsPopupDisplayed()
     {
         return isPopupDisplayed;
     }
 
-	// Use this for initialization
+	// Get the information from analytics about the breaths/sets.
 	void Start ()
     {
         breathMax = AnalyticsManager.GetBreathsPerSet();
@@ -30,12 +36,13 @@ public class SetDisplayInfo : MonoBehaviour {
         currSet = AnalyticsManager.GetCurrSet();
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
+        // Breaths UI updated from analytics.
 		breathsDataText.text = "Breaths "+ AnalyticsManager.GetCurrBreath() + "/" + breathMax;
         setsDataText.text = "Sets " + AnalyticsManager.GetCurrSet() + "/" + setMax;
 
+        // If current set is finished display popup.
         if(currSet != AnalyticsManager.GetCurrSet())
         {
             currSet = AnalyticsManager.GetCurrSet();
@@ -43,6 +50,7 @@ public class SetDisplayInfo : MonoBehaviour {
             Popup();
         }
 
+        // If the popup is displayed destroy the popup when the button is pressed.
         if (isPopupDisplayed)
         {
             if (Input.GetKeyUp(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
@@ -55,6 +63,7 @@ public class SetDisplayInfo : MonoBehaviour {
 
     }
 
+    // Instantiate a popup and set it to the UI canvas.
     private void Popup()
     {
         Debug.Log("Finished a set, instatiating prefab");
