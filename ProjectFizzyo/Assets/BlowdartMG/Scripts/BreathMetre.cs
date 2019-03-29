@@ -69,6 +69,10 @@ public class BreathMetre : MonoBehaviour {
             // Links the fill amount float to the breathMetre.
             breathMetre.size = fillAmount;
         }
+        else
+        {
+            AnalyticsManager.SetIsRecordable(false);
+        }
 
         // If the bar is full lock the bar and shake the screen.
         if ((fillAmount >= 1) && (!lockBar) && (!reset))
@@ -85,6 +89,7 @@ public class BreathMetre : MonoBehaviour {
             breathTime = 0.0f;
             reset = false;
             lockBar = false;
+            AnalyticsManager.SetIsRecordable(true);
             barFull.SetBool("barFull", false);
         }
     }
@@ -103,7 +108,7 @@ public class BreathMetre : MonoBehaviour {
         lockBar = true;
 
         // Check if its in the hub.
-        if (AnalyticsManager.GetCurrentGame() != "Hub")
+        if (AnalyticsManager.GetIsRecordable() == true)
         {
             // Ensure breath wasn't accidental
             if (fillAmount >= 0.1f)

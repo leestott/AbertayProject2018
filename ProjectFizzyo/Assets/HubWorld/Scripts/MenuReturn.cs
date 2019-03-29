@@ -19,6 +19,7 @@ public class MenuReturn : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            Time.timeScale = 1;
             AnalyticsManager.SetCurrentGame("Hub");
             SceneManager.LoadScene("MainMenu");
         }

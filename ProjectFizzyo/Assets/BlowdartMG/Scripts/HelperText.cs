@@ -14,14 +14,18 @@ public class HelperText : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        // Set the breaths to not be recorded when the helper text is up.
+        AnalyticsManager.SetIsRecordable(false);
+
         breathMetre = FindObjectOfType<BreathMetre>();
     }
 	
 	void Update ()
     {
-        // When the user presses the button move the helper text out.
+        // When the user presses the button move the helper text out and set it to be okay to record breaths.
         if (Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
+            AnalyticsManager.SetIsRecordable(true);
             helpAnim.SetTrigger("moveOut");
             breathMetre.lockBar = false;
         }

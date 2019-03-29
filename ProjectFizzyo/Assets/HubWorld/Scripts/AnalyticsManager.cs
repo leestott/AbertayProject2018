@@ -24,7 +24,17 @@ public static class AnalyticsManager {
     private static int minigameBreaths = 0;
     private static int minigameGoodBreaths = 0;
 
+    // Is the game in a state where the breath shouldn't be recorded.
+    private static bool isRecordable = false;
 
+
+    // Toggle for if the analytics should be sent SET THIS TO BE TRUE WHEN BUILDING.
+    private static bool shouldSendAnalytics = false;
+
+
+    // Getter and setter for if the breath is recordable
+    public static bool GetIsRecordable() { return isRecordable; }
+    public static void SetIsRecordable(bool _isRecordable) { isRecordable = _isRecordable; }
 
     // Getters for breaths and sets information.
     public static int GetBreathsPerSet() { return breathsPerSet; }
@@ -86,10 +96,13 @@ public static class AnalyticsManager {
 	{
         curMgName = levelName;
 
-		AnalyticsEvent.Custom ("Minigame_Selected", new Dictionary<string, object>
+        if (shouldSendAnalytics)
         {
-            { "Minigame_Name", levelName }
-        });
+            AnalyticsEvent.Custom("Minigame_Selected", new Dictionary<string, object>
+            {
+                { "Minigame_Name", levelName }
+            });
+        }
     }
 
     // At the end of the minigame send analytics all the various information and reset them.
@@ -108,14 +121,17 @@ public static class AnalyticsManager {
             Debug.Log("ERROR TIME IN MINIGAME BELOW 0");
         }
 
-        // Send the custom event.
-        AnalyticsEvent.Custom("Minigame_Session_Details", new Dictionary<string, object>
+        if (shouldSendAnalytics)
         {
-            { "Minigame_Name", levelName },
-            { "Minigame_Time", (Time.time - minigameStartTime) },
-            { "Minigame_Breaths", minigameBreaths },
-            { "Minigame_Good_Breaths", minigameGoodBreaths }
-        });
+            // Send the custom event.
+            AnalyticsEvent.Custom("Minigame_Session_Details", new Dictionary<string, object>
+            {
+                { "Minigame_Name", levelName },
+                { "Minigame_Time", (Time.time - minigameStartTime) },
+                { "Minigame_Breaths", minigameBreaths },
+                { "Minigame_Good_Breaths", minigameGoodBreaths }
+            });
+        }
 
         // Reset the minigame information.
         minigameGoodBreaths = 0;
@@ -134,13 +150,16 @@ public static class AnalyticsManager {
 		Debug.Log ("TOTAL_SESSION_BREATHS: " + totalBreaths);
         Debug.Log("TOTAL_SESSION_GOOD_BREATHS: " + totalGoodBreaths);
 
-        // Post information to analytics.
-        AnalyticsEvent.Custom("Session_Details", new Dictionary<string, object>
+        if (shouldSendAnalytics)
         {
-			{ "Session_Time", time },	
-			{ "Session_Breaths", totalBreaths},
-            { "Session_Good_Breaths", totalGoodBreaths}
-        });
+            // Post information to analytics.
+            AnalyticsEvent.Custom("Session_Details", new Dictionary<string, object>
+            {
+                { "Session_Time", time },
+                { "Session_Breaths", totalBreaths},
+                { "Session_Good_Breaths", totalGoodBreaths}
+            });
+        }
 	}
 
 }
