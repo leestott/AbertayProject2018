@@ -51,7 +51,7 @@ public class BalloonController : MonoBehaviour {
         // When hit by the dart, pop the balloon.
         if (collision.gameObject.tag == "Dart")
         {
-            Debug.Log("hit by dart");
+            DebugManager.SendDebug("Been hit by dart", "Blowdart");
             popBalloon();
         }
     }

@@ -857,11 +857,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114101144627622068, guid: 55b3b2ab6a379c24399ca90a7928b128,
+    - target: {fileID: 114676877028425696, guid: 55b3b2ab6a379c24399ca90a7928b128,
         type: 2}
-      propertyPath: m_FontData.m_MaxSize
-      value: 96
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 489709909}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b3b2ab6a379c24399ca90a7928b128, type: 2}
   m_IsPrefabAsset: 0

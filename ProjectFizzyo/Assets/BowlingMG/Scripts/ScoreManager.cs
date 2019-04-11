@@ -26,9 +26,6 @@ public class ScoreManager : MonoBehaviour {
 				GameObject.Destroy (pins [i]);
 				pinsKnockedOver++;
 			}
-			Debug.Log ("Pin Number " + i + ": " + theta);
 		}
-
-		Debug.Log ("Total Pins Knocked Over: " + pinsKnockedOver);
 	}
 }

@@ -20,7 +20,7 @@ public class AchievementController : MonoBehaviour
         // Check if there is a duplicate and destroy if so.
         if (GameObject.Find(gameObject.name) && GameObject.Find(gameObject.name) != this.gameObject)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
         // Load the achievements.

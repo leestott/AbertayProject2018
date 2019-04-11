@@ -81,8 +81,6 @@ public class SetSelect : MonoBehaviour
         // On button press increase current number.
         if (Input.GetKeyUp(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown())
         {
-            //Debug.Log("The button was pressed.");
-
             currentNumber++;
 
             // Wrap selected around.
@@ -110,7 +108,6 @@ public class SetSelect : MonoBehaviour
         // If the breath has began then increase the fill amount based on the time.
         if (breathBegin && !finishedFill)
         {
-            //Debug.Log("Breath begin");
             // Scale the breath pressure down a bit for filling icon.
             breathTime += Time.deltaTime;
             fillAmount = breathTime / 0.5f;

@@ -65,8 +65,11 @@ public class Blowdart : MonoBehaviour {
 	
 	void Update ()
     {
-        // Increment the timer.
-        timePassed += Time.deltaTime;
+        if (breathMetre.lockBar == false)
+        {
+            // Increment the timer.
+            timePassed += Time.deltaTime;
+        }
 
         // Check if popup is displayed if so reset the timer.
         if (setDisplayInfo.GetIsPopupDisplayed())
@@ -113,7 +116,7 @@ public class Blowdart : MonoBehaviour {
     void HandleInput()
     {
         // As long as time has passed ( To stop the dart from firing when the user is clicking for the tutorial ).
-        if (timePassed > 1.0f)
+        if (timePassed > 0.1f)
         {
             // Fire the dart on fizzyo button input and lock the bar so it cant be filled.
             if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && !fired)

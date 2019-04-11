@@ -16,8 +16,8 @@ public class HelperText : MonoBehaviour {
     {
         // Set the breaths to not be recorded when the helper text is up.
         AnalyticsManager.SetIsRecordable(false);
-
         breathMetre = FindObjectOfType<BreathMetre>();
+        breathMetre.lockBar = true;
     }
 	
 	void Update ()

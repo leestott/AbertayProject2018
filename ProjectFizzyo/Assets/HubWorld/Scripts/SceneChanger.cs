@@ -54,9 +54,9 @@ public class SceneChanger : MonoBehaviour
             // Using a getter to retrieve current minigame selected.
             ChangeScene(GetComponent<UISelector>().getSelected() + 1);
             AnalyticsManager.SendWhichMinigameData(minigameName.text);
-            Debug.Log("The achievement tracker should be told about the minigame now");
+            DebugManager.SendDebug("The achievement tracker should be told about the minigame now", "Achievements");
             AchievementTracker.PlayedMinigame_Ach(minigameName.text);
-            Debug.Log("This minigame has been selected " + minigameName.text);
+            DebugManager.SendDebug("This minigame has been selected " + minigameName.text, "Analytics");
         }
 
         // If they press escape in the main menu quit the application.

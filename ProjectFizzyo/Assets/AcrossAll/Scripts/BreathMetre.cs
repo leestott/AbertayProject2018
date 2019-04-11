@@ -50,7 +50,7 @@ public class BreathMetre : MonoBehaviour {
         FizzyoFramework.Instance.Recogniser.BreathComplete += OnBreathEnded;
 
         maxCaliBreath = FizzyoFramework.Instance.Device.maxBreathCalibrated;
-        Debug.Log("This is the maximum calibrated breath " + maxCaliBreath);
+        DebugManager.SendDebug("This is the maximum calibrated breath " + maxCaliBreath, "BreathBar");
 
         screenShake = FindObjectOfType<ScreenShake>();
     }

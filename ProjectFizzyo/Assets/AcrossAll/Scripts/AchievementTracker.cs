@@ -32,9 +32,15 @@ public class AchievementTracker : MonoBehaviour
     private static int balloonGoal3 = 100;
 
     // Find and initialise the reference to the achievement controller.
-    private void Start()
+    private void Awake()
     {
         achievementController = FindObjectOfType<AchievementController>();
+
+        // Check if there is a duplicate and destroy if so.
+        if (GameObject.Find(gameObject.name) && GameObject.Find(gameObject.name) != this.gameObject)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Deals with played minigame achievement.
@@ -43,7 +49,7 @@ public class AchievementTracker : MonoBehaviour
         // Checks if controller is initialised.
         if (achievementController == null)
         {
-            Debug.Log("The achievement controller has not been initialised properly");
+            DebugManager.SendDebug("The achievement controller has not been initialised properly", "Achievements");
         }
 
         // Achievement for playing blow dart game for the first time.
@@ -51,7 +57,7 @@ public class AchievementTracker : MonoBehaviour
         {
             playedDart = true;
             achievementController.UnlockAchievement("Dastardly Darts");
-            Debug.Log("Dart game played ach unlocked");
+            DebugManager.SendDebug("Dart game played ach unlocked", "Achievements");
         }
 
         // Achievement for playing coconut game for the first time.
@@ -59,7 +65,7 @@ public class AchievementTracker : MonoBehaviour
         {
             playedTiki = true;
             achievementController.UnlockAchievement("Tiki Time");
-            Debug.Log("Coconut game played ach unlocked");
+            DebugManager.SendDebug("Coconut game played ach unlocked", "Achievements");
         }
 
         // Achievement for playing crazy cannon game for the first time.
@@ -67,21 +73,21 @@ public class AchievementTracker : MonoBehaviour
         {
             playedCannon = true;
             achievementController.UnlockAchievement("Stunt it!");
-            Debug.Log("Cannon game played ach unlocked");
+            DebugManager.SendDebug("Cannon game played ach unlocked", "Achievements");
         }
 
         // Achievement for playing all three minigames.
         if(playedDart && playedTiki && playedCannon)
         {
             achievementController.UnlockAchievement("Tour the Island");
-            Debug.Log("All games played ach unlocked");
+            DebugManager.SendDebug("All games played ach unlocked", "Achievements");
         }
     }
 
     // Achievement for breath quality checks if it is above the target.
     public static void BreathQualityScore_Ach(int breathQualityScore)
     {
-        Debug.Log("The ach tracker knows the final quality score: " + breathQualityScore);
+        DebugManager.SendDebug("The ach tracker knows the final quality score: " + breathQualityScore, "Achievements");
 
         if (breathQualityScore >= breathQualityScoreGoal)
         {
@@ -97,7 +103,7 @@ public class AchievementTracker : MonoBehaviour
     // Achievements for good quality breath totals.
     public static void GoodBreaths_Ach(int goodBreathsTotal)
     {
-        Debug.Log("The ach tracker knows how many total good breaths: " + goodBreathsTotal);
+        DebugManager.SendDebug("The ach tracker knows how many total good breaths: " + goodBreathsTotal, "Achievements");
 
         if (goodBreathsTotal >= 10)
         {
@@ -118,9 +124,9 @@ public class AchievementTracker : MonoBehaviour
     // Achievement for number of masks and coconuts hit in a row.
     public static void HitInARow_Ach(string whatHit)
     {
-        Debug.Log("The achievement tracker thinks it hit: " + whatHit);
+        DebugManager.SendDebug("The achievement tracker thinks it hit: " + whatHit, "Achievements");
 
-        if(whatHit == "Miss")
+        if (whatHit == "Miss")
         {
             numHitCoconut = 0;
             numHitMask = 0;
@@ -153,7 +159,7 @@ public class AchievementTracker : MonoBehaviour
     public static void AddCoin_Ach()
     {
         coinTotal++;
-        Debug.Log("The ach tracker knows this many coins have been collected: " + coinTotal);
+        DebugManager.SendDebug("The ach tracker knows this many coins have been collected: " + coinTotal, "Achievements");
 
         if (coinTotal > coinGoal1)
         {
@@ -175,7 +181,7 @@ public class AchievementTracker : MonoBehaviour
     public static void PopBalloon_Ach()
     {
         balloonTotal++;
-        Debug.Log("The ach tracker knows this many balloons have been popped: " + balloonTotal);
+        DebugManager.SendDebug("The ach tracker knows this many balloons have been popped: " + balloonTotal, "Achievements");
 
         if (balloonTotal > balloonGoal1)
         {

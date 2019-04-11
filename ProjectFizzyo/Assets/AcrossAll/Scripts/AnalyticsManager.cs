@@ -27,10 +27,12 @@ public static class AnalyticsManager {
     // Is the game in a state where the breath shouldn't be recorded.
     private static bool isRecordable = false;
 
+    // The scriptable asset which decides if it should send analytics
+    // Contains a bool which should be set to true if building.
+    private static AnalyticsConfig config;
 
-    // Toggle for if the analytics should be sent SET THIS TO BE TRUE WHEN BUILDING.
-    private static bool shouldSendAnalytics = false;
-
+    // Sets the config profile at the beginning of the game.
+    public static void SetConfig(AnalyticsConfig config_) { config = config_; }
 
     // Getter and setter for if the breath is recordable
     public static bool GetIsRecordable() { return isRecordable; }
@@ -53,7 +55,6 @@ public static class AnalyticsManager {
     public static string GetCurrentGame() { return curMgName; }
 
 
-
     // Initialise the set information.
     public static void SetupSets(int _breathsPerSet, int _numOfSets)
     {
@@ -64,7 +65,7 @@ public static class AnalyticsManager {
     // Function for when user breaths to keep track of all stats.
     public static void UserBreathed(bool isGoodBreath)
     {
-        Debug.Log("User breathed function in analytics Manager was triggered");
+        DebugManager.SendDebug("User breathed function in analytics Manager was triggered", "Analytics");
 
         // Add to the breath information.
         totalBreaths++;
@@ -86,9 +87,9 @@ public static class AnalyticsManager {
         }
 
         // Debug the information.
-        Debug.Log("User breathed, total breaths now at: " + totalBreaths);
-        Debug.Log("Breaths of current set: " + curBreath + "/" + breathsPerSet);
-        Debug.Log("On set: " + curSet + "/" + numOfSets);
+        DebugManager.SendDebug("User breathed, total breaths now at: " + totalBreaths, "Analytics");
+        DebugManager.SendDebug("Breaths of current set: " + curBreath + "/" + breathsPerSet, "Analytics");
+        DebugManager.SendDebug("On set: " + curSet + "/" + numOfSets, "Analytics");
     }
 
     // Send which minigame has been chosen.
@@ -96,7 +97,7 @@ public static class AnalyticsManager {
 	{
         curMgName = levelName;
 
-        if (shouldSendAnalytics)
+        if (config.sendAnalytics)
         {
             AnalyticsEvent.Custom("Minigame_Selected", new Dictionary<string, object>
             {
@@ -109,19 +110,19 @@ public static class AnalyticsManager {
     public static void ReportEndOfMinigame(string levelName, float minigameStartTime)
     {
         // Debug the information
-        Debug.Log("End of minigame report: ");
-        Debug.Log("LEVEL NAME: " + levelName);
-        Debug.Log("TIME_IN_MINIGAME: " + (Time.time - minigameStartTime));
-        Debug.Log("BREATHS_DURING_MINIGAME: " + minigameBreaths);
-        Debug.Log("GOOD_BREATHS_DURING_MINIGAME: " + minigameGoodBreaths);
+        DebugManager.SendDebug("End of minigame report: ", "Analytics");
+        DebugManager.SendDebug("LEVEL NAME: " + levelName, "Analytics");
+        DebugManager.SendDebug("TIME_IN_MINIGAME: " + (Time.time - minigameStartTime), "Analytics");
+        DebugManager.SendDebug("BREATHS_DURING_MINIGAME: " + minigameBreaths, "Analytics");
+        DebugManager.SendDebug("GOOD_BREATHS_DURING_MINIGAME: " + minigameGoodBreaths, "Analytics");
 
         // If the time spent in the minigame is less than zero debug.
-        if(0 > Time.time - minigameStartTime)
+        if (0 > Time.time - minigameStartTime)
         {
-            Debug.Log("ERROR TIME IN MINIGAME BELOW 0");
+            DebugManager.SendDebug("ERROR TIME IN MINIGAME BELOW 0", "Analytics");
         }
 
-        if (shouldSendAnalytics)
+        if (config.sendAnalytics)
         {
             // Send the custom event.
             AnalyticsEvent.Custom("Minigame_Session_Details", new Dictionary<string, object>
@@ -145,12 +146,12 @@ public static class AnalyticsManager {
         AchievementTracker.GoodBreaths_Ach(totalGoodBreaths);
 
         // Debug the information.
-        Debug.Log("End of session report: ");
-		Debug.Log ("TOTAL_SESSION_TIME: " + time);
-		Debug.Log ("TOTAL_SESSION_BREATHS: " + totalBreaths);
-        Debug.Log("TOTAL_SESSION_GOOD_BREATHS: " + totalGoodBreaths);
+        DebugManager.SendDebug("End of session report: ", "Analytics");
+        DebugManager.SendDebug("TOTAL_SESSION_TIME: " + time, "Analytics");
+        DebugManager.SendDebug("TOTAL_SESSION_BREATHS: " + totalBreaths, "Analytics");
+        DebugManager.SendDebug("TOTAL_SESSION_GOOD_BREATHS: " + totalGoodBreaths, "Analytics");
 
-        if (shouldSendAnalytics)
+        if (config.sendAnalytics)
         {
             // Post information to analytics.
             AnalyticsEvent.Custom("Session_Details", new Dictionary<string, object>

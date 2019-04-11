@@ -84,7 +84,6 @@ public class ParentBalloon : MonoBehaviour {
         GetComponent<SpriteRenderer>().sprite = balloonSprites[whichBalloon];
         whichBalloon += 4;
         GetComponent<SpriteRenderer>().sprite = balloonSprites[whichBalloon];
-        //Debug.Log("I am in the parent balloon popping function");
         Destroy(gameObject, 0.2f);
     }
 }

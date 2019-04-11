@@ -18,13 +18,18 @@ public class MenuReturn : MonoBehaviour {
         // If the user presses escape go back to the main menu and set current game to hub.
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            Time.timeScale = 1;
-            AnalyticsManager.SetCurrentGame("Hub");
-            SceneManager.LoadScene("MainMenu");
+            ReturnToMenu();
         }
 		
 	}
+
+    public void ReturnToMenu()
+    {
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        Time.timeScale = 1;
+        AnalyticsManager.SetCurrentGame("Hub");
+        SceneManager.LoadScene("MainMenu");
+    }
 
     // When the scene changes tell the analytics manager the time at the start of the minigame.
     void OnDestroy()

@@ -36,7 +36,7 @@ public class GlobalSessionScore : MonoBehaviour
     private bool audioPlayed = false;
 
     // Initialise the required breath and check if the score manager has already been created.
-    void Start () 
+    void Awake () 
 	{
         // Dont destroy on scene change.
 		DontDestroyOnLoad (this);
@@ -44,16 +44,17 @@ public class GlobalSessionScore : MonoBehaviour
         // Destroy this if it has already been created.
         if (GameObject.Find(gameObject.name) && GameObject.Find(gameObject.name) != this.gameObject)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         
         // Calculate the number of required breaths.
-        requiredBreaths = AnalyticsManager.GetBreathsPerSet () * AnalyticsManager.GetTotalSets ();
+        requiredBreaths = AnalyticsManager.GetBreathsPerSet() * AnalyticsManager.GetTotalSets();
+        DebugManager.SendDebug("Required breaths are: " + requiredBreaths, "BreathBar");
 
         // Debug the information.
-		Debug.Log ("User Sets: " + AnalyticsManager.GetTotalSets ());
-		Debug.Log ("User Breaths per Set: " + AnalyticsManager.GetBreathsPerSet ());
-		Debug.Log ("Required Breaths: " + requiredBreaths);
+        DebugManager.SendDebug("User Sets: " + AnalyticsManager.GetTotalSets(), "Scoring");
+        DebugManager.SendDebug("User Breaths per Set: " + AnalyticsManager.GetBreathsPerSet(), "Scoring");
+        DebugManager.SendDebug("Required Breaths: " + requiredBreaths, "Scoring");
 	}
 
 	void Update () 
@@ -62,7 +63,7 @@ public class GlobalSessionScore : MonoBehaviour
         sessionOver = IsSessionFinished();
 
         // If the box is displayed play the audio and fill the stars based on the score.
-		if (boxDisplayed) 
+        if (boxDisplayed) 
 		{
             // Check if the audio has already been played.
             if(!audioPlayed)
@@ -80,6 +81,10 @@ public class GlobalSessionScore : MonoBehaviour
             {
                 Application.Quit();
             }
+        }
+        else
+        {
+            EndSessionScore();
         }
 	}
 
@@ -133,7 +138,7 @@ public class GlobalSessionScore : MonoBehaviour
                 {
                     Text mgScoreText = child.gameObject.GetComponent<Text>();
                     minigameScoring = FindObjectOfType<MinigameScoring>();
-                    Debug.Log("Minigame score: " + minigameScoring.scoreText.text);
+                    DebugManager.SendDebug("Minigame score: " + minigameScoring.scoreText.text, "Scoring");
                     string score = "Minigame Score: " + minigameScoring.GetScore();
                     mgScoreText.text = score;
                 }
@@ -154,12 +159,12 @@ public class GlobalSessionScore : MonoBehaviour
 	void CalculateScore () 
 	{
         // Debug the number of good and total breaths.
-		Debug.Log ("GOOD BREATHS: " + AnalyticsManager.GetGoodBreaths());
-		Debug.Log ("TOTAL BREATHS: " + AnalyticsManager.GetTotalBreaths());
+        DebugManager.SendDebug("GOOD BREATHS: " + AnalyticsManager.GetGoodBreaths(), "Scoring");
+        DebugManager.SendDebug("TOTAL BREATHS: " + AnalyticsManager.GetTotalBreaths(), "Scoring");
 
         // Calculate and debug the percentage of good quality breaths of total breaths.
 		float qualityPercentage = (float)AnalyticsManager.GetGoodBreaths() / (float)AnalyticsManager.GetTotalBreaths();
-		Debug.Log ("QUALITY FRACTION: " + qualityPercentage);
+        DebugManager.SendDebug("QUALITY FRACTION: " + qualityPercentage, "Scoring");
 
         // Randomly decide if random value should be added or subtracted.
 		int minusMultiplier = Random.Range (0, 1);
@@ -185,14 +190,14 @@ public class GlobalSessionScore : MonoBehaviour
 
         // Debug the score then tell the framework
         // TODO have the score be cumlative.
-		Debug.Log ("QUALITY SCORE: " + qualityScore);
+        DebugManager.SendDebug("QUALITY SCORE: " + qualityScore, "Scoring");
         FizzyoFramework.Instance.Achievements.PostScore(qualityScore);
     }
 
     // Call the end of session report.
     void OnApplicationQuit()
     {
-        Debug.Log("On application quit call end session");
+        DebugManager.SendDebug("On application quit call end session", "Analytics");
         AnalyticsManager.ReportEndSession(Time.time);
     }
 }

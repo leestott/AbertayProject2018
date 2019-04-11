@@ -55,9 +55,12 @@ public class SetDisplayInfo : MonoBehaviour {
         if(currSet != AnalyticsManager.GetCurrSet())
         {
             currSet = AnalyticsManager.GetCurrSet();
-            isPopupDisplayed = true;
-            timer = 0.0f;
-            Popup();
+            if (currSet < AnalyticsManager.GetTotalSets())
+            {
+                isPopupDisplayed = true;
+                timer = 0.0f;
+                Popup();
+            }
         }
         
         // Add to the timer with unscaled delta time as that is unaffected by timescale.
@@ -73,8 +76,7 @@ public class SetDisplayInfo : MonoBehaviour {
             // Get the countdown bar image.
             countdown = currPopup.transform.GetChild(1).GetComponent<Image>();
 
-            // Debug the fill amount and lerp it towards 0 over 10 seconds.
-            Debug.Log("The fill amount: " + countdown.fillAmount);
+            // Lerp the fill amount towards 0 over 10 seconds.
             countdown.fillAmount = Mathf.Lerp(1.0f, 0.0f, timer/ displayLength);
 
             // If the display length has been reached then tell analytics to record breaths again,
@@ -95,7 +97,7 @@ public class SetDisplayInfo : MonoBehaviour {
     // Instantiate a popup and set it to the UI canvas.
     private void Popup()
     {
-        Debug.Log("Finished a set, instatiating prefab");
+        DebugManager.SendDebug("Finished a set, instatiating prefab", "BreathBar");
         currPopup = Instantiate(popupPrefab);
         currPopup.transform.SetParent(GameObject.Find("UICanvas").transform);
         currPopup.transform.localPosition = new Vector3(0.0f, 0.0f);
