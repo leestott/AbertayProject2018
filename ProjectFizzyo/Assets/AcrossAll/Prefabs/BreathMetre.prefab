@@ -300,7 +300,7 @@ MonoBehaviour:
   popupPrefab: {fileID: 1523088315350386, guid: 5bb0b868e5a40164884cc5ad916c6eeb,
     type: 2}
   countdown: {fileID: 0}
-  displayLength: 1
+  displayLength: 10
   timer: 0
 --- !u!114 &114318554009069422
 MonoBehaviour:
