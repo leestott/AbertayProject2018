@@ -74,14 +74,6 @@ public class BreathMetre : MonoBehaviour {
             AnalyticsManager.SetIsRecordable(false);
         }
 
-        // If the bar is full lock the bar and shake the screen.
-        if ((fillAmount >= 1) && (!lockBar) && (!reset))
-        {
-            barFull.SetBool("barFull", true);
-            screenShake.ShakeScreen();
-            lockBar = true;
-        }
-
         // Reset the fill amount.
         if(reset)
         {
@@ -104,12 +96,27 @@ public class BreathMetre : MonoBehaviour {
     // When the breath ends lock the bar and deal with analytics.
     private void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
     {
+        DebugManager.SendDebug("Breath ended", "BreathBar");
+
+        // If the bar is full lock the bar and shake the screen.
+        if ((fillAmount >= 1) && (!lockBar) && (!reset))
+        {
+
+            barFull.SetBool("barFull", true);
+            screenShake.ShakeScreen();
+            lockBar = true;
+        }
+
         beganBreath = false;
         lockBar = true;
+
+        DebugManager.SendDebug("Is recordable: " + AnalyticsManager.GetIsRecordable(), "BreathBar");
 
         // Check if its in the hub.
         if (AnalyticsManager.GetIsRecordable() == true)
         {
+            DebugManager.SendDebug("Breath ended and is recordable", "BreathBar");
+
             // Ensure breath wasn't accidental
             if (fillAmount >= 0.1f)
             {
@@ -134,6 +141,8 @@ public class BreathMetre : MonoBehaviour {
                     wasGoodBreath = false;
                     scoreMultiplier = 1;
                 }
+
+                DebugManager.SendDebug("Breath was recordable and wasn't accidental", "BreathBar");
 
                 // Tell the analytics manager they breathed and if it was of good quality.
                 AnalyticsManager.UserBreathed(wasGoodBreath);
