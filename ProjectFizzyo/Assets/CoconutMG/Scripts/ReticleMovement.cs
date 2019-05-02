@@ -254,6 +254,7 @@ public class ReticleMovement : MonoBehaviour {
 	public void ResetLevel() 
 	{
 		Reset ();
+		Debug.Log ("RESET LEVEL");
 		for (int i = 0; i < coconuts.Length; i++) 
 		{
 			Vector3 resetPosition = new Vector3 (0.0f, -0.2f, 0.0f);
@@ -301,14 +302,17 @@ public class ReticleMovement : MonoBehaviour {
         breathMetre.reset = true;
 		currentTarget = null;
 
-        if (globalSessionScore.boxDisplayed == false)
-        {
-            globalSessionScore.EndSessionScore();
-        }
-        else
-        {
-            canPlay = false;
-        }
+		if (globalSessionScore != null)
+		{
+			if (globalSessionScore.boxDisplayed == false) 
+			{
+				globalSessionScore.EndSessionScore ();
+			} 
+			else
+			{
+				canPlay = false;
+			}
+		}
     }
 
 	void AxisMovement ()
