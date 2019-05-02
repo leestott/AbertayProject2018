@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/CoconutMG/Scenes/CoconutMG.unity
     guid: cb2f35c8d64b0334bbe51e51c654ff0c
   - enabled: 1
-    path: Assets/CannonMG/Scenes/CannonMG.unity
-    guid: 9e0584720c5f35142bd71749eb6a76fc
+    path: Assets/CannonMG/NewAssets/Scenes/CannonScene.unity
+    guid: 5b124d365b1cee346854e632e0532274
   - enabled: 1
     path: Assets/Fizzyo/FizzyoFramework/Scenes/Calibration.unity
     guid: 19019ff99c632e74d84ac7c3ad4a7183

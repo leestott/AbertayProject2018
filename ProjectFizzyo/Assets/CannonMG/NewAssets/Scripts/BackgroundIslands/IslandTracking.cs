@@ -28,6 +28,10 @@ public class IslandTracking : MonoBehaviour {
 		if (projectile != null && projectileRB != null) 
 		{
 			rb.velocity = new Vector2 (projectileRB.velocity.x * speedMultiplier, 0.0f);
+		} 
+		else
+		{
+			rb.velocity = new Vector2 (0.0f, 0.0f);
 		}
 
 		if (Camera.main.transform.position.x - transform.position.x > 16) 
