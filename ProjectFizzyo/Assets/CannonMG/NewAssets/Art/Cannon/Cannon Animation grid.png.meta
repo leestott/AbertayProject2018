@@ -1,0 +1,478 @@
+fileFormatVersion: 2
+guid: 5338647a06d1f3742ac0278ee89b0675
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Cannon Animation grid_0
+    21300002: Cannon Animation grid_1
+    21300004: Cannon Animation grid_2
+    21300006: Cannon Animation grid_3
+    21300008: Cannon Animation grid_4
+    21300010: Cannon Animation grid_5
+    21300012: Cannon Animation grid_6
+    21300014: Cannon Animation grid_7
+    21300016: Cannon Animation grid_8
+    21300018: Cannon Animation grid_9
+    21300020: Cannon Animation grid_10
+    21300022: Cannon Animation grid_11
+    21300024: Cannon Animation grid_12
+    21300026: Cannon Animation grid_13
+    21300028: Cannon Animation grid_14
+    21300030: Cannon Animation grid_15
+    21300032: Cannon Animation grid_16
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Windows Store Apps
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cannon Animation grid_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10800
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fb1b04c0d120d949a7e76475a489748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_1
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 10800
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a862ce19b8152c4eba96cde7cb3a7f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_2
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 10800
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ce2a704b2e1c1548bbaa86ae723248c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8640
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b4e938ba5783e4b9cd47c1682f290c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_4
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 8640
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95faaa534dbf46c4bb8832e4fb9d035f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_5
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 8640
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db0b54892759b14d980d91724d17f67
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6480
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b5a18544958f240833baa51882e218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_7
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 6480
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80906605f314cff47afa0216e374a8f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_8
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 6480
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca0583a6616fe142aa2c7af7915c7e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4320
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb277db0659e5e74d9d156b9866ea0d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_10
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 4320
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd3f847596b865b42a1f31b57599d4ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_11
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 4320
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88064d10625264b40ac8a19c6e7d3847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21291a11494ea1d4fa21e9663a987256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_13
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 2160
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c2988658e7d804d822c5389cead32d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_14
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2160
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7918bf10ee19de54f8e59ff921bcd2d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c41e99df471cc764385612ff9fd51d77
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Animation grid_16
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 2160
+        height: 2160
+      alignment: 9
+      pivot: {x: 0.4, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42afee774261e694ba5643be0e29c72c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: cfee6491fc4f70b4a8e892c5c6ab6c6d
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
