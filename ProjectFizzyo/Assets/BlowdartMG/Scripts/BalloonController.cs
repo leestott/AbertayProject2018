@@ -66,6 +66,7 @@ public class BalloonController : MonoBehaviour {
         whichBalloon += 4;
         GetComponent<SpriteRenderer>().sprite = balloonTypes[whichBalloon];
 
+        // Has a delay on the destuction of the game object
         Destroy(gameObject, 0.2f);
     }
 }

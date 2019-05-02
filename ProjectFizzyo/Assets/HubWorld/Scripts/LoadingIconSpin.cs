@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Spins the loading icon as it fills
 public class LoadingIconSpin : MonoBehaviour {
 
 	public float rotationSpeed = 0.0f;

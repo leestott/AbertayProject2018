@@ -738,12 +738,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218173ead66969b40b53c115d2f6086a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  howTo: {fileID: 1273193931}
   speed: 2
   height: 3.9
+  dartPowerMultiplier: 50
   dartPower: 100
   minPower: 5
   blowPipe: {fileID: 75487986}
   balloonSpawner: {fileID: 372289097}
+  setDisplayInfo: {fileID: 975116097}
   dartLaunchSounds:
   - {fileID: 8300000, guid: f64dab24d4b524242a8ff82e341b1317, type: 3}
   - {fileID: 8300000, guid: cde57e29401381945a3369ee116eedc8, type: 3}
@@ -752,8 +755,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dc86dc3bc941e2f4692ebd84c25989c9, type: 3}
   - {fileID: 8300000, guid: 7d6cbf9c38842a042b54189e9ea50daf, type: 3}
   - {fileID: 8300000, guid: f90c3092461fc0a48bcedeeb2e507de4, type: 3}
-  howTo: {fileID: 1273193931}
-  setDisplayInfo: {fileID: 975116097}
 --- !u!95 &1194341457 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95415088876799384, guid: b777725328c1cf14ea621bc971e281aa,

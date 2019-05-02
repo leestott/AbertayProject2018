@@ -16,6 +16,7 @@ public class SceneChanger : MonoBehaviour
     private float breathPressure = 0;
     private bool breathBegin = false;
 
+    // How long the breath has lasted.
     private float breathTime = 0.0f;
 
     //Text of the minigames names to tell analytics
@@ -53,10 +54,12 @@ public class SceneChanger : MonoBehaviour
             // Using a getter to retrieve current minigame selected.
             ChangeScene(GetComponent<UISelector>().getSelected() + 1);
             AnalyticsManager.SendWhichMinigameData(minigameName.text);
+            Debug.Log("The achievement tracker should be told about the minigame now");
             AchievementTracker.PlayedMinigame_Ach(minigameName.text);
             Debug.Log("This minigame has been selected " + minigameName.text);
         }
 
+        // If they press escape in the main menu quit the application.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
@@ -80,11 +83,5 @@ public class SceneChanger : MonoBehaviour
     {
         fillAmount = 0.0f;
         breathBegin = false;
-    }
-
-    void OnApplicationQuit()
-    {
-        Debug.Log("On application quit call end session");
-        AnalyticsManager.ReportEndSession(Time.time);
     }
 }

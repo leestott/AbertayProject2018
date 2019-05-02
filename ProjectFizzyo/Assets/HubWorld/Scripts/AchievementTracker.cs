@@ -4,34 +4,49 @@ using UnityEngine;
 
 public class AchievementTracker : MonoBehaviour
 {
+    // The reference to the achievement controller.
     static AchievementController achievementController;
 
+    // The three bools if the user has played the minigames.
     private static bool playedDart = false;
     private static bool playedTiki = false;
     private static bool playedCannon = false;
 
+    // Check if they have got better in quality score than the achievement aim.
     private static int breathQualityScoreGoal = 75;
 
+    // Tracks times they have hit each object.
     private static int numHitCoconut;
     private static int numHitMask;
 
+    // Different levels of coin totals.
     private static int coinTotal = 0;
     private static int coinGoal1 = 1;
     private static int coinGoal2 = 50;
     private static int coinGoal3 = 500;
 
+    // Different levels of balloon popped totals.
     private static int balloonTotal = 0;
     private static int balloonGoal1 = 10;
     private static int balloonGoal2 = 25;
     private static int balloonGoal3 = 100;
 
+    // Find and initialise the reference to the achievement controller.
     private void Start()
     {
         achievementController = FindObjectOfType<AchievementController>();
     }
 
+    // Deals with played minigame achievement.
     public static void PlayedMinigame_Ach(string minigameName)
     {
+        // Checks if controller is initialised.
+        if (achievementController == null)
+        {
+            Debug.Log("The achievement controller has not been initialised properly");
+        }
+
+        // Achievement for playing blow dart game for the first time.
         if(minigameName == "Temple of Bloon")
         {
             playedDart = true;
@@ -39,6 +54,7 @@ public class AchievementTracker : MonoBehaviour
             Debug.Log("Dart game played ach unlocked");
         }
 
+        // Achievement for playing coconut game for the first time.
         if (minigameName == "Freaky Tiki's Coconut Shy")
         {
             playedTiki = true;
@@ -46,6 +62,7 @@ public class AchievementTracker : MonoBehaviour
             Debug.Log("Coconut game played ach unlocked");
         }
 
+        // Achievement for playing crazy cannon game for the first time.
         if (minigameName == "Crazy Cannon")
         {
             playedCannon = true;
@@ -53,6 +70,7 @@ public class AchievementTracker : MonoBehaviour
             Debug.Log("Cannon game played ach unlocked");
         }
 
+        // Achievement for playing all three minigames.
         if(playedDart && playedTiki && playedCannon)
         {
             achievementController.UnlockAchievement("Tour the Island");
@@ -60,6 +78,7 @@ public class AchievementTracker : MonoBehaviour
         }
     }
 
+    // Achievement for breath quality checks if it is above the target.
     public static void BreathQualityScore_Ach(int breathQualityScore)
     {
         Debug.Log("The ach tracker knows the final quality score: " + breathQualityScore);
@@ -75,6 +94,7 @@ public class AchievementTracker : MonoBehaviour
         }
     }
 
+    // Achievements for good quality breath totals.
     public static void GoodBreaths_Ach(int goodBreathsTotal)
     {
         Debug.Log("The ach tracker knows how many total good breaths: " + goodBreathsTotal);
@@ -95,6 +115,7 @@ public class AchievementTracker : MonoBehaviour
         }
     }
 
+    // Achievement for number of masks and coconuts hit in a row.
     public static void HitInARow_Ach(string whatHit)
     {
         Debug.Log("The achievement tracker thinks it hit: " + whatHit);
@@ -128,6 +149,7 @@ public class AchievementTracker : MonoBehaviour
         }
     }
 
+    // Achievement tracking number of coins.
     public static void AddCoin_Ach()
     {
         coinTotal++;
@@ -149,6 +171,7 @@ public class AchievementTracker : MonoBehaviour
         }
     }
 
+    // Achievement for tracking number of balloons popped.
     public static void PopBalloon_Ach()
     {
         balloonTotal++;
