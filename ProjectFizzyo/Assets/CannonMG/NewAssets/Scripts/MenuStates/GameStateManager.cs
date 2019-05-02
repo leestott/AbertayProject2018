@@ -165,7 +165,6 @@ public class GameStateManager : MonoBehaviour {
 	
 	void OnBreathStarted(object sender)
 	{
-		fillAmount = 0.0f;
 		breathBegin = true;
 	}
 
@@ -174,6 +173,10 @@ public class GameStateManager : MonoBehaviour {
 	{
 		fillAmount = 0.0f;
 		breathBegin = false;
+		if (StaticGameState.currentGameState == StaticGameState.GameState.CharacterMenu)
+		{
+			breathMetre.reset = true;
+		}
 	}
 
 }

@@ -39,6 +39,8 @@ public class BreathMetre : MonoBehaviour {
     // For screenshake.
     ScreenShake screenShake;
 
+	public bool isCannonGame = false;
+
     // Initialise the variables.
     public void Start()
     {
@@ -93,17 +95,27 @@ public class BreathMetre : MonoBehaviour {
         beganBreath = true;
     }
 
+	public void UpdateCannonBar () 
+	{
+		if (lockBar)
+		{
+			barFull.SetBool ("barFull", false);
+			breathMetre.size = fillAmount;
+		}
+	}
+
     // When the breath ends lock the bar and deal with analytics.
     private void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
     {
         DebugManager.SendDebug("Breath ended", "BreathBar");
 
         // If the bar is full lock the bar and shake the screen.
-        if ((fillAmount >= 1) && (!lockBar) && (!reset))
+		if ((fillAmount >= 1) && (!lockBar) && (!reset))
         {
-
-            barFull.SetBool("barFull", true);
-            screenShake.ShakeScreen();
+			if (!isCannonGame) {
+				barFull.SetBool ("barFull", true);
+				screenShake.ShakeScreen ();
+			}
             lockBar = true;
         }
 

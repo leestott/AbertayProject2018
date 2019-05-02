@@ -47,6 +47,8 @@ public class CannonController : MonoBehaviour {
 
 	public BreathMetre breathMetre;
 
+	public float decrementAmount = 0.1f;
+
 	void Start () 
 	{
 		foreach (Transform child in transform) 
@@ -70,9 +72,16 @@ public class CannonController : MonoBehaviour {
 	{
 		if (StaticGameState.currentGameState == StaticGameState.GameState.Gameplay) 
 		{
-			if (!hasLaunched) 
+			fillAmount = breathMetre.fillAmount;
+
+			if (breathMetre.fillAmount >= 1.0f) 
 			{
-				fillAmount = breathMetre.fillAmount;
+				breathMetre.fillAmount = 1.0f;
+			}
+
+			if (breathMetre.lockBar)
+			{
+				breathMetre.UpdateCannonBar ();
 			}
 
 			if (!hasSpawnedProjectile && anim.GetCurrentAnimatorStateInfo (0).IsName ("CannonFire")) 
@@ -119,10 +128,12 @@ public class CannonController : MonoBehaviour {
 				Rigidbody2D projectileRB = projectile.GetComponent<Rigidbody2D> ();
 				//Debug.Log ("Projectile Velocity: " + projectileRB.velocity.x);
 
-				if (Input.GetKeyDown (KeyCode.Space)) {
+				if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && fillAmount >= decrementAmount) {
 					Vector2 boostDirection = new Vector2 (1, 2);
 					boostParticle.Play ();
 
+
+					breathMetre.fillAmount -= decrementAmount;
 					if (projectileRB.velocity.y <= boostSpeed) {
 						projectileRB.velocity = new Vector2 (projectileRB.velocity.x + boostSpeed, boostSpeed * 1.5f);
 					} else {

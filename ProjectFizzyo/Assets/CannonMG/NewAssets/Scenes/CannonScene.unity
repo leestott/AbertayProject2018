@@ -3031,6 +3031,7 @@ MonoBehaviour:
   scoreMultiplier: 1
   barFull: {fileID: 1309516439}
   reset: 0
+  isCannonGame: 1
 --- !u!1 &1437596071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4296,6 +4297,7 @@ MonoBehaviour:
   shadowPrefab: {fileID: 1930700767950648, guid: cee3d2d916efacb45b9d93489734a96b,
     type: 2}
   breathMetre: {fileID: 1431087796}
+  decrementAmount: 0.1
 --- !u!1 &1818903475
 GameObject:
   m_ObjectHideFlags: 0
