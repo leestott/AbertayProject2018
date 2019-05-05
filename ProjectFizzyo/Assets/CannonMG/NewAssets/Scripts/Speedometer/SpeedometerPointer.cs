@@ -23,6 +23,7 @@ public class SpeedometerPointer : MonoBehaviour {
 
 	void Start () 
 	{
+		//Get reference to pointer sprite
 		foreach (Transform child in transform)
 		{
 			if (child.name == "Pointer") 
@@ -34,7 +35,7 @@ public class SpeedometerPointer : MonoBehaviour {
 
 	void Update () 
 	{
-		//BouncePointer ();
+		//Find player projectile
 		if (!foundProjectile)
 		{
 			if (GameObject.FindGameObjectWithTag("CharacterProjectile"))
@@ -47,7 +48,6 @@ public class SpeedometerPointer : MonoBehaviour {
 
 		if (projectile != null)
 		{
-			//Do speed stuff
 			currentSpeed = projectileRB.velocity.x;
 		} 
 		else 
@@ -56,14 +56,18 @@ public class SpeedometerPointer : MonoBehaviour {
 			currentSpeed = 0;
 		}
 
+		//Normalize x velocity between 0 and 1 using a max min range
 		currentValue =  1.0f - (maxSpeed - currentSpeed) / (maxSpeed - minSpeed);
 		float currentRotation = Mathf.Lerp (minRotation, maxRotation, currentValue);
 
+		//Set pointer rotation to the calculated rotation
 		pointerRotation = Mathf.Lerp (pointerRotation, currentRotation, Time.deltaTime);
 		pointer.transform.eulerAngles = new Vector3 (0, 0, pointerRotation);
 
 	}
 
+	//Debug script to bounce pointer back and forth between min a max rotation
+	//Kept as it could be used for an interesting effect
 	void BouncePointer () 
 	{
 		currentValue = Mathf.Sin (Time.time);

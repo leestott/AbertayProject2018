@@ -19,14 +19,18 @@ public class ScrollingWater : MonoBehaviour {
 
 	void Update () 
 	{
+		//Follwo camera on x axis
 		transform.position = new Vector3 (camera.transform.position.x, transform.position.y, transform.position.z);
 
+		//Move material offset using speed value
 		_material.mainTextureOffset = new Vector2 (Time.time * speed, _material.mainTextureOffset.y);
 
+		//Search for player projectile if null
 		if (projectile == null) {
 			projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
 			speed = 0.0f;
 		}
+		//Set scroll speed to player speed and apply a multiplier
 		else if (projectile.transform.position.x > 2) 
 		{
 			Rigidbody2D rb = projectile.GetComponent<Rigidbody2D> ();

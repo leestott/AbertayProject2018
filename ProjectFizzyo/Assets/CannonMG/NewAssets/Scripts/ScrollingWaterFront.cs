@@ -24,6 +24,7 @@ public class ScrollingWaterFront : MonoBehaviour {
 
 	void Update () 
 	{
+		//Uses the same material scrolling method as ScrollingWater script
 		transform.position = new Vector3 (camera.transform.position.x, transform.position.y, transform.position.z);
 
 		_material.mainTextureOffset = new Vector2 (Time.time * speed, _material.mainTextureOffset.y);
@@ -42,6 +43,7 @@ public class ScrollingWaterFront : MonoBehaviour {
 			speed = 0.0f;
 		}
 
+		//Once game over, disable boxcollider to allow player to fall through
 		if (controller.gameOver)
 		{
 			box.isTrigger = true;

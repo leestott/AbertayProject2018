@@ -104,20 +104,24 @@ public class ReticleMovement : MonoBehaviour {
 	{
 		DEBUG = breathMetre.fillAmount;
 
+		//Reset level on R debug input
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			ResetLevel ();	
 		}
 
+		//Check if in gameplay state
 		if (canPlay && !setDisplayInfo.GetIsPopupDisplayed())
 		{
 			if (!hasLaunched) 
 			{
+				//Move reticle along x axis
 				AxisMovement ();
 			}
 
 			if ((Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown ()) && !hasLaunched && breathMetre.fillAmount > 0.1f)
 			{
+				//Determine if the power is enough to reach the coconut
 				if (breathMetre.fillAmount > 0.75f) 
 				{
 					canReach = true;
@@ -128,14 +132,18 @@ public class ReticleMovement : MonoBehaviour {
 					canReach = false;
 					ballUpwardVelocity = breathMetre.fillAmount * 2.0f;
 				}
+				//Create ball object and apply initial scale
 				ballProjectile = Instantiate (ballPrefab, transform.position, Quaternion.identity) as GameObject;
 				ballProjectile.transform.localScale = new Vector3 (maxBallSize, maxBallSize, maxBallSize);
 				if (!canReach) 
 				{
+					//If can't reach then change sorting layer so the sprite falls infront of the hut front
 					SpriteRenderer ren = ballProjectile.GetComponent<SpriteRenderer> ();
 					ren.sortingLayerName = "ForeGround";
 					ren.sortingOrder = 2;
 				}
+
+				//Apply upward velocity to ball
 				Rigidbody2D ballRB = ballProjectile.GetComponent<Rigidbody2D> ();
 				ballRB.velocity = new Vector2 (0, ballUpwardVelocity);
 				currentTravelTime = 0.0f;
@@ -147,6 +155,7 @@ public class ReticleMovement : MonoBehaviour {
 			{
 				if (isTravelling && canReach) 
 				{
+					//Increment travel time
 					currentTravelTime += Time.deltaTime;
 					CalculateSize ();
 				}
@@ -159,8 +168,10 @@ public class ReticleMovement : MonoBehaviour {
 				if (currentTravelTime >= coconutTravelTime && !hasHit && canReach) 
 				{
 					hasHit = true;
+					// If ball hit mask
 					if (isMaskBlocking) 
 					{
+						// Update achievment tracker
                         AchievementTracker.HitInARow_Ach("Mask");
                         isTravelling = false;
 						currentTarget = null;
@@ -184,6 +195,7 @@ public class ReticleMovement : MonoBehaviour {
 								audioSource.PlayOneShot (coconutHitEffects [audioNumber]);
 								screenShake.ShakeScreen ();
 							}
+							//Apply random rotation to coconut and apply gravity to cause coconut to fall
 							Rigidbody2D coconutRB = currentTarget.GetComponent<Rigidbody2D> ();
 							coconutRB.gravityScale = 1.0f;
 							float randomTorque = Random.Range (-2.0f, 2.0f);
@@ -195,6 +207,7 @@ public class ReticleMovement : MonoBehaviour {
 
 							scoreManager.AddScore (50);
 
+							//Finish level if all coconuts have been hit
 							if (coconutsHit >= 5)
 							{
 								StartCoroutine (ResetLevelDelay ());
@@ -204,7 +217,8 @@ public class ReticleMovement : MonoBehaviour {
 								StartCoroutine (ResetDelay ());
 							}
 						}
-					} else
+					}
+					else
                     {
                         AchievementTracker.HitInARow_Ach("Miss");
                     }
@@ -212,6 +226,7 @@ public class ReticleMovement : MonoBehaviour {
 
 				if (currentTravelTime >= maxTravelTime) 
 				{
+					//If finished level then call reset coroutine
 					if (coconutsHit >= 5)
 					{
 						StartCoroutine (ResetLevelDelay ());
@@ -235,6 +250,7 @@ public class ReticleMovement : MonoBehaviour {
 					//}
 			}
 
+			//If the ball missed and has hit ground
 			if (ballProjectile != null && !hasHitGround) 
 			{
 				if (ballProjectile.transform.position.y <= groundPosition.position.y) 
@@ -245,6 +261,7 @@ public class ReticleMovement : MonoBehaviour {
 			}
 		}
 
+		//Wait for initial input on HowTo screen to start game to prevent accidental firing
 		if (Input.GetKeyDown (KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown () && !canPlay)
 		{
 			canPlay = true;
@@ -255,8 +272,10 @@ public class ReticleMovement : MonoBehaviour {
 	{
 		Reset ();
 		Debug.Log ("RESET LEVEL");
+		//Loop through all coconuts to be reset
 		for (int i = 0; i < coconuts.Length; i++) 
 		{
+			//Assign spawn position
 			Vector3 resetPosition = new Vector3 (0.0f, -0.2f, 0.0f);
 			switch (i)
 			{
@@ -277,6 +296,7 @@ public class ReticleMovement : MonoBehaviour {
 				break;
 			}
 
+			// Reset coconut physics propertices and position
 			Rigidbody2D currentRB = coconuts [i].GetComponent<Rigidbody2D> ();
 			currentRB.gravityScale = 0.0f;
 			currentRB.velocity = new Vector2 (0.0f, 0.0f);
@@ -291,6 +311,7 @@ public class ReticleMovement : MonoBehaviour {
 
     void Reset()
     {
+		// Reset global variables for new shot/level
         isTravelling = false;
         hasLaunched = false;
         currentTravelTime = 0.0f;
@@ -336,18 +357,22 @@ public class ReticleMovement : MonoBehaviour {
 
 	}
 
+	//Sprite scale is used to give the impression of throwing the ball in a 3D world but on a 2D plane
 	void CalculateSize () 
 	{
+		//Calculate sprite ball size while throwing
 		float ballScale = maxBallSize + currentTravelTime * ((minBallSize - maxBallSize) / maxTravelTime);
 		ballProjectile.transform.localScale = new Vector3 (ballScale, ballScale, ballScale);
 	}
 
 	void CalculateSizeFail () 
 	{
+		//Calculate sprite ball size while throwing
 		float ballScale = maxBallSize + currentTravelTime * ((minBallSizeFail - maxBallSize) / maxTravelTime);
 		ballProjectile.transform.localScale = new Vector3 (ballScale, ballScale, ballScale);
 	}
 
+	//Reset current target values
 	void OnTriggerExit2D (Collider2D col)
 	{
 		if (col.name == "Coconut") 
@@ -360,12 +385,14 @@ public class ReticleMovement : MonoBehaviour {
 		}
 	}
 
+	// Delay between shots
 	IEnumerator ResetDelay () 
 	{
 		yield return new WaitForSeconds (0.0f);
 		Reset ();
 	}
 
+	// Delay between levels
 	IEnumerator ResetLevelDelay ()
 	{
 		yield return new WaitForSeconds (2.0f);

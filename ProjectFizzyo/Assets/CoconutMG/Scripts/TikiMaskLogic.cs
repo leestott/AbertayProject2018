@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TikiMaskLogic : MonoBehaviour {
 
+	// Global variables and component references
 	public Sprite[] maskSprites;
 
 	public float movementSpeed = 1.0f;
@@ -26,6 +27,7 @@ public class TikiMaskLogic : MonoBehaviour {
 
 	float randomXPos;
 
+	//Get references to components and initialise mask
 	void Start () 
 	{
 		spriteRen = GetComponent<SpriteRenderer>();
@@ -35,13 +37,14 @@ public class TikiMaskLogic : MonoBehaviour {
 		m_Pivot = transform.position -= new Vector3 (m_XScale, 0, 0);
 	}
 
+	//Generate a random number to determine mask movement pattern
 	void GenerateMovementNumber () 
 	{
 		transform.position = new Vector2 (0, 0);
 		randomMoveNumber = Random.Range (1, 5);
 		Debug.Log ("RANDOM MOVE NUM: " + randomMoveNumber);
 	}
-
+		
 	void Update() 
 	{
 		if (Input.GetKeyDown (KeyCode.N)) 
@@ -49,6 +52,7 @@ public class TikiMaskLogic : MonoBehaviour {
 			GenerateMovementNumber ();
 		}
 
+		//Call appropriate mask movement function
 		switch (randomMoveNumber)
 		{
 		case 1:
@@ -69,18 +73,21 @@ public class TikiMaskLogic : MonoBehaviour {
 		}
 	}
 
+	//Generate new mask sprite
 	void GenerateNewMask () 
 	{
 		int randomNum = Random.Range (0, maskSprites.Length);
 		spriteRen.sprite = maskSprites [randomNum];
 	}
 
+	//Move mask back and forth along X-axis using a sin wave
 	void XAxisPath() 
 	{
 		float xPos = (8 / 2f) * Mathf.Sin (Time.time * movementSpeed);
 		transform.position = new Vector3 (xPos, transform.position.y, 0);
 	}
 
+	//Move mask in a circular path around a point using equation of a circle
 	void CirclePath() 
 	{
 		angle += movementSpeed * Time.deltaTime;
@@ -90,6 +97,7 @@ public class TikiMaskLogic : MonoBehaviour {
 		transform.position = new Vector2(0, 0) + offset;
 	}
 
+	//Move mask in figure-8 path
 	void FigureEightPath () 
 	{
 		m_PivotOffset = Vector3.right * 2 * m_XScale;
@@ -109,11 +117,13 @@ public class TikiMaskLogic : MonoBehaviour {
 		transform.position += new Vector3 (Mathf.Cos (m_Phase) * (m_Invert ? -1 : 1) * m_YScale, Mathf.Sin (m_Phase) * m_XScale, 0);
 	}
 
+	//Calculate new random position on X-axis
 	void GenerateNewPoint () 
 	{
 		randomXPos = Random.Range (-7, 7);
 	}
 
+	//Move to current random point then calculate new point once reached
 	void RandomXPath () 
 	{
 		float xPos = Mathf.Lerp (transform.position.x, randomXPos, Time.deltaTime);

@@ -13,6 +13,7 @@ public class ProjectileAnimator : MonoBehaviour {
 
 	void Start () 
 	{
+		//Initialise references
 		col = GetComponent<Collider2D> ();
 		anim = GetComponentInChildren<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
@@ -36,6 +37,7 @@ public class ProjectileAnimator : MonoBehaviour {
 			break;
 		}
 
+		//If turned on rotate the sprite to face the direction of travel
 		if (rotateToFaceVelocity) 
 		{
 			Vector2 dir = rb.velocity;
@@ -45,6 +47,7 @@ public class ProjectileAnimator : MonoBehaviour {
 			
 	}
 
+	//On collision with water play character jump animation
 	void OnCollisionEnter2D(Collision2D collision) 
 	{
 		if (collision.collider.tag == "Water") 

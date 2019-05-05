@@ -11,6 +11,7 @@ public class BuoyObstacle : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col) 
 	{
+		//If collided with player projectile
 		if (col.tag == "CharacterProjectile") {
 			projectile = col.gameObject;
 			projectileRB = projectile.GetComponent<Rigidbody2D> ();
@@ -18,6 +19,7 @@ public class BuoyObstacle : MonoBehaviour {
 		}
 	}
 
+	//Apply a negative force to slightly slow the player
 	void ApplySlowForce () 
 	{
 		projectileRB.AddForce (Vector2.right * forceMultplier * projectileRB.velocity.x * -1.0f);

@@ -20,12 +20,15 @@ public class ScreenShake : MonoBehaviour {
 	{
 		if (shake > 0)
 		{
+			// Move screen by point within a circle whose radius is determined by the shake magnitude
 			Vector2 shakeValue = Random.insideUnitCircle * shakeMagnitude;
 			transform.localPosition = new Vector3 (shakeValue.x, shakeValue.y, transform.localPosition.z);
+			//Decrement shake value until shake completed
 			shake -= Time.deltaTime * dampingSpeed;
 		}
 		else 
 		{
+			//Reset screen position
 			shake = 0.0f;
 			transform.position = originalPosition;
 		}

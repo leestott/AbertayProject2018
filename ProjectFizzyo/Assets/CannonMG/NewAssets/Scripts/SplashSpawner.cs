@@ -9,6 +9,7 @@ public class SplashSpawner : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col) 
 	{
+		//If the player has bounced of the water spawn a splash sprite
 		if (col.collider.tag == "CharacterProjectile") 
 		{
 			Debug.Log ("BOUNCE!");
@@ -19,6 +20,7 @@ public class SplashSpawner : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col) 
 	{
+		//If the player has splashed through the water spawn a splash sprite
 		if (col.tag == "CharacterProjectile") 
 		{
 			Debug.Log ("SPLASH!");

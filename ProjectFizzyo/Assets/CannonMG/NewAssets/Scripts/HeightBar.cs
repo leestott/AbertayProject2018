@@ -17,6 +17,7 @@ public class HeightBar : MonoBehaviour {
 
 	void Start () 
 	{
+		//Initialse variables and references
 		box = GetComponent<BoxCollider2D> ();
 		arrowPoint = GameObject.Find ("ArrowHeightPoint");
 		minimumBarHeight = arrowPoint.transform.localPosition.y - (box.size.y / 2.0f);
@@ -33,6 +34,7 @@ public class HeightBar : MonoBehaviour {
 		} 
 		else 
 		{
+			//Normalize height between 0 and 1 by using min and max range
 			float scaledHeight = ((projectile.transform.position.y - minimumHeight) / (maximumHeight - minimumHeight));
 			if (scaledHeight < 0) 
 			{
@@ -42,6 +44,7 @@ public class HeightBar : MonoBehaviour {
 			{
 				scaledHeight = 1;
 			}
+			//Move arrow to scaled height on bar
 			float arrowHeight = Mathf.Lerp (minimumBarHeight, maximumBarHeight, scaledHeight);
 			arrowPoint.transform.localPosition = new Vector3 (arrowPoint.transform.localPosition.x, arrowHeight, arrowPoint.transform.localPosition.z);
 		}

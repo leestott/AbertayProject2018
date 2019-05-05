@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour {
 
+	//Global and public variables and component references
 	GameObject startPromptText;
 	GameObject characterMenu;
 
@@ -32,12 +33,14 @@ public class GameStateManager : MonoBehaviour {
 
 	void Start () 
 	{
+		//Get references to components
 		StaticGameState.currentGameState = StaticGameState.GameState.CharacterMenu;
 		startPromptText = GameObject.Find ("StartPromptText");
 		characterMenu = GameObject.Find ("CharacterPanels");
 
 		controller = GameObject.FindObjectOfType<CannonController> ();
 
+		//Initialise gameobjects
 		startPromptText.SetActive (false);
 		characterMenu.SetActive (false);
 
@@ -51,6 +54,7 @@ public class GameStateManager : MonoBehaviour {
 
 	void Update () 
 	{
+		//Display the appropriate windows and UI depending on the current game state
 		switch (StaticGameState.currentGameState) 
 		{
 		case StaticGameState.GameState.CharacterMenu:
@@ -90,9 +94,11 @@ public class GameStateManager : MonoBehaviour {
 			StaticGameState.currentGameState = StaticGameState.GameState.StartPrompt;
 			Debug.Log ("CHARACTER SELECTED: " + StaticGameState.currentCharacter);
 		}
+		//On button input increment menu value to rotate menu
 		if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && pressTime >= 1.2f)
 		{
 			currentMenuIndex++;
+			//Reset value if it exceeds menu items number
 			if (currentMenuIndex > menuPositions.Length - 1)
 			{
 				currentMenuIndex = 0;
@@ -100,6 +106,10 @@ public class GameStateManager : MonoBehaviour {
 			pressTime = 0;
 		}
 
+		//Moving the character panels around to new positions while scaling gives the impression
+		//Of a 3D circular menu
+
+		//Calculate offset for menu positions
 		for (int i = 0; i < characterPanels.Length; i++) 
 		{
 			int menuOffset = i + currentMenuIndex;
@@ -108,12 +118,14 @@ public class GameStateManager : MonoBehaviour {
 				menuOffset -= menuPositions.Length;
 			}
 				
+			//Move to new positions and scales
 			characterPanels [i].transform.position = Vector3.Lerp (characterPanels [i].transform.position, menuPositions [menuOffset].position, Time.deltaTime * rotateSpeed);
 			characterPanels [i].transform.localScale = Vector3.Lerp (characterPanels [i].transform.localScale, menuPositions [menuOffset].localScale, Time.deltaTime * rotateSpeed);
 		}
 
 		pressTime += Time.deltaTime;
 
+		//Set current character enum to the current menu panel index
 		switch (currentMenuIndex) 
 		{
 		case 0:
@@ -136,8 +148,10 @@ public class GameStateManager : MonoBehaviour {
 		}
 	}
 
+	//Start prompt state
 	void StartPrompt() 
 	{
+		//Wait for input to start game, this prevents any accidental breath input
 		if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()))
 		{
 			breathMetre.reset = true;
@@ -148,12 +162,15 @@ public class GameStateManager : MonoBehaviour {
 		}
 	}
 
+	//Gameplay state
 	void Gameplay() 
 	{
+		//Back out to character menu on escape
 		if (Input.GetKeyDown (KeyCode.Escape)) 
 		{
 			StaticGameState.currentGameState = StaticGameState.GameState.CharacterMenu;
 
+			//If projectile still in air, destroy it
 			GameObject projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
 			if (projectile != null) 
 			{

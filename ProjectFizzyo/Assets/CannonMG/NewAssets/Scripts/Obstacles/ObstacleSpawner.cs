@@ -36,6 +36,7 @@ public class ObstacleSpawner : MonoBehaviour {
 
 	void Update () 
 	{
+		//Find player projectile
 		if (!hasFound)
 		{
 			projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
@@ -69,9 +70,11 @@ public class ObstacleSpawner : MonoBehaviour {
 
 	void SpawnObstacle () 
 	{
+		//Create random value to determine obstacle type
 		int randomBias = Random.Range (0, 100);
 		int currentPositiveBias = (int)(positiveObstacleBias * 100);
 
+		//If the random value is less than positibe bias then spawn a positive obstacle
 		if (randomBias <= currentPositiveBias)
 		{
 			int randomObstacleIndex = Random.Range (0, positiveObstacles.Length);
@@ -80,6 +83,7 @@ public class ObstacleSpawner : MonoBehaviour {
 		} 
 		else 
 		{
+			//Spawn a negative obstacle
 			int randomObstacleIndex = Random.Range (0, negativeObstacles.Length);
 			Vector3 spawnPosition = new Vector3 (obstacleSpawnPoint.position.x, negativeObstacles [randomObstacleIndex].transform.position.y, 0);
 			GameObject currentObstacle = Instantiate (negativeObstacles [randomObstacleIndex], spawnPosition, Quaternion.identity) as GameObject;
@@ -89,9 +93,11 @@ public class ObstacleSpawner : MonoBehaviour {
 
 	IEnumerator SpawnDelay () 
 	{
+		//Create a random value for delay time
 		float delayTime = Random.Range (minDelayTime, maxDelayTime);
 		if (projectileRB != null)
 		{
+			//Adjust delay value for projectile velocity
 			if (projectileRB.velocity.x > 0)
 			{
 				delayTime /= projectileRB.velocity.x * multiplier;
@@ -99,8 +105,10 @@ public class ObstacleSpawner : MonoBehaviour {
 		}
 		publicDelayTime = delayTime;
 		//Debug.Log ("OBSTACLE DELAY TIME: " + delayTime);
+		//Wait delay time
 		yield return new WaitForSeconds (delayTime);
 			
+		//Once completed spawn another obstacle if player projectile exists
 		if (hasFound && projectile != null) 
 		{
 			SpawnObstacle ();

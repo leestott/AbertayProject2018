@@ -18,13 +18,16 @@ public class ShadowTracker : MonoBehaviour {
 
 	void Update () 
 	{
+		//If player exists and is above the water
 		if (characterProjectile != null && characterProjectile.transform.position.y > transform.position.y - 1.0f)
 		{
+			//Follow player position on x axis
 			Vector3 position = new Vector3 (characterProjectile.transform.position.x, transform.position.y, transform.position.z);
 			transform.position = position;
 
 			float height = characterProjectile.transform.position.y;
 
+			//Adjust shadow scale using players height
 			scale = (-maxScale / 10.0f) * characterProjectile.transform.position.y + maxScale;
 			if (scale < minScale) 
 			{
@@ -39,6 +42,7 @@ public class ShadowTracker : MonoBehaviour {
 		}
 		else 
 		{
+			//Destroy shadow if the player is below the water or has been destroyed
 			GameObject.Destroy (this.gameObject);
 		}
 	}

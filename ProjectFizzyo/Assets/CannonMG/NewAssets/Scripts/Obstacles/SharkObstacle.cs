@@ -18,6 +18,7 @@ public class SharkObstacle : MonoBehaviour {
 	{
 		cameraTransform = GameObject.FindObjectOfType<Camera> ().gameObject.transform;
 		cameraScript = GameObject.FindObjectOfType<ProjectileCameraFollow> ();
+		//Get references to all child sprites of shark
 		foreach (Transform child in transform)
 		{
 			if (child.name == "SharkFin") 
@@ -41,12 +42,15 @@ public class SharkObstacle : MonoBehaviour {
 
 	void Update () 
 	{
+		//Calculate distance from the camera on x axis
 		float distanceFromCamera = cameraTransform.position.x - transform.position.x;
+		//Destroy once out of view
 		if (distanceFromCamera > 20) 
 		{
 			GameObject.Destroy (this.gameObject);
 		}
 
+		//Debug controls for triggering caught animation
 		if (Input.GetKeyDown (KeyCode.T))
 		{
 			SpawnHead ();
@@ -55,6 +59,7 @@ public class SharkObstacle : MonoBehaviour {
 
 	void Catch() 
 	{
+		//If caught by shark stop player projectile and destroy
 		Debug.Log ("CAUGHT BY SHARK");
 		projectileRB.velocity = new Vector2 (0, 0);
 		projectile.transform.position = transform.position;
@@ -63,6 +68,7 @@ public class SharkObstacle : MonoBehaviour {
 		StartCoroutine (RespawnDelay ());
 	}
 
+	//Spawn shark head and splash once been hit
 	void SpawnHead() 
 	{
 		sharkFin.SetActive (false);
@@ -70,18 +76,21 @@ public class SharkObstacle : MonoBehaviour {
 		waterSplash.SetActive (true);
 	}
 
+	//Detect if collision was with a player
 	void OnTriggerEnter2D (Collider2D col) 
 	{
 		if (col.tag == "CharacterProjectile") 
 		{
 			projectile = col.gameObject;
 			projectileRB = projectile.GetComponent<Rigidbody2D> ();
+			//Catch the player projectile
 			Catch ();
 		}
 	}
 
 	IEnumerator RespawnDelay() 
 	{
+		//Reset camera position after delay
 		yield return new WaitForSeconds (2.5f);
 		cameraScript.ResetCamera ();
 	}

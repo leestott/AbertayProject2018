@@ -25,15 +25,18 @@ public class IslandTracking : MonoBehaviour {
 
 	void Update () 
 	{
+		//Set island velocity to a percentage of the projectile velocity to create a parallax effect
 		if (projectile != null && projectileRB != null) 
 		{
 			rb.velocity = new Vector2 (projectileRB.velocity.x * speedMultiplier, 0.0f);
 		} 
 		else
 		{
+			//If projectile is null the stop moving
 			rb.velocity = new Vector2 (0.0f, 0.0f);
 		}
 
+		//Destroy island once off screen
 		if (Camera.main.transform.position.x - transform.position.x > 16) 
 		{
 			GameObject.Destroy (this.gameObject);

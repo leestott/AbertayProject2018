@@ -58,10 +58,12 @@ public class CloudSpawner : MonoBehaviour {
 	{
 		if (hasFound && projectile != null) 
 		{
+			//If under a certain height value to prevent clouds being spawned when high in the atmosphere
 			if (camera.transform.position.y < 35.0f) {
 
 				int skyNumber = Random.Range (0, 10);
 
+				//1 in 10 chance that a seagull sprite will be spawned instead of a cloud between a min and max height
 				if (skyNumber == 4) {
 					float randomHeight = Random.Range (projectile.transform.position.y - minHeight, projectile.transform.position.y + maxHeight);
 					if (randomHeight < 1.0f) {
@@ -70,6 +72,7 @@ public class CloudSpawner : MonoBehaviour {
 					Vector3 spawnPosition = new Vector3 (spawnPoint.position.x, randomHeight, 2);
 					GameObject currentSeagulls = Instantiate (seagullsPrefab, spawnPosition, Quaternion.identity);
 				} else {
+					//Spawn a cloud infront of the camera between a min and max height
 					int randomIndex = Random.Range (0, clouds.Length - 1);
 					float randomHeight = Random.Range (projectile.transform.position.y - minHeight, projectile.transform.position.y + maxHeight);
 					if (randomHeight < 1.0f) {
@@ -86,6 +89,7 @@ public class CloudSpawner : MonoBehaviour {
 
 	IEnumerator SpawnDelay () 
 	{
+		//Delay a random value between min and max delay
 		float randomDelay = Random.Range (minDelay, maxDelay);
 		yield return new WaitForSeconds (randomDelay);
 		SpawnCloud ();

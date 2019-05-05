@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class StaticGameState {
 
+	//Public enums for game state and character selection
 	public enum GameState {CharacterMenu, StartPrompt, Gameplay};
 	public enum CharacterState {Alien, Batboy, Bigfoot, Bear, Unicorn};
 

@@ -23,8 +23,7 @@ public class ProjectileCameraFollow : MonoBehaviour {
 
 	void Update () 
 	{
-		projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
-
+		//Find player projectile
 		if (projectile != null) 
 		{
 			foundCharacter = true;
@@ -32,10 +31,12 @@ public class ProjectileCameraFollow : MonoBehaviour {
 		else 
 		{
 			foundCharacter = false;
+			projectile = GameObject.FindGameObjectWithTag ("CharacterProjectile");
 		}
 
 		if (foundCharacter)
 		{
+			//Track player position onces passed a minimum x value to prevent camera snapping to a new position on cannon fire
 			if (projectile.transform.position.x > 0)
 			{
 				Vector3 cameraPosition = new Vector3 (projectile.transform.position.x, projectile.transform.position.y, transform.position.z);
@@ -55,6 +56,7 @@ public class ProjectileCameraFollow : MonoBehaviour {
 		}
 	}
 
+	//Reset camera position
 	public void ResetCamera() 
 	{
 		transform.position = startPosition;

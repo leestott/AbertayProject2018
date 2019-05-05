@@ -17,6 +17,7 @@ public class DistanceMeasure : MonoBehaviour {
 
 	void Start () 
 	{
+		//Initialise variables and number list
 		distance = 0;
 		numbers = new int[6];
 	}
@@ -44,6 +45,7 @@ public class DistanceMeasure : MonoBehaviour {
 
 		distance = Mathf.Round (distance);
 
+		//Wrap around distance value
 		if (distance < 0) 
 		{
 			distance = 0;
@@ -53,12 +55,13 @@ public class DistanceMeasure : MonoBehaviour {
 			distance = 999999;
 		}
 			
-
+		//Format distance value
 		int distanceInt = Mathf.RoundToInt (distance);
 		string distanceString = distanceInt.ToString ("D6");
 
 		//Debug.Log (distanceString.Length );
 
+		//Assign each value of number array by parsing distance value
 		for (int i = 0; i < 6; i++) 
 		{
 			int distanceValue = 0;

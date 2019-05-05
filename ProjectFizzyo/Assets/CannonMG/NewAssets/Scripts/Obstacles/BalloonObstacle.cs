@@ -17,6 +17,7 @@ public class BalloonObstacle : MonoBehaviour {
 
 	void Update () 
 	{
+		//Delete obstacle once out of view
 		float distanceFromCamera = cameraTransform.position.x - transform.position.x;
 		if (distanceFromCamera > 20) 
 		{
@@ -26,6 +27,8 @@ public class BalloonObstacle : MonoBehaviour {
 
 	void Launch() 
 	{
+		//Apply boost to player based on downward y-velocity
+		//Further explanation of the same method can be found in DolphinObstacle script
 		Debug.Log ("HIT OBSTACLE");
 		if (projectileRB.velocity.y <= launchSpeed) 
 		{
@@ -39,6 +42,7 @@ public class BalloonObstacle : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col) 
 	{
+		//If collided with player apply boost to player
 		if (col.tag == "CharacterProjectile") 
 		{
 			projectile = col.gameObject;

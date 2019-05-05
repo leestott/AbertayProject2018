@@ -26,13 +26,20 @@ public class DolphinObstacle : MonoBehaviour {
 
 	void Launch() 
 	{
+		//Apply a positive launch force to the player
 		Debug.Log ("HIT OBSTACLE");
+		//A different boost is applied based on the player's downward velocity. This prevents the boost from slowing the player down when moving upward
+		//While also allowing it to still be useful to prevent falling
+
+		//If the player is moving downward faster than launch velocity
 		if (projectileRB.velocity.y <= launchSpeed) 
 		{
+			//Apply velocity boost while directly setting y-velocity
 			projectileRB.velocity = new Vector2 (projectileRB.velocity.x + launchSpeed, launchSpeed * 1.5f);
 		}
 		else
 		{
+			//Apply velocity boost normally
 			projectileRB.velocity = new Vector2 (projectileRB.velocity.x + launchSpeed, projectileRB.velocity.y + launchSpeed * 1.5f);
 		}
 	}

@@ -5,6 +5,7 @@ using Fizzyo;
 
 public class CannonController : MonoBehaviour {
 
+	//Public and global variables
 	[Header("Rotation speed and angle of cannon:")]
 	public float rotationSpeed;
 	public float maxRotationAngle;
@@ -51,6 +52,7 @@ public class CannonController : MonoBehaviour {
 
 	void Start () 
 	{
+		//Get child cannon sprite
 		foreach (Transform child in transform) 
 		{
 			if (child.name == "CannonBody") 
@@ -59,6 +61,7 @@ public class CannonController : MonoBehaviour {
 			}
 		}
 
+		//Initialise variables and get references
 		if (cannonBody != null)
 		{
 			anim = cannonBody.GetComponent<Animator> ();
@@ -70,25 +73,31 @@ public class CannonController : MonoBehaviour {
 
 	void Update () 
 	{
+		//If in gameplay state
 		if (StaticGameState.currentGameState == StaticGameState.GameState.Gameplay) 
 		{
+			//Update fill amount using breath metre value
 			fillAmount = breathMetre.fillAmount;
 
+			//Cap fill amount to 1.0f to prevent launching exploit
 			if (breathMetre.fillAmount >= 1.0f) 
 			{
 				breathMetre.fillAmount = 1.0f;
 			}
 
+			//Call custom function in breath bar to prevent bar lock animation
 			if (breathMetre.lockBar)
 			{
 				breathMetre.UpdateCannonBar ();
 			}
 
+			//If cannon has finish charging and is currently firing
 			if (!hasSpawnedProjectile && anim.GetCurrentAnimatorStateInfo (0).IsName ("CannonFire")) 
 			{
 				hasSpawnedProjectile = true;
 				launchForce = cannonBasePower;
 
+				//Instantiate player projectile with current selected character
 				switch(StaticGameState.currentCharacter) 
 				{
 				case StaticGameState.CharacterState.Alien:
@@ -110,9 +119,12 @@ public class CannonController : MonoBehaviour {
 					projectile = Instantiate (alienPrefab, launchDirection.transform.position, launchDirection.transform.rotation) as GameObject;
 					break;
 				}
+				//Get reference to projectile rigidbody2d
 				Rigidbody2D projectileRB = projectile.GetComponent<Rigidbody2D> ();
+				//Appl launch force in cannon fire direction
 				projectileRB.AddForce (launchDirection.transform.up * launchForce * fillAmount);
 
+				//Get reference to boost particle system
 				boostParticle = projectile.GetComponentInChildren<ParticleSystem> ();
 
 				hasSpawnedShadow = true;
@@ -120,20 +132,25 @@ public class CannonController : MonoBehaviour {
 				Instantiate (shadowPrefab, shadowPosition, Quaternion.identity);
 			}
 
+			//If button input, start cannon fire animation
 			if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && !hasLaunched && fillAmount > 0.0f) {
 				hasLaunched = true;	
 				anim.SetTrigger ("FireCannon");
 			}
+				
+			//If projectile is currently in the air
 			if (hasLaunched && projectile != null) {
 				Rigidbody2D projectileRB = projectile.GetComponent<Rigidbody2D> ();
 				//Debug.Log ("Projectile Velocity: " + projectileRB.velocity.x);
 
+				//If button input and breath bar filled over a minimum amount
 				if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && fillAmount >= decrementAmount) {
 					Vector2 boostDirection = new Vector2 (1, 2);
 					boostParticle.Play ();
 
-
+					//Decrement breath bar by decrement amount to limit amount of boost uses
 					breathMetre.fillAmount -= decrementAmount;
+					//Apply boost to player projectile
 					if (projectileRB.velocity.y <= boostSpeed) {
 						projectileRB.velocity = new Vector2 (projectileRB.velocity.x + boostSpeed, boostSpeed * 1.5f);
 					} else {
@@ -148,6 +165,7 @@ public class CannonController : MonoBehaviour {
 				}
 			}
 
+			//If not launched yet rotate cannon
 			if (!hasLaunched) {
 				AxisRotation ();
 			}
@@ -156,12 +174,14 @@ public class CannonController : MonoBehaviour {
 
 	public void Reset () 
 	{
+		//Destroy all obstacles in scene
 		GameObject[] obstacleList = GameObject.FindGameObjectsWithTag ("Obstacle");
 		for (int i = 0; i < obstacleList.Length; i++) 
 		{
 			GameObject.Destroy (obstacleList [i]);
 		}
 
+		//Reset variables
 		hasLaunched = false;
 		gameOver = false;
 		hasSpawnedProjectile = false;

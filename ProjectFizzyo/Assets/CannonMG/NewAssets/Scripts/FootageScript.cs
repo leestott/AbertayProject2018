@@ -6,6 +6,7 @@ public class FootageScript : MonoBehaviour {
 
 	void Update () 
 	{
+		//Script to change timescale to allow for easier footage and screenshot recording
 		if (Input.GetKeyDown (KeyCode.F)) 
 		{
 			Time.timeScale = 0.25f;

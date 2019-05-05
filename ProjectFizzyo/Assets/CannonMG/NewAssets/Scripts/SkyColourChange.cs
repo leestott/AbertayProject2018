@@ -25,8 +25,10 @@ public class SkyColourChange : MonoBehaviour {
 	{
 		float cameraHeight = camera.transform.position.y;
 
+		//Normalize height between range of 0 and 1 using max min range for height values
 		currentHeightScaled = (cameraHeight - minHeight) / (maxHeight - minHeight);
 
+		//Lerp colour between min and max using normalized height value
 		Color currentColour = Color.Lerp (minColour, maxColour, currentHeightScaled);
 		skyMaterial.color = currentColour;
 	}
