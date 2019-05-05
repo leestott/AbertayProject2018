@@ -50,6 +50,8 @@ public class CannonController : MonoBehaviour {
 
 	public float decrementAmount = 0.1f;
 
+	public CharacterAudioManager characterAudioManager;
+
 	void Start () 
 	{
 		//Get child cannon sprite
@@ -69,6 +71,8 @@ public class CannonController : MonoBehaviour {
 
 		fillAmount = 0.0f;
 		breathMetre.reset = true;
+
+		characterAudioManager = GameObject.FindObjectOfType<CharacterAudioManager> ();
 	}
 
 	void Update () 
@@ -94,6 +98,7 @@ public class CannonController : MonoBehaviour {
 			//If cannon has finish charging and is currently firing
 			if (!hasSpawnedProjectile && anim.GetCurrentAnimatorStateInfo (0).IsName ("CannonFire")) 
 			{
+				characterAudioManager.PlayerLaunch ();
 				hasSpawnedProjectile = true;
 				launchForce = cannonBasePower;
 
@@ -147,7 +152,6 @@ public class CannonController : MonoBehaviour {
 				if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && fillAmount >= decrementAmount) {
 					Vector2 boostDirection = new Vector2 (1, 2);
 					boostParticle.Play ();
-
 					//Decrement breath bar by decrement amount to limit amount of boost uses
 					breathMetre.fillAmount -= decrementAmount;
 					//Apply boost to player projectile

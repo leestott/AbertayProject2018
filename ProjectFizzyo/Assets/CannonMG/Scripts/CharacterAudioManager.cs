@@ -29,25 +29,25 @@ public class CharacterAudioManager : MonoBehaviour {
 	public void PlaySkiff () 
 	{
 		int randomSkiffNumber = 0;
-		switch(CannonStaticValues.playerCharacter)
+		switch(StaticGameState.currentCharacter)
 		{
-		case CannonStaticValues.Characters.Alien:
+		case StaticGameState.CharacterState.Alien:
 			randomSkiffNumber = Random.Range (0, alienSkiffs.Length - 1);
 			sfxSource.PlayOneShot (alienSkiffs [randomSkiffNumber]);
 			break;
-		case CannonStaticValues.Characters.Batboy:
+		case StaticGameState.CharacterState.Batboy:
 			randomSkiffNumber = Random.Range(0, batBoySkiffs.Length - 1);
 			sfxSource.PlayOneShot(batBoySkiffs[randomSkiffNumber]);
 			break;
-		case CannonStaticValues.Characters.Bear:
+		case StaticGameState.CharacterState.Bear:
 			randomSkiffNumber = Random.Range(0, bearSkiffs.Length - 1);
 			sfxSource.PlayOneShot(bearSkiffs[randomSkiffNumber]);
 			break;
-		case CannonStaticValues.Characters.Unicorn:
+		case StaticGameState.CharacterState.Unicorn:
 			randomSkiffNumber = Random.Range (0, unicornSkiffs.Length - 1);
 			sfxSource.PlayOneShot (unicornSkiffs [randomSkiffNumber]);
 			break;
-		case CannonStaticValues.Characters.BigFoot:
+		case StaticGameState.CharacterState.Bigfoot:
 			randomSkiffNumber = Random.Range (0, bigfootSkiffs.Length - 1);
 			sfxSource.PlayOneShot (bigfootSkiffs [randomSkiffNumber]);
 			break;
@@ -58,25 +58,25 @@ public class CharacterAudioManager : MonoBehaviour {
 	public void PlayerLaunch () 
 	{
 		int randomLaunchNumber = 0;
-		switch (CannonStaticValues.playerCharacter)
+		switch (StaticGameState.currentCharacter)
 		{
-		case CannonStaticValues.Characters.Alien:
+		case StaticGameState.CharacterState.Alien:
 			randomLaunchNumber = Random.Range (0, alienLaunches.Length - 1);
 			sfxSource.PlayOneShot (alienLaunches[randomLaunchNumber]);
 			break;
-		case CannonStaticValues.Characters.Batboy:
+		case StaticGameState.CharacterState.Batboy:
 			randomLaunchNumber = Random.Range(0, batBoyLaunches.Length - 1);
 			sfxSource.PlayOneShot(batBoyLaunches[randomLaunchNumber]);
 			break;
-		case CannonStaticValues.Characters.Bear:
+		case StaticGameState.CharacterState.Bear:
 			randomLaunchNumber = Random.Range(0, bearLaunches.Length - 1);
 			sfxSource.PlayOneShot(bearLaunches[randomLaunchNumber]);
 			break;
-		case CannonStaticValues.Characters.Unicorn:
+		case StaticGameState.CharacterState.Unicorn:
 			randomLaunchNumber = Random.Range (0, unicornLaunches.Length - 1);
 			sfxSource.PlayOneShot (unicornLaunches [randomLaunchNumber]);
 			break;
-		case CannonStaticValues.Characters.BigFoot:
+		case StaticGameState.CharacterState.Bigfoot:
 			randomLaunchNumber = Random.Range (0, bigfootLaunches.Length - 1);
 			sfxSource.PlayOneShot (bigfootLaunches [randomLaunchNumber]);
 			break;

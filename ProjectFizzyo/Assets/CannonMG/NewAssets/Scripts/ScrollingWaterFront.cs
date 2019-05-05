@@ -14,12 +14,15 @@ public class ScrollingWaterFront : MonoBehaviour {
 	BoxCollider2D box;
 	CannonController controller;
 
+	CharacterAudioManager characterAudioManager;
+
 	void Start () 
 	{
 		_material = GetComponent<Renderer> ().material;
 		camera = GameObject.FindObjectOfType<Camera> ().gameObject;
 		box = GetComponent<BoxCollider2D> ();
 		controller = GameObject.FindObjectOfType<CannonController> ();
+		characterAudioManager = GameObject.FindObjectOfType<CharacterAudioManager> ();
 	}
 
 	void Update () 
@@ -52,5 +55,13 @@ public class ScrollingWaterFront : MonoBehaviour {
 		{
 			box.isTrigger = false;
 		}
+	}
+
+	void OnCollisionEnter2D (Collision2D collision) 
+	{
+		if (collision.collider.tag == "CharacterProjectile") 
+		{
+			characterAudioManager.PlaySkiff ();
+		}		
 	}
 }
