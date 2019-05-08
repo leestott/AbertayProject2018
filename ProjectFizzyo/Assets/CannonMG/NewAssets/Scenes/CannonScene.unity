@@ -236,6 +236,130 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &136370808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136370809}
+  - component: {fileID: 136370810}
+  m_Layer: 0
+  m_Name: CannonAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &136370809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136370808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1811678652}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &136370810
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136370808}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &163529500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2226,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2344e92898fded543bfa2654391052f8, type: 3}
   - {fileID: 8300000, guid: 96849598fecba8043b11202647ab6551, type: 3}
   - {fileID: 8300000, guid: dadd0e35a3fd956419d7e96182ba200c, type: 3}
+  cannonFire: {fileID: 8300000, guid: cbd66e499d99b6442a75efa5a2231180, type: 3}
 --- !u!4 &750363070
 Transform:
   m_ObjectHideFlags: 0
@@ -3302,6 +3427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splashPrefab: {fileID: 1074648547210258, guid: ea407e06d1605fc47825fc2aac79ccc1,
     type: 2}
+  splashClip: {fileID: 8300000, guid: f8169777d9a2c584da4343c912bafe1e, type: 3}
 --- !u!61 &1390592740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4407,6 +4533,7 @@ MonoBehaviour:
   maxHeight: 3
   hasFound: 0
   hasSpawned: 0
+  multiplier: 0.04
 --- !u!114 &1725433790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4437,6 +4564,7 @@ MonoBehaviour:
   breathBar: {fileID: 1516487301}
   breathMetre: {fileID: 1431087796}
   loadingIcon: {fileID: 1218944624}
+  menuSwitchClip: {fileID: 8300000, guid: 45af00694663c5c4bb2a6abe3d9757a9, type: 3}
 --- !u!114 &1725433791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4975,6 +5103,7 @@ Transform:
   m_Children:
   - {fileID: 120749073}
   - {fileID: 1923793237}
+  - {fileID: 136370809}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5012,7 +5141,9 @@ MonoBehaviour:
     type: 2}
   breathMetre: {fileID: 1431087796}
   decrementAmount: 0.1
+  distance: 0
   characterAudioManager: {fileID: 0}
+  cannonRotateClip: {fileID: 8300000, guid: ae882bd34e279dd479d29d724db8494d, type: 3}
 --- !u!1 &1818903475
 GameObject:
   m_ObjectHideFlags: 0
