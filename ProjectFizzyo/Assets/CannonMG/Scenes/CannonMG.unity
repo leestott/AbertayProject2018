@@ -480,14 +480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9b72867583e1446ae8c60a66ce658a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudPrefab: {fileID: 1238852862929916, guid: 9b60c07bfadc03248a64b8f36cdc3835,
-    type: 2}
-  minDelay: 0.5
-  maxDelay: 1
-  minSize: 0.25
-  maxSize: 0.75
-  minHeight: 0.5
-  maxHeight: 5
 --- !u!4 &75753305
 Transform:
   m_ObjectHideFlags: 0
@@ -528,15 +520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d684a4ca9ac2f40b928cb1ed85cd44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: 0
-  menuItems:
-  - {fileID: 1769257693}
-  - {fileID: 956176531}
-  - {fileID: 224691477}
-  - {fileID: 1571997410}
-  - {fileID: 1755413127}
-  holdingIcon: {fileID: 1316223533}
-  fillAmount: 0
 --- !u!114 &75753308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +595,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2344e92898fded543bfa2654391052f8, type: 3}
   - {fileID: 8300000, guid: 96849598fecba8043b11202647ab6551, type: 3}
   - {fileID: 8300000, guid: dadd0e35a3fd956419d7e96182ba200c, type: 3}
+  cannonFire: {fileID: 0}
 --- !u!1 &96139364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,8 +1036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd15c2364ae54084ca38212c249bb979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  multiplier: 0.08
 --- !u!95 &318659466 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95415088876799384, guid: b777725328c1cf14ea621bc971e281aa,
@@ -1165,7 +1147,7 @@ Prefab:
     - target: {fileID: 224482547456643748, guid: 55b3b2ab6a379c24399ca90a7928b128,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -161
+      value: -148.75
       objectReference: {fileID: 0}
     - target: {fileID: 224482547456643748, guid: 55b3b2ab6a379c24399ca90a7928b128,
         type: 2}
@@ -1226,6 +1208,21 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -194
+      objectReference: {fileID: 0}
+    - target: {fileID: 224482547456643748, guid: 55b3b2ab6a379c24399ca90a7928b128,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.3806975
+      objectReference: {fileID: 0}
+    - target: {fileID: 224482547456643748, guid: 55b3b2ab6a379c24399ca90a7928b128,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.1568991
+      objectReference: {fileID: 0}
+    - target: {fileID: 224482547456643748, guid: 55b3b2ab6a379c24399ca90a7928b128,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.3806975
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b3b2ab6a379c24399ca90a7928b128, type: 2}
@@ -2010,7 +2007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f76c6bf9d5ae0b4e823bcc23bf8a6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterSplash: {fileID: 8300000, guid: f8169777d9a2c584da4343c912bafe1e, type: 3}
 --- !u!1 &956176531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,35 +2198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43740ab2cdde44e4eab9aef4e61417ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 50
-  maxRotationAngle: 60
-  launchForce: 750
-  alienProjectile: {fileID: 1184756915539016, guid: 05cccfb096389f8499bf4fb7c9668a99,
-    type: 2}
-  bearProjectile: {fileID: 1184756915539016, guid: cba79830ffa838245972bff63ab513f2,
-    type: 2}
-  unicornProjectile: {fileID: 1184756915539016, guid: e5fb2f0dd022b1b4a8d449878015fa3f,
-    type: 2}
-  batboyProjectile: {fileID: 1184756915539016, guid: d13c4bf410a44ad40a1c1d29b65268ac,
-    type: 2}
-  bigfootProjectile: {fileID: 1386604753112444, guid: df9af7ddce90e9c4788378daf91e556c,
-    type: 2}
-  shadowPrefab: {fileID: 1227383925136782, guid: c6ba1d0af6105814e95c80de25a781ff,
-    type: 2}
-  splashPrefab: {fileID: 1918199645745860, guid: 124d9b309e81166468d6cc25930df9ae,
-    type: 2}
-  playerCamera: {fileID: 1349164522}
-  breathPowerScale: 800
-  skimSpeed: 8
-  canPlay: 0
-  gameplayState: 0
-  cannonFireClip: {fileID: 8300000, guid: cbd66e499d99b6442a75efa5a2231180, type: 3}
-  waterSkiffs:
-  - {fileID: 8300000, guid: 1e9502b0813803d49b3623481c6b7ee6, type: 3}
-  - {fileID: 8300000, guid: 1ce8c4c2d4c32e84a9c80409b63e9fd9, type: 3}
-  - {fileID: 8300000, guid: f48621e36d54d6c4da650b8bcdd24b2c, type: 3}
-  - {fileID: 8300000, guid: 2150956ff63f6a94aa8f9c8138028c17, type: 3}
-  - {fileID: 8300000, guid: 39036dea22a202d4cb0449018506b646, type: 3}
 --- !u!95 &998902908
 Animator:
   serializedVersion: 3
@@ -2753,6 +2720,8 @@ MonoBehaviour:
   scoreMultiplier: 1
   barFull: {fileID: 318659466}
   reset: 0
+  inUse: 0
+  isCannonGame: 0
 --- !u!4 &1208474451
 Transform:
   m_ObjectHideFlags: 0
@@ -4138,12 +4107,12 @@ Prefab:
     - target: {fileID: 224534423291077906, guid: b777725328c1cf14ea621bc971e281aa,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -17.518
       objectReference: {fileID: 0}
     - target: {fileID: 224534423291077906, guid: b777725328c1cf14ea621bc971e281aa,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -60
+      value: -81
       objectReference: {fileID: 0}
     - target: {fileID: 224534423291077906, guid: b777725328c1cf14ea621bc971e281aa,
         type: 2}
@@ -4194,6 +4163,21 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224534423291077906, guid: b777725328c1cf14ea621bc971e281aa,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.2543962
+      objectReference: {fileID: 0}
+    - target: {fileID: 224534423291077906, guid: b777725328c1cf14ea621bc971e281aa,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.0506573
+      objectReference: {fileID: 0}
+    - target: {fileID: 224534423291077906, guid: b777725328c1cf14ea621bc971e281aa,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.2543962
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b777725328c1cf14ea621bc971e281aa, type: 2}
@@ -4462,8 +4446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd15c2364ae54084ca38212c249bb979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  multiplier: 0.08
 --- !u!33 &2037551388
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -11,14 +11,19 @@ public class ScreenShake : MonoBehaviour {
 
 	Vector3 originalPosition;
 
+    private GameObject setInfo;
+    public SetDisplayInfo setDisplayInfo;
+
 	void Start () 
 	{
-		originalPosition = transform.position;	
-	}
+		originalPosition = transform.position;
+        setDisplayInfo = FindObjectOfType<SetDisplayInfo>();
+        DebugManager.SendDebug("The popup is displayed: " + setDisplayInfo.GetIsPopupDisplayed(), "BreathBar");
+    }
 
 	void Update () 
 	{
-		if (shake > 0)
+		if ((shake > 0) && !(setDisplayInfo.GetIsPopupDisplayed()))
 		{
 			// Move screen by point within a circle whose radius is determined by the shake magnitude
 			Vector2 shakeValue = Random.insideUnitCircle * shakeMagnitude;

@@ -39,11 +39,15 @@ public class BreathMetre : MonoBehaviour {
     // For screenshake.
     ScreenShake screenShake;
 
+    // Is the bar being filled
+    public bool inUse = false;
+
 	public bool isCannonGame = false;
 
     // Initialise the variables.
     public void Start()
     {
+        DebugManager.SendDebug("A breath bar has been made", "BreathBar");
         fillAmount = 0.0f;
         breathTime = 0.0f;
 
@@ -62,6 +66,7 @@ public class BreathMetre : MonoBehaviour {
         // If bar is not locked increase fill amount based on the breaths length vs calibrated breath.
         if (!lockBar)
         {
+            // Do not keep filling breath if the bar is full
             if (beganBreath)
             {
                 breathTime += Time.deltaTime;
@@ -79,6 +84,7 @@ public class BreathMetre : MonoBehaviour {
         // Reset the fill amount.
         if(reset)
         {
+            DebugManager.SendDebug("A breath bar has been reset", "BreathBar");
             fillAmount = 0.0f;
             breathTime = 0.0f;
             reset = false;
@@ -93,6 +99,7 @@ public class BreathMetre : MonoBehaviour {
     {
         breathTime = 0.0f;
         beganBreath = true;
+        inUse = true;
     }
 
 	public void UpdateCannonBar () 
@@ -110,15 +117,16 @@ public class BreathMetre : MonoBehaviour {
 		Debug.Log ("USER FINISHED BREATH");
 
         DebugManager.SendDebug("Breath ended", "BreathBar");
+        inUse = false;
 
         // If the bar is full lock the bar and shake the screen.
 		if ((fillAmount >= 1) && (!lockBar) && (!reset))
         {
-			if (!isCannonGame) {
+			if (!isCannonGame)
+            {
 				barFull.SetBool ("barFull", true);
 				screenShake.ShakeScreen ();
 			}
-            lockBar = true;
         }
 
         beganBreath = false;
@@ -126,7 +134,7 @@ public class BreathMetre : MonoBehaviour {
 
         DebugManager.SendDebug("Is recordable: " + AnalyticsManager.GetIsRecordable(), "BreathBar");
 
-        // Check if its in the hub.
+        // Check if its in the hub. i.e should the breaths be recorded
         if (AnalyticsManager.GetIsRecordable() == true)
         {
             DebugManager.SendDebug("Breath ended and is recordable", "BreathBar");

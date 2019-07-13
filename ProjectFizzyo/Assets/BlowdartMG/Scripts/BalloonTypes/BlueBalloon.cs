@@ -8,7 +8,7 @@ public class BlueBalloon : ParentBalloon
     // Set up the correct sprite, randomise the speed and find the shadows animator.
     private void Start()
     {
-        whichBalloon = 1;
+        whichBalloon = 2;
         speed = Random.Range(0.1f, 2.0f);
         shadowAnimator = GetComponentInChildren<Animator>();
     }
