@@ -116,7 +116,7 @@ public class Blowdart : MonoBehaviour {
             }
             else if(resetTime != 0.6f)
             {
-                resetTime = 1.0f;
+                resetTime = 1.25f;
             }
 
             // Check for input from the player.
