@@ -28,6 +28,7 @@ public class GameStateManager : MonoBehaviour {
 
 	private bool breathBegin = false;
 	float fillAmount = 0.0f;
+    float iconFill = 0.0f;
 
 	public Image loadingIcon;
 
@@ -66,19 +67,22 @@ public class GameStateManager : MonoBehaviour {
 			startPromptText.SetActive (false);
 			breathBar.SetActive (false);
 			characterMenu.SetActive (true);
-			loadingIcon.gameObject.SetActive (true);
+            breathMetre.enabled = false;
+            loadingIcon.gameObject.SetActive (true);
 			CharacterMenu ();
 			break;
 		case StaticGameState.GameState.StartPrompt:
 			startPromptText.SetActive (true);
 			breathBar.SetActive (false);
 			characterMenu.SetActive (false);
+            breathMetre.enabled = false;
 			loadingIcon.gameObject.SetActive (false);
 			StartPrompt (); 
 			break;
 		case StaticGameState.GameState.Gameplay:
 			startPromptText.SetActive (false);
 			breathBar.SetActive (true);
+            breathMetre.enabled = true;
 			characterMenu.SetActive (false);
 			loadingIcon.gameObject.SetActive (false);
 			Gameplay ();
@@ -88,11 +92,15 @@ public class GameStateManager : MonoBehaviour {
 
 	void CharacterMenu () 
 	{
-		if (breathBegin) {
-			fillAmount = breathMetre.fillAmount;
-		}
+        if (breathBegin)
+        {
+            // Scale the breath pressure down a bit for filling icon.
+            iconFill += Time.deltaTime;
+            fillAmount = iconFill / 0.5f;
+        }
 
-		loadingIcon.fillAmount = fillAmount;
+        // Only show the icon when held for certain amount of time.
+        loadingIcon.fillAmount = fillAmount;
 
 		if (fillAmount >= 1.0f) 
 		{
@@ -195,6 +203,7 @@ public class GameStateManager : MonoBehaviour {
 	void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
 	{
 		fillAmount = 0.0f;
+        iconFill = 0.0f;
 		breathBegin = false;
 		if (StaticGameState.currentGameState == StaticGameState.GameState.CharacterMenu)
 		{

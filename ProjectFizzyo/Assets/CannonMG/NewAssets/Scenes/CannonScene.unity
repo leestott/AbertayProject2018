@@ -4494,7 +4494,7 @@ MonoBehaviour:
   hasFound: 0
   hasRB: 0
   hasSpawned: 0
-  positiveObstacleBias: 0.95
+  positiveObstacleBias: 0.9
 --- !u!4 &1725433788
 Transform:
   m_ObjectHideFlags: 0

@@ -107,6 +107,8 @@ public class BreathMetre : MonoBehaviour {
     // When the breath ends lock the bar and deal with analytics.
     private void OnBreathEnded(object sender, ExhalationCompleteEventArgs e)
     {
+		Debug.Log ("USER FINISHED BREATH");
+
         DebugManager.SendDebug("Breath ended", "BreathBar");
 
         // If the bar is full lock the bar and shake the screen.
