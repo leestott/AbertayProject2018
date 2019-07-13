@@ -77,6 +77,7 @@ public class ObstacleSpawner : MonoBehaviour {
 		//If the random value is less than positibe bias then spawn a positive obstacle
 		if (randomBias <= currentPositiveBias)
 		{
+			//Spawn a positive obstacle
 			int randomObstacleIndex = Random.Range (0, positiveObstacles.Length);
 			Vector3 spawnPosition = new Vector3 (obstacleSpawnPoint.position.x, positiveObstacles [randomObstacleIndex].transform.position.y, 0);
 			GameObject currentObstacle = Instantiate (positiveObstacles [randomObstacleIndex], spawnPosition, positiveObstacles[randomObstacleIndex].transform.rotation) as GameObject;

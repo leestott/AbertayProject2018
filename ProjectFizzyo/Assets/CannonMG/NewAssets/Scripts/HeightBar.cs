@@ -20,7 +20,7 @@ public class HeightBar : MonoBehaviour {
 		//Initialse variables and references
 		box = GetComponent<BoxCollider2D> ();
 		arrowPoint = GameObject.Find ("ArrowHeightPoint");
-		minimumBarHeight = arrowPoint.transform.localPosition.y - (box.size.y / 2.0f);
+		minimumBarHeight = arrowPoint.transform.localPosition.y - (box.size.y / 2.4f);
 		maximumBarHeight = arrowPoint.transform.localPosition.y + (box.size.y / 2.0f);
 
 		arrowPoint.transform.localPosition = new Vector3 (0.75f, minimumBarHeight, transform.position.z);

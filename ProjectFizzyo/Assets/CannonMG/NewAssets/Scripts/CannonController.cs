@@ -50,7 +50,15 @@ public class CannonController : MonoBehaviour {
 
 	public float decrementAmount = 0.1f;
 
+	public float distance;
+
 	public CharacterAudioManager characterAudioManager;
+
+	MinigameScoring minigameScoring;
+
+	public AudioClip cannonRotateClip;
+
+	AudioSource cannonAudioSource;
 
 	void Start () 
 	{
@@ -73,6 +81,12 @@ public class CannonController : MonoBehaviour {
 		breathMetre.reset = true;
 
 		characterAudioManager = GameObject.FindObjectOfType<CharacterAudioManager> ();
+		minigameScoring = GameObject.FindObjectOfType<MinigameScoring> ();
+		cannonAudioSource = GameObject.Find ("CannonAudioSource").GetComponent<AudioSource> ();
+
+		cannonAudioSource.clip = cannonRotateClip;
+		cannonAudioSource.Play ();
+		cannonAudioSource.mute = true;
 	}
 
 	void Update () 
@@ -141,12 +155,15 @@ public class CannonController : MonoBehaviour {
 			if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && !hasLaunched && fillAmount > 0.0f) {
 				hasLaunched = true;	
 				anim.SetTrigger ("FireCannon");
+				cannonAudioSource.mute = true;
 			}
 				
 			//If projectile is currently in the air
 			if (hasLaunched && projectile != null) {
 				Rigidbody2D projectileRB = projectile.GetComponent<Rigidbody2D> ();
 				//Debug.Log ("Projectile Velocity: " + projectileRB.velocity.x);
+
+				distance = projectile.transform.position.x;
 
 				//If button input and breath bar filled over a minimum amount
 				if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && fillAmount >= decrementAmount) {
@@ -172,6 +189,7 @@ public class CannonController : MonoBehaviour {
 			//If not launched yet rotate cannon
 			if (!hasLaunched) {
 				AxisRotation ();
+				cannonAudioSource.mute = false;
 			}
 		}
 	}
@@ -192,6 +210,9 @@ public class CannonController : MonoBehaviour {
 		hasSpawnedShadow = false;
 		fillAmount = 0.0f;
 		breathMetre.reset = true;
+
+		minigameScoring.AddScore (Mathf.RoundToInt (distance));
+		distance = 0.0f;
 	}
 
 	void AxisRotation ()

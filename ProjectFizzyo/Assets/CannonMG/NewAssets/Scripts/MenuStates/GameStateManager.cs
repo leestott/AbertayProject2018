@@ -31,6 +31,9 @@ public class GameStateManager : MonoBehaviour {
 
 	public Image loadingIcon;
 
+	public AudioClip menuSwitchClip;
+	AudioSource sfxSource;
+
 	void Start () 
 	{
 		//Get references to components
@@ -39,6 +42,8 @@ public class GameStateManager : MonoBehaviour {
 		characterMenu = GameObject.Find ("CharacterPanels");
 
 		controller = GameObject.FindObjectOfType<CannonController> ();
+
+		sfxSource = GameObject.Find ("SFXAudioSource").GetComponent<AudioSource> ();
 
 		//Initialise gameobjects
 		startPromptText.SetActive (false);
@@ -98,6 +103,7 @@ public class GameStateManager : MonoBehaviour {
 		if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && pressTime >= 1.2f)
 		{
 			currentMenuIndex++;
+			sfxSource.PlayOneShot (menuSwitchClip);
 			//Reset value if it exceeds menu items number
 			if (currentMenuIndex > menuPositions.Length - 1)
 			{

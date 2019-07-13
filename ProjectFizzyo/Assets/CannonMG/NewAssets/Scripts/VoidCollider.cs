@@ -17,7 +17,6 @@ public class VoidCollider : MonoBehaviour {
 	{
 		if (col.tag == "CharacterProjectile") 
 		{
-			controller.Reset ();
 			GameObject.Destroy (col.gameObject);
 			StartCoroutine (RespawnDelay ());
 		}

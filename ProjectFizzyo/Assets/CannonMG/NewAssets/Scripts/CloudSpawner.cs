@@ -22,6 +22,10 @@ public class CloudSpawner : MonoBehaviour {
 	public bool hasFound = false;
 	public bool hasSpawned = false;
 
+	Rigidbody2D projectileRB;
+
+	public float multiplier;
+
 	void Start () 
 	{
 		spawnPoint = GameObject.Find ("CloudSpawnPoint").transform;
@@ -46,6 +50,7 @@ public class CloudSpawner : MonoBehaviour {
 		if (projectile != null) 
 		{
 			hasFound = true;
+			projectileRB = projectile.GetComponent<Rigidbody2D> ();
 		} 
 		else 
 		{
@@ -90,8 +95,18 @@ public class CloudSpawner : MonoBehaviour {
 	IEnumerator SpawnDelay () 
 	{
 		//Delay a random value between min and max delay
-		float randomDelay = Random.Range (minDelay, maxDelay);
-		yield return new WaitForSeconds (randomDelay);
+		float delayTime = Random.Range (minDelay, maxDelay);
+		if (projectileRB != null)
+		{
+			//Adjust delay value for projectile velocity
+			if (projectileRB.velocity.x > 0)
+			{
+				delayTime /= projectileRB.velocity.x * multiplier;
+			}
+		}
+		//Debug.Log ("OBSTACLE DELAY TIME: " + delayTime);
+		//Wait delay time
+		yield return new WaitForSeconds (delayTime);
 		SpawnCloud ();
 	}
 }

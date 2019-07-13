@@ -18,6 +18,8 @@ public class CharacterAudioManager : MonoBehaviour {
 	[Space]
 	public AudioClip[] bigfootSkiffs;
 	public AudioClip[] bigfootLaunches;
+	[Space]
+	public AudioClip cannonFire;
 
 	AudioSource sfxSource;
 
@@ -57,6 +59,8 @@ public class CharacterAudioManager : MonoBehaviour {
 
 	public void PlayerLaunch () 
 	{
+		sfxSource.PlayOneShot (cannonFire);
+
 		int randomLaunchNumber = 0;
 		switch (StaticGameState.currentCharacter)
 		{
