@@ -30,6 +30,8 @@ public class Blowdart : MonoBehaviour {
     // Has the dart been shot.
     private bool fired = false;
 
+    public bool HasBeenFired() { return fired; }
+
     // Controls the spawning and levels.
     public BalloonSpawner balloonSpawner;
 
@@ -38,6 +40,9 @@ public class Blowdart : MonoBehaviour {
 
     // Timer variable for stopping dart firing with UI.
     float timePassed = 0;
+
+    float resetTimer = 0.0f;
+    float resetTime = 1.47f;
 
     // Shows breath and sets information.
     public SetDisplayInfo setDisplayInfo;
@@ -71,6 +76,17 @@ public class Blowdart : MonoBehaviour {
             timePassed += Time.deltaTime;
         }
 
+        if(fired)
+        {
+            resetTimer += Time.deltaTime;
+        }
+
+        if(resetTimer >= resetTime)
+        {
+            resetTimer = 0.0f;
+            ResetDart();
+        }
+
         // Check if popup is displayed if so reset the timer.
         if (setDisplayInfo.GetIsPopupDisplayed())
         {
@@ -81,12 +97,26 @@ public class Blowdart : MonoBehaviour {
         if (!gameFinished)
         {
             // Set the darts power based on the current fill amount multiplied by a constant.
-            dartPower = breathMetre.fillAmount * dartPowerMultiplier;
+            // Also sets a cap on the speed of the dart if user has gone over bar.
+            if (breathMetre.fillAmount >= 1.0f)
+            {
+                dartPower = dartPowerMultiplier;
+                resetTime = 0.6f;
+            }
+            else
+            {
+                dartPower = breathMetre.fillAmount * dartPowerMultiplier;
+            }
 
             // Set the power to a minimum if too weak so it doesnt just go straight down.
             if (dartPower < minPower)
             {
                 dartPower = minPower;
+                resetTime = 1.5f;
+            }
+            else if(resetTime != 0.6f)
+            {
+                resetTime = 1.0f;
             }
 
             // Check for input from the player.
@@ -121,9 +151,13 @@ public class Blowdart : MonoBehaviour {
             // Fire the dart on fizzyo button input and lock the bar so it cant be filled.
             if ((Input.GetKeyDown(KeyCode.Space) || FizzyoFramework.Instance.Device.ButtonDown()) && !fired)
             {
-                fired = true;
-                breathMetre.lockBar = true;
-                FireDart();
+                // Can only fire if they have stopped breathing.
+                if (breathMetre.inUse == false)
+                {
+                    fired = true;
+                    breathMetre.lockBar = true;
+                    FireDart();
+                }
             }
         }
     }
@@ -151,32 +185,32 @@ public class Blowdart : MonoBehaviour {
         dartPower = 0;
     }
 
+    void ResetDart()
+    {
+        // Check if the final score box is not displayed and then check if the session should be finished else the game has ended.
+        if (globalSessionScore.boxDisplayed == false)
+        {
+            globalSessionScore.IsSessionFinished();
+        }
+        else
+        {
+            gameFinished = true;
+            rb.gravityScale = 0;
+        }
+
+        // Reset everything.
+        DebugManager.SendDebug("The blowdart is resetting the breath bar in blowdart", "BreathBar");
+        breathMetre.reset = true;
+        rb.velocity = new Vector2(0, 0);
+        rb.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        fired = false;
+        transform.position = startingPos;
+        blowPipe.transform.position = startingPos;
+    }
+
     // When the dart hits a trigger collider.
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // It has hit the reset collider and should be moved back to the starting location.
-        if (collision.gameObject.tag == "Reset")
-        {
-            // Check if the final score box is not displayed and then check if the session should be finished else the game has ended.
-            if (globalSessionScore.boxDisplayed == false)
-            {
-                globalSessionScore.IsSessionFinished();
-            }
-            else
-            {
-                gameFinished = true;
-                rb.gravityScale = 0;
-            }
-
-            // Reset everything.
-            breathMetre.reset = true;
-            rb.velocity = new Vector2(0, 0);
-            rb.transform.eulerAngles = new Vector3(0.0f,0.0f,0.0f);
-            fired = false;
-            transform.position = startingPos;
-            blowPipe.transform.position = startingPos;
-        }
-
         // It has hit a balloon, tell the spawner and the achievements then play a popping sound.
         if (collision.gameObject.tag == "Balloon")
         {

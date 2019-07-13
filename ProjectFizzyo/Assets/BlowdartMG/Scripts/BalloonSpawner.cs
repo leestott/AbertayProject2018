@@ -15,17 +15,26 @@ public class BalloonSpawner : MonoBehaviour {
     // Which level is currently on.
     [SerializeField]
     private int currentLevel = 0;
+    private int prevLevel;
+    private int prev2Level;
+
+    // Reference to the blowdart.
+    [SerializeField]
+    private Blowdart blowdart;
+
+    private int curLevelBalloonNum;
 
     // Start the scene with three balloons.
     void Start()
     {
         Instantiate(levels[currentLevel]);
+        curLevelBalloonNum = levelBalloonNumbers[currentLevel];
 	}
 
     // For each balloon popped subtract from how many balloons are in the level.
     public void BalloonPopped()
     {
-        levelBalloonNumbers[currentLevel]--;
+        curLevelBalloonNum--;
     }
 	
     // TO DO: Remove Debug for changing level.
@@ -38,7 +47,7 @@ public class BalloonSpawner : MonoBehaviour {
         }
 
         // If all the balloons are popped move on to the next level.
-        if (AllPopped())
+        if (AllPopped() && !blowdart.HasBeenFired())
         {
             NextLevel();
         }
@@ -49,7 +58,7 @@ public class BalloonSpawner : MonoBehaviour {
     {
         bool ifPopped = false;
 
-        if (levelBalloonNumbers[currentLevel] <= 0)
+        if (curLevelBalloonNum <= 0)
         {
             ifPopped = true;
         }
@@ -60,13 +69,15 @@ public class BalloonSpawner : MonoBehaviour {
     // Change the level if at the end wrap around.
     public void NextLevel()
     {
-        currentLevel++;
+        prev2Level = prevLevel;
+        prevLevel = currentLevel;
 
-        if (currentLevel > levels.Length - 1)
+        do
         {
-            currentLevel = 0;
-        }
+            currentLevel = (int)Random.Range(0.0f, levels.Length - 1.0f);
+        } while ((currentLevel == prev2Level) || (currentLevel == prevLevel));
 
+        curLevelBalloonNum = levelBalloonNumbers[currentLevel];
         Instantiate(levels[currentLevel]);
     }
 

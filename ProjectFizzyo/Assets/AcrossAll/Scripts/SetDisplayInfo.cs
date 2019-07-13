@@ -17,7 +17,7 @@ public class SetDisplayInfo : MonoBehaviour {
     // Popup prefab and the current popup.
     public GameObject popupPrefab;
     private GameObject currPopup;
-    private bool isPopupDisplayed;
+    private bool isPopupDisplayed = false;
 
     // The set currently on.
     private int currSet;
@@ -26,7 +26,7 @@ public class SetDisplayInfo : MonoBehaviour {
     public Image countdown;
 
     // Timer for how long huff cough pop is displayed.
-    public float displayLength = 10.0f;
+    public float displayLength = 1.0f;
     public float timer = 0.0f;
 
     // Reference to the breath metre

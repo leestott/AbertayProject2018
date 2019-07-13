@@ -13,8 +13,8 @@ public class ParentBalloon : MonoBehaviour {
     [Header("Spritesheet for the balloons:")]
     public Sprite[] balloonSprites;
 
-    // Each balloon type corresponds to a different balloon: 0 = Red, 1 = Blue, 2 = Green, 3 = Yellow.
-    protected int whichBalloon;
+    // Each balloon type corresponds to a different balloon: 0 = Red, 1 = Green, 2 = Blue, 3 = Yellow.
+    public int whichBalloon;
 
     // Animator for the baloons shadow.
     protected Animator shadowAnimator;
@@ -50,13 +50,13 @@ public class ParentBalloon : MonoBehaviour {
                 case 0:
                     score = 40;
                     break;
-                // Blue balloon score
-                case 1:
-                    score = 20;
-                    break;
                 // Green balloon score
-                case 2:
+                case 1:
                     score = 30;
+                    break;
+                // Blue balloon score
+                case 2:
+                    score = 20;
                     break;
                 // Yellow balloon score
                 case 3:
